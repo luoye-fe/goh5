@@ -1,0 +1,50 @@
+/* reset */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {margin: 0;padding: 0;border: 0;outline: 0}
+div {-webkit-tap-highlight-color: rgba(0, 0, 0, 0)}
+input {outline: 0;font-size: 14px;}
+html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 {-webkit-text-size-adjust: none}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display: block}
+a, input, select, button, textarea {font-family: 'Microsoft YaHei', arial, helvetica, sans-serif}
+a {text-decoration: none;color: #3990e6}
+body {font-family: 'Microsoft YaHei', arial, helvetica, sans-serif;-webkit-text-size-adjust: none;-webkit-user-select: none;font-size: 14px;background: #f8f8f8}
+ol, ul {list-style: none}
+blockquote, q {quotes: none}
+img, table {border: 0}
+blockquote:before, blockquote:after, q:before, q:after {content: '';content: none}
+ins {text-decoration: none}
+del {text-decoration: line-through}
+select {background: #fff;}
+table {border-collapse: collapse;border-spacing: 0}
+.fr {float: right}
+.fl {float: left}
+button, input[type="button"], input[type="reset"], input[type="submit"] {cursor: pointer;-moz-appearance: none;-webkit-appearance: none;}
+button::-moz-focus-inner, input::-moz-focus-inner {padding: 0;border: 0}
+.clearfix:after, .main_card:after, .eidt_content_list:after {content: '\0020';display: block;height: 0;clear: both}
+.clearfix {*zoom: 1}
+.hide, .v-hide {display: none !important;}
+
+
+/* loading */
+.loading_con {position: fixed;top: 0;left: 0;width: 100%;height:100%;background: rgba(0, 0, 0, 0.8);z-index: 9999999;}
+.loading_con .loading_center{width: 150px;height: 150px;border-radius: 20px;background: #fff;}
+.loading_con .loading_center>div img{display: block;margin: 0 auto;-webkit-animation:loading linear both 1s infinite;}
+.loading_con .loading_center>div span{display: block;margin: 15px auto 0;text-align: center;font-size: 16px;}
+
+@-webkit-keyframes loading {
+    from {   
+        -webkit-transform: rotate(0deg);
+    }
+    to {    
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+
+/* 定位 */
+.vertical_center {position: absolute;top: 50%;-webkit-transform: translateY(-50%);}
+.horizontal_center {position: absolute;left: 50%;-webkit-transform: translateX(-50%);}
+.all_center {position: absolute;top: 50%;left: 50%;-webkit-transform: translate(-50%, -50%);width: 100%;}
+
+
+
+

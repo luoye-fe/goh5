@@ -1,4 +1,5 @@
 'use strict';
+var fs = require('fs');
 var gulp = require('gulp');
 var webpack = require('webpack');
 var gulpWebpack = require('webpack-stream');
@@ -7,15 +8,34 @@ var minifyCss = require('gulp-minify-css');
 var header = require('gulp-header');
 var clean = require('gulp-clean');
 var gulpIf = require('gulp-if');
+var concat = require('gulp-concat');
+var rename = require('gulp-rename');
 var minimist = require('minimist');
 
-// gulp --env=dev 不压缩代码，直接gulp，将压缩所有代码
+var pwd = __dirname;
 
+// gulp --env=pro 压缩代码，直接执行gulp，不压缩代码
 var argv = require('minimist')(process.argv.slice(2));
 var config = require('./config.json');
+
+// 根据不同环境使用不同的第三方库
+var aliasFile = function(name) {
+    if (argv.env == 'pro') {
+        return name + '.min.js';
+    } else {
+        return name + '.js';
+    }
+}
+
+var vendorPlugin = new webpack.optimize.CommonsChunkPlugin({
+    name: 'vendor',
+    filename: 'vendor.min.js',
+    minChunks: Infinity,
+});
 var webpackConfig = {
     entry: {
-        h5go: './src/js/app.js'
+        goh5: './src/js/app.js',
+        vendor: [pwd + '/src/js/lib/' + aliasFile('vue'), pwd + '/src/js/lib/' + aliasFile('jquery')]
     },
     output: {
         filename: '[name].min.js'
@@ -24,8 +44,20 @@ var webpackConfig = {
         loaders: [{
             test: /.js$/,
             loader: 'jsx-loader?harmony'
+        }, {
+            test: /.vue$/,
+            // loader: 'jsx-loader?harmony'
         }]
-    }
+    },
+    plugins: [vendorPlugin],
+    resolve: {
+        extensions: ['', '.js', '.json', '.scss'],
+        alias: {
+            Vue: pwd + '/src/js/lib/' + aliasFile('vue'),
+            jQuery: pwd + '/src/js/lib/' + aliasFile('jquery'),
+            $: pwd + '/src/js/lib/' + aliasFile('jquery')
+        }
+    },
 };
 
 // 公共头部
@@ -46,12 +78,34 @@ gulp.task('js', function() {
     return gulp
         .src('./src/js/app.js')
         .pipe(gulpWebpack(webpackConfig))
-        .pipe(gulpIf(argv.env !== 'dev', uglify()))
-        .pipe(gulpIf(argv.env !== 'dev', header(banner, { config: config })))
+        .pipe(gulpIf(argv.env == 'pro', uglify()))
+        .pipe(gulpIf(argv.env == 'pro', header(banner, { config: config })))
         .pipe(gulp.dest('./dist/js/'))
 })
 
+gulp.task('css', function() {
+    return gulp
+        .src('./src/css/*.css')
+        .pipe(concat('all.js'))
+        .pipe(gulpIf(argv.env == 'pro', minifyCss()))
+        .pipe(gulpIf(argv.env == 'pro', header(banner, { config: config })))
+        .pipe(rename('goh5.min.css'))
+        .pipe(gulp.dest('./dist/css/'))
+})
+
+gulp.task('img', function() {
+    return gulp
+        .src('./src/img/*')
+        .pipe(gulp.dest('./dist/img/'))
+})
+
+gulp.task('watch', function() {
+    webpackConfig.watch = argv.env != 'pro';
+    gulp.watch('./src/js/*', ['js']);
+    gulp.watch('./src/css/*', ['css']);
+    gulp.watch('./src/img/*', ['img']);
+})
 
 gulp.task('default', ['clean'], function() {
-    gulp.start(['js']);
+    gulp.start(['js', 'css', 'img']);
 });
