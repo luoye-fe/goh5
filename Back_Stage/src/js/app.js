@@ -3,18 +3,36 @@
 var $ = require('jQuery');
 var Vue = require('Vue');
 
-$.ajax({
-	url:'http://127.0.0.1:3030/api/list',
-	type:'get',
-	success:function(res){
-		console.log(res);
-	}
+var Router = require('vue-route');
+Vue.use(Router);
+var router = new Router();
+
+Vue.config.debug = true
+
+// vue component
+var Home = require('./component/home.vue');
+var List = require('./component/list.vue');
+
+var App = Vue.extend({});
+
+router.map({
+    '/': {
+        component: Home
+    },
+    '/list': {
+        component: List
+    },
+    // '/signup': {
+    //     component: Signup
+    // }
 })
 
-var app = new Vue({
-	el:'#app',
-	data:{
-		test:'111'
-	}
+router.beforeEach(function() {
+    window.scrollTo(0, 0)
 })
 
+router.redirect({
+    '*': '/'
+})
+
+router.start(App, '#app')

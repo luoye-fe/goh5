@@ -35,7 +35,11 @@ var vendorPlugin = new webpack.optimize.CommonsChunkPlugin({
 var webpackConfig = {
     entry: {
         goh5: './src/js/app.js',
-        vendor: [pwd + '/src/js/lib/' + aliasFile('vue'), pwd + '/src/js/lib/' + aliasFile('jquery')]
+        vendor: [
+            pwd + '/src/js/lib/' + aliasFile('vue'), 
+            pwd + '/src/js/lib/' + aliasFile('jquery'), 
+            pwd + '/src/js/lib/' + aliasFile('vue-router')
+        ]
     },
     output: {
         filename: '[name].min.js'
@@ -46,7 +50,7 @@ var webpackConfig = {
             loader: 'jsx-loader?harmony'
         }, {
             test: /.vue$/,
-            // loader: 'jsx-loader?harmony'
+            loader: 'vue-loader'
         }]
     },
     plugins: [vendorPlugin],
@@ -55,7 +59,8 @@ var webpackConfig = {
         alias: {
             Vue: pwd + '/src/js/lib/' + aliasFile('vue'),
             jQuery: pwd + '/src/js/lib/' + aliasFile('jquery'),
-            $: pwd + '/src/js/lib/' + aliasFile('jquery')
+            $: pwd + '/src/js/lib/' + aliasFile('jquery'),
+            'vue-route': pwd + '/src/js/lib/' + aliasFile('vue-router'),
         }
     },
 };

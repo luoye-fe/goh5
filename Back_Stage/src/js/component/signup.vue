@@ -2,8 +2,8 @@
 	<div class="dialog_bg">
 		<div class="dialog_con all_center">
 			<div class="dialog_head">
-				<h2>登录</h2>
-				<a href="javascript:void(0)" class="dialog_link" v-on:click="closeLogin">关闭</a>
+				<h2>注册</h2>
+				<a href="javascript:void(0)" class="dialog_link" v-on:click="closeSingup">关闭</a>
 			</div>
 			<div class="dialog_main">
 				<div class="user">
@@ -15,14 +15,16 @@
 						<label for="password">密码：</label>
 						<input id="password" type="password" placeholder="请输入密码" v-bind:class="{'erro_input':erro.target == 'password'}" v-model="password" v-on:blur="bl" v-on:focus="fo"></input>	
 					</div>
+					<div class="item">
+						<label for="password">确认密码：</label>
+						<input id="password" type="password" placeholder="请再次输入密码" v-bind:class="{'erro_input':erro.target == 'passwordAgain'}" v-model="passwordAgain" v-on:blur="bl" v-on:focus="fo"></input>	
+					</div>
 					<div class="item clearfix">
-						<input type="checkbox" value="记住账号" v-model="remember"><span>记住账号</span></input>
-						<input type="checkbox" value="一周内免登录" v-model="noneedPassword"><span>一周内免登录</span></input>
-						<a v-on:click="showSingup">注册</a>
+						<a v-on:click="showLogin">已有帐号？</a>
 					</div>
 					<span class="erro_text" v-show="erro.iserro">{{erro.text}}</span>
 				</div>
-				<a href="javascript:void(0)" class="btn user_btn" v-on:click="login">登录</a>
+				<a href="javascript:void(0)" class="btn user_btn" v-on:click="signup">注册</a>
 			</div>
 			<div class="dialog_bottom">
 				<span class="advance_browser">为了获得更好的体验，建议使用<a target="_balck" href="http://www.google.cn/intl/zh-CN/chrome/browser/desktop/index.html"> 谷歌浏览器(Chrome)</a></span>
@@ -41,12 +43,10 @@ Vue.use(Router);
 var router = new Router();
 
 var loginSucc = function(Vm,userInfo){
-	if(Vm.remember){
-		localStorage.userInfo = JSON.stringify(userInfo);
-	}else{
-		localStorage.userInfo = '';
-	}
-	router.go('/list');
+	localStorage.userInfo = JSON.stringify(userInfo);
+	Vm.user_name = '';
+	Vm.password = '';
+	Vm.passwordAgain = '';
 }
 
 module.exports = {
@@ -55,8 +55,7 @@ module.exports = {
 		return {
 			user_name:'',
 			password:'',
-			noneedPassword: true,
-			remember: true,
+			passwordAgain:'',
 			erro:{
 				iserro:false,
 				text:'',
@@ -64,20 +63,13 @@ module.exports = {
 			}
 		}
 	},
-	compiled:function(){
-		if(localStorage.userInfo !== '' && localStorage.userInfo !== undefined){
-			var userInfo = JSON.parse(localStorage.userInfo);
-			this.user_name = userInfo.user_name;
-			this.password = userInfo.password;
-		}
-	},
 	methods:{
-		closeLogin: function(){
-			this.$dispatch('show-login', false);
+		closeSingup: function(){
+			this.$dispatch('show-signup', false);
 		},
-		showSingup:function(){
-			this.$dispatch('show-login', false);
-			this.$dispatch('show-signup', true);
+		showLogin:function(){
+			this.$dispatch('show-signup', false);
+			this.$dispatch('show-login', true);
 		},
 		bl: function(){
 			this.erro.iserro = false;
@@ -87,7 +79,7 @@ module.exports = {
 			this.erro.iserro = false;
 			this.erro.target = '';
 		},
-		login: function(){
+		signup: function(){
 			var _this = this;
 			this.erro = {
 				iserro:false,
@@ -96,8 +88,7 @@ module.exports = {
 			};
 			var user_name = this.user_name;
 			var password = this.password;
-			var remember = this.remember;
-			var noneedPassword = this.noneedPassword;
+			var passwordAgain = this.passwordAgain;
 			if(user_name === ''){
 				this.erro.iserro = true;
 				this.erro.text = '用户名不能为空！';
@@ -110,15 +101,19 @@ module.exports = {
 				this.erro.target = 'password';
 				return;
 			}
+			if(password !== passwordAgain){
+				this.erro.iserro = true;
+				this.erro.text = '两次密码不一致！';
+				this.erro.target = 'passwordAgain';
+				return;
+			}
 			$.ajax({
-				url:'/api/user/login',
+				url:'/api/user/signup',
 				type:'post',
 				data:{
 					user_name:user_name,
 					password:password,
 					time:new Date().getTime(),
-					remember:remember,
-					noneedPassword:noneedPassword
 				},
 				success:function(data){
 					if(data.iserro){
@@ -127,6 +122,8 @@ module.exports = {
 						_this.erro.target = data.data.target;
 						return;
 					}
+					_this.$dispatch('show-signup', false);
+					_this.$dispatch('show-login', true);
 					loginSucc(_this,data.data);
 				}
 			})
