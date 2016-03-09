@@ -6,15 +6,10 @@
 	<signup v-show="showSignup"></signup>
 </template>
 
-
 <script>
-	
+
 var Vue = require('Vue');
 var $ = require('jQuery');
-
-var Router = require('vue-route');
-Vue.use(Router);
-var router = new Router();
 
 // 未完成：检测是否登录自动跳转
 
@@ -29,7 +24,7 @@ module.exports = {
 	data: function(){
 		return {
 			showLogin: false,
-			showSignup: false
+			showSignup: false,
 		}
 	},
 	events: {
@@ -41,6 +36,5 @@ module.exports = {
 		}
 	}
 }
-
 
 </script>
