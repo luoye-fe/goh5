@@ -24,9 +24,6 @@ app.use(session({
     cookie: { maxAge: 1000 * 60 * 60 * 24 * 7 }
 }));
 
-routers.forEach(function(Router) {
-    app.use('/api', Router);
-})
 
 // 后台页面
 app.get('/', function(req, res, next) {
@@ -45,6 +42,12 @@ app.get('/show', function(req, res, next) {
     app.use(lactate.static(pwd + '/Front_Stage/'));
     res.sendFile(pwd + '/Front_Stage/index.html');
 })
+
+
+routers.forEach(function(Router) {
+    app.use('/api', Router);
+})
+
 
 
 app.listen(port);
