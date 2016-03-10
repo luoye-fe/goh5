@@ -1,10 +1,10 @@
 'use strict';
-
 var express = require('express');
 var bodyParser = require('body-parser');
+var session = require('express-session');
+var cookieParser = require('cookie-parser');
 var lactate = require('lactate');
 var mongoose = require('mongoose');
-var fs = require('fs');
 var pwd = __dirname;
 
 var app = express();
@@ -18,13 +18,25 @@ global.db = mongoose.connect("mongodb://localhost:27017/goh5");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(session({
+    secret: 'who am i ?',
+    cookie: { maxAge: 1000 * 60 * 60 * 24 * 7 }
+}));
 
-
+routers.forEach(function(Router) {
+    app.use('/api', Router);
+})
 
 // 后台页面
-app.get('/home', function(req, res, next) {
+app.get('/', function(req, res, next) {
     app.use(lactate.static(pwd + '/Back_Stage/'));
     res.sendFile(pwd + '/Back_Stage/index.html');
+    // if (req.session.noneedPassword) {
+    //     res.cookie('noneedPassword', 1, { expires: new Date(Date.now() + 10000 * 60 * 60 * 24 * 7) });
+    // } else {
+    //     res.cookie('noneedPassword', 0, { expires: 0 });
+    // }
 })
 
 // 前台页面
@@ -33,14 +45,7 @@ app.get('/show', function(req, res, next) {
     res.sendFile(pwd + '/Front_Stage/index.html');
 })
 
-app.get('/', function(req, res) {
-    res.redirect('/home');
-})
 
-routers.forEach(function(Router) {
-    app.use('/api', Router);
-})
-
-app.listen(3030);
+app.listen(port);
 
 module.exports = app;

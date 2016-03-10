@@ -2,6 +2,7 @@
 
 var $ = require('jQuery');
 var Vue = require('Vue');
+var utils = require('./utils');
 
 var Router = require('vue-route');
 Vue.use(Router);
@@ -25,7 +26,12 @@ router.map({
 })
 
 router.beforeEach(function() {
-    window.scrollTo(0, 0);
+	console.log(utils.getCookie('isLogin'));
+    if (Number(utils.getCookie('isLogin'))) {
+        router.go('/list');
+    }else{
+    	router.go('/');
+    }
 })
 
 router.redirect({

@@ -18,13 +18,18 @@ var login = function(req, res) {
             res.send(resData);
         } else {
             if (doc[0].password == md5(safeWord + obj.password)) {
-                if (obj.noneedPassword) {
-                    res.cookie('isLogin', obj.noneedPassword, { expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7), httpOnly: true });
+                req.session.isLogin = 1;
+                if (obj.noneedPassword == 'true') {
+                    req.session.noneedPassword = 1;
+                    res.cookie('isLogin', 1, { expires: new Date(Date.now() + 10000 * 60 * 60 * 24 * 7) });
+                } else {
+                    req.session.noneedPassword = 0;
+                    res.cookie('isLogin', 1, { expires: new Date(Date.now() + 10000 * 60 * 60 * 2) });
                 }
                 var resData = {
                     iserro: 0,
                     msg: '登录成功！',
-                    data: obj
+                    data: obj,
                 };
                 res.send(resData);
             } else {
@@ -58,15 +63,15 @@ var signup = function(req, res) {
             User.create({
                 user_name: obj.user_name,
                 password: md5(safeWord + obj.password)
-            },function(err,doc){
-                if(err){
+            }, function(err, doc) {
+                if (err) {
                     var resData = {
                         iserro: 1,
                         msg: err,
                         data: ''
                     };
                     res.send(resData);
-                }else{
+                } else {
                     var resData = {
                         iserro: 0,
                         msg: '注册成功！',
@@ -79,6 +84,17 @@ var signup = function(req, res) {
     })
 }
 
+var logout = function(req, res) {
+    req.session.isLogin = 0;
+    res.cookie('isLogin', 0, { expires: 0});
+    var resData = {
+        iserro: 0,
+        msg: '注销成功！',
+        data: ''
+    };
+    res.send(resData);
+}
+
 // act:login/sinup/logout
 module.exports = function(Router) {
     Router.post('/user/:act', function(req, res, next) {
@@ -88,6 +104,10 @@ module.exports = function(Router) {
         }
         if (req.params.act == 'signup') {
             signup(req, res);
+            return;
+        }
+        if (req.params.act == 'logout') {
+            logout(req, res);
             return;
         }
     })

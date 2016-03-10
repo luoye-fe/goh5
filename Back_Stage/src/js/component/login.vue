@@ -40,14 +40,6 @@ var Router = require('vue-route');
 Vue.use(Router);
 var router = new Router();
 
-var loginSucc = function(Vm,userInfo){
-	if(Vm.remember){
-		localStorage.userInfo = JSON.stringify(userInfo);
-	}else{
-		localStorage.userInfo = '';
-	}
-	router.go('/list');
-}
 
 module.exports = {
 	name:'Login',
@@ -64,8 +56,8 @@ module.exports = {
 			}
 		}
 	},
-	compiled:function(){
-		if(localStorage.userInfo !== '' && localStorage.userInfo !== undefined){
+	created:function(){
+		if(localStorage.userInfo){
 			var userInfo = JSON.parse(localStorage.userInfo);
 			this.user_name = userInfo.user_name;
 			this.password = userInfo.password;
@@ -127,7 +119,12 @@ module.exports = {
 						_this.erro.target = data.data.target;
 						return;
 					}
-					loginSucc(_this,data.data);
+					if(_this.remember){
+						localStorage.userInfo = JSON.stringify(data.data);
+					}else{
+						localStorage.userInfo = '';
+					}
+					router.go('/list');
 				}
 			})
 		}
