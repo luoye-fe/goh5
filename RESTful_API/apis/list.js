@@ -7,7 +7,7 @@ module.exports = function(Router) {
         var Work = global.dbHandel.getModel('work');
         var limit = Number(query.limit) || 10;
         var page = Number(query.page) || 1;
-        if(query.me){
+        if(query.me == '1'){
             Work.find({'user': req.cookies.user_name}).limit(limit).skip((page - 1) * limit).exec(function(err, docs) {
                 if (err) {
                     res.send(err);

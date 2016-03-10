@@ -30,7 +30,8 @@ module.exports = function(Router) {
             'createTime': Date.now(),
             'lastSaveTime': Date.now(),
             'about':{
-                title: obj.title
+                title: obj.title,
+                thumbnail: '/dist/img/eg.jpg'
             },
             'mainCode': mainCodeDefault,
             'setConfig': setConfigDefault,

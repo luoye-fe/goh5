@@ -3,8 +3,8 @@
 	<h2>请先登录！</h2>
 	<a href="javascript:void(0)" v-on:click="showLogin = !showLogin">登录</a>
 	<a href="javascript:void(0)" v-on:click="showSignup = !showSignup">注册</a>
-	<login v-show="showLogin"></login>
-	<signup v-show="showSignup"></signup>
+	<m-login v-show="showLogin"></m-login>
+	<m-signup v-show="showSignup"></m-signup>
 </template>
 
 <script>
@@ -12,15 +12,14 @@
 var Vue = require('Vue');
 var $ = require('jQuery');
 
-// 未完成：检测是否登录自动跳转
 
-var Login = require('./login.vue');
-var Signup = require('./signup.vue');
+var Login = require('./common/login.vue');
+var Signup = require('./common/signup.vue');
 
-Vue.component('login', Login);
-Vue.component('signup', Signup);
+Vue.component('m-login', Login);
+Vue.component('m-signup', Signup);
 
-module.exports = {
+var Home = {
 	name: 'Home',
 	data: function(){
 		return {
@@ -37,5 +36,7 @@ module.exports = {
 		}
 	}
 }
+
+module.exports = Home;
 
 </script>

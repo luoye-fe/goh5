@@ -14,9 +14,7 @@ Vue.config.debug = true;
 
 // vue component
 var Home = require('./component/home.vue');
-var List = require('./component/list.vue');
-
-
+var List = require('./component/list/main.vue');
 
 router.map({
     '/': {

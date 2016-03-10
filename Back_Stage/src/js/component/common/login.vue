@@ -41,8 +41,7 @@ var Router = require('vue-route');
 Vue.use(Router);
 var router = new Router();
 
-
-module.exports = {
+var Login = {
 	name:'Login',
 	data: function(){
 		return {
@@ -132,4 +131,7 @@ module.exports = {
 		}
 	}
 }
+
+module.exports = Login;
+
 </script>

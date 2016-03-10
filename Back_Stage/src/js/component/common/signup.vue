@@ -49,7 +49,7 @@ var loginSucc = function(Vm,userInfo){
 	Vm.passwordAgain = '';
 }
 
-module.exports = {
+var Singup = {
 	name:'Login',
 	data: function(){
 		return {
@@ -130,4 +130,6 @@ module.exports = {
 		}
 	}
 }
+
+module.exports = Singup;
 </script>
