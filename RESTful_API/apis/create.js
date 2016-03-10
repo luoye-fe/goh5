@@ -1,15 +1,22 @@
 'use strict';
+var setConfigDefault = {
 
-// /create
+}
+
+var mainCodeDefault = {
+    
+}
+
+// create work
 module.exports = function(Router) {
     Router.get('/create', function(req, res, next) {
         var Work = global.dbHandel.getModel('work');
         Work.create({
-            'user': 'admin',
-            'createTime': new Date().getTime(),
-            'lastSaveTime': new Date().getTime(),
-            'setConfig': {},
-            'mainCode': {},
+            'user': req.cookies.user_name,
+            'createTime': Date.now(),
+            'lastSaveTime': Date.now(),
+            'setConfig': setConfigDefault,
+            'mainCode': mainCodeDefault,
             'saveRecord': {},
             'status': 0
         }, function(err, doc) {
@@ -20,7 +27,6 @@ module.exports = function(Router) {
                 res.send('创建成功!');
             }
         })
-
     })
     return Router;
 }

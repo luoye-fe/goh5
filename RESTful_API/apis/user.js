@@ -19,6 +19,7 @@ var login = function(req, res) {
         } else {
             if (doc[0].password == md5(safeWord + obj.password)) {
                 req.session.isLogin = 1;
+                res.cookie('user_name', obj.user_name, { expires: new Date(Date.now() + 10000 * 60 * 60 * 24 * 7) });
                 if (obj.noneedPassword == 'true') {
                     req.session.noneedPassword = 1;
                     res.cookie('isLogin', 1, { expires: new Date(Date.now() + 10000 * 60 * 60 * 24 * 7) });

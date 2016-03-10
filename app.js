@@ -32,6 +32,12 @@ routers.forEach(function(Router) {
 app.get('/', function(req, res, next) {
     app.use(lactate.static(pwd + '/Back_Stage/'));
     res.sendFile(pwd + '/Back_Stage/index.html');
+    if (req.session.isLogin) {
+        next();
+    } else {
+        res.clearCookie('isLogin');
+        res.clearCookie('user_name');
+    }
 })
 
 // 前台页面
