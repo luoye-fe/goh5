@@ -32,11 +32,6 @@ routers.forEach(function(Router) {
 app.get('/', function(req, res, next) {
     app.use(lactate.static(pwd + '/Back_Stage/'));
     res.sendFile(pwd + '/Back_Stage/index.html');
-    // if (req.session.noneedPassword) {
-    //     res.cookie('noneedPassword', 1, { expires: new Date(Date.now() + 10000 * 60 * 60 * 24 * 7) });
-    // } else {
-    //     res.cookie('noneedPassword', 0, { expires: 0 });
-    // }
 })
 
 // 前台页面

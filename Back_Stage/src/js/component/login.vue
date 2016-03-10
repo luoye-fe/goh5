@@ -35,6 +35,7 @@
 	
 var Vue = require('Vue');
 var $ = require('jQuery');
+var utils = require('utils');
 
 var Router = require('vue-route');
 Vue.use(Router);
@@ -57,7 +58,7 @@ module.exports = {
 		}
 	},
 	created:function(){
-		if(localStorage.userInfo){
+		if(localStorage.remember == 'true' && localStorage.userInfo){
 			var userInfo = JSON.parse(localStorage.userInfo);
 			this.user_name = userInfo.user_name;
 			this.password = userInfo.password;
@@ -119,10 +120,11 @@ module.exports = {
 						_this.erro.target = data.data.target;
 						return;
 					}
+					localStorage.userInfo = JSON.stringify(data.data);
 					if(_this.remember){
-						localStorage.userInfo = JSON.stringify(data.data);
+						localStorage.remember = _this.remember;
 					}else{
-						localStorage.userInfo = '';
+						localStorage.remember = false;
 					}
 					router.go('/list');
 				}

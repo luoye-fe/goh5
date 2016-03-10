@@ -61,6 +61,7 @@ var webpackConfig = {
             jQuery: pwd + '/src/js/lib/' + aliasFile('jquery'),
             $: pwd + '/src/js/lib/' + aliasFile('jquery'),
             'vue-route': pwd + '/src/js/lib/' + aliasFile('vue-router'),
+            utils: pwd + '/src/js/utils.js'
         }
     },
 };
