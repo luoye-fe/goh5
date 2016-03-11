@@ -1,6 +1,7 @@
 <template>
-	<div class="dialog_bg" v-show="showSignup">
-		<div class="dialog_con all_center">
+	<div class="dialog_con" v-show="showSignup" transition="fade">
+		<div class="dialog_bg" v-on:click="this.showSignup = false"></div>
+		<div class="dialog_main_con all_center">
 			<div class="dialog_head">
 				<h2>注册</h2>
 				<a href="javascript:void(0)" class="dialog_link" v-on:click="this.showSignup = false">关闭</a>

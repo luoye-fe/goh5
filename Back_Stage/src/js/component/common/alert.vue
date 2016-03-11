@@ -6,7 +6,7 @@
 </template>
 
 <style>
-.tips_con{width: 200px;height: 100px;position: fixed;left: 50%;top: 50%;transform: translate(-50%,-50%);-webkit-transform: translate(-50%,-50%);background: #ff5151;z-index: 9999;}
+.tips_con{width: 200px;height: 100px;position: fixed;left: 50%;top: 80px;transform: translate(-50%,-50%);-webkit-transform: translate(-50%,-50%);background: rgba(0,0,0,0.4);z-index: 9999;}
 .tips_con h1{font-size: 24px;color: #fff;text-align: center;line-height: 100px;}
 </style>
 

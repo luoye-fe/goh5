@@ -24,30 +24,18 @@ button::-moz-focus-inner, input::-moz-focus-inner {padding: 0;border: 0}
 .hide, .v-hide {display: none !important;}
 
 
-/* loading */
-.loading_con {position: fixed;top: 0;left: 0;width: 100%;height:100%;background: rgba(0, 0, 0, 0.8);z-index: 9999999;}
-.loading_con .loading_center{width: 150px;height: 150px;border-radius: 20px;background: #fff;}
-.loading_con .loading_center>div img{display: block;margin: 0 auto;-webkit-animation:loading linear both 1s infinite;}
-.loading_con .loading_center>div span{display: block;margin: 15px auto 0;text-align: center;font-size: 16px;}
-@-webkit-keyframes loading {
-    from {   
-        -webkit-transform: rotate(0deg);
-    }
-    to {    
-        -webkit-transform: rotate(360deg);
-    }
-}
 
-/* 弹出层对话 */
-.dialog_bg{position: fixed;top: 0;left: 0;width: 100%;height: 100%;background: rgba(0,0,0,0.4);z-index: 9999;}
-.dialog_bg .dialog_con{width: 750px;height: 540px;background: #fff;border-radius: 6px;border: 1px solid rgba(0,0,0,0.2);box-shadow: 0 5px 15px rgba(0,0,0,0.5);box-sizing: border-box;padding: 30px;position: relative;}
-.dialog_bg .dialog_con .dialog_head{position: relative;}
-.dialog_bg .dialog_con .dialog_head h2{color: #526069;font-size: 24px;font-weight: 300;line-height: 44px;}
-.dialog_bg .dialog_con .dialog_head .dialog_link{font-size: 14px;color: #526069;text-decoration: underline;cursor: pointer;position: absolute;right: 0;top: 15px;}
-.dialog_bg .dialog_con .dialog_main{}
-.dialog_bg .dialog_con .dialog_bottom{position: absolute;bottom: 30px;width: 690px;}
-.dialog_bg .dialog_con .dialog_bottom .advance_browser{display: block;text-align: right;width: 100%;border-top: 1px solid #aaa;line-height: 28px;font-size: 12px;}
-.dialog_bg .dialog_con .dialog_bottom .advance_browser a{color: #01d7b2;text-decoration: underline;}
+/* 主弹出层 */
+.dialog_con{position: fixed;top: 0;left: 0;width: 100%;height: 100%;background: rgba(0,0,0,0.4);z-index: 9999;}
+.dialog_con .dialog_bg{width: 100%;height: 100%;position: absolute;}
+.dialog_con .dialog_main_con{width: 750px;height: 540px;background: #fff;border-radius: 6px;border: 1px solid rgba(0,0,0,0.2);box-shadow: 0 5px 15px rgba(0,0,0,0.5);box-sizing: border-box;padding: 30px;position: relative;}
+.dialog_con .dialog_main_con .dialog_head{position: relative;}
+.dialog_con .dialog_main_con .dialog_head h2{color: #526069;font-size: 24px;font-weight: 300;line-height: 44px;}
+.dialog_con .dialog_main_con .dialog_head .dialog_link{font-size: 14px;color: #526069;text-decoration: underline;cursor: pointer;position: absolute;right: 0;top: 15px;}
+.dialog_con .dialog_main_con .dialog_main{}
+.dialog_con .dialog_main_con .dialog_bottom{position: absolute;bottom: 30px;width: 690px;}
+.dialog_con .dialog_main_con .dialog_bottom .advance_browser{display: block;text-align: right;width: 100%;border-top: 1px solid #aaa;line-height: 28px;font-size: 12px;}
+.dialog_con .dialog_main_con .dialog_bottom .advance_browser a{color: #01d7b2;text-decoration: underline;}
 
 /* 登录／注册 */
 .user{width: 300px;margin: 0 auto;margin-top: 30px;position: relative;}
@@ -61,17 +49,22 @@ button::-moz-focus-inner, input::-moz-focus-inner {padding: 0;border: 0}
 .user .item input[type='checkbox']:nth-child(3){margin-left: 20px;}
 .user .item a{font-size: 12px;color: #526069;text-decoration: underline;cursor: pointer;display: inline-block;float: right;}
 
-
 /* 按钮 */
 .btn{display: block;height: 40px;line-height: 40px;box-sizing: border-box;font-size: 12px;color: #fff;background: #01d7b2;border-radius: 5px;border: 1px solid #01d7b2;-webkit-transition: all ease 0.3s;transition: all ease 0.3s;}
 .btn:hover{background: #fff;color: #01d7b2;}
 .user_btn{width: 300px;margin: 25px auto;text-align: center;}
 
-
 /* 定位 */
 .vertical_center {position: absolute;top: 50%;-webkit-transform: translateY(-50%);}
 .horizontal_center {position: absolute;left: 50%;-webkit-transform: translateX(-50%);}
 .all_center {position: absolute;top: 50%;left: 50%;-webkit-transform: translate(-50%, -50%);}
+
+/* 过度勾子 */
+.fade-transition{transition: all ease 0.3s;-webkit-transition: all ease 0.3s;}
+.fade-enter, .fade-leave{opacity: 0;}
+.fade-scale-transition{transition: all linear 0.2s;-webkit-transition: all linear 0.2s;}
+.fade-scale-enter, .fade-scale-leave{opacity: 0;transform: scale(1.08);-webkit-transform: scale(1.08);}
+
 
 
 

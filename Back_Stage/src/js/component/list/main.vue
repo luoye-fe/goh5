@@ -13,7 +13,7 @@
 	</div>
 	<m-loading v-show="loading"></m-loading>
 	<m-alert :alert-obj.sync="alertObj"></m-alert>
-	<button v-on:click="ceshi">弹出</button>
+	<button v-on:click="this.loading = true">弹出</button>
 </template>
 
 
@@ -67,7 +67,7 @@ var List = {
 			})
 		},
 		ceshi: function(){
-			this.$emit('showAlert',{show: true,msg: 'loye'})
+			this.$emit('showAlert',{show: true,msg: 'loye'});
 		}
 	},
 	events: {
