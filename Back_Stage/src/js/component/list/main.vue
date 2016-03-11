@@ -10,7 +10,7 @@
 		</div>
 		<div class="list_body">
 			<ul>
-				<li class="create">
+				<li class="create" @click="showCreate = !showCreate">
 					<div class="all_center">
 						<div class="heng"></div>
 						<div class="shu"></div>
@@ -30,6 +30,7 @@
 	<m-pagination :pagination-conf.sync="paginationConf"></m-pagination>
 	<m-loading v-show="loading"></m-loading>
 	<m-alert :alert-obj.sync="alertObj"></m-alert>
+	<m-create :show-create.sync="showCreate"></m-create>
 </template>
 
 <style>
@@ -62,17 +63,20 @@ var Head = require('../common/head.vue');
 var Pagination = require('../common/pagination.vue');
 var Loading = require('../common/loading.vue');
 var Alert = require('../common/alert.vue');
+var Create = require('./create.vue');
 
 Vue.component('m-head', Head);
 Vue.component('m-pagination', Pagination);
 Vue.component('m-loading', Loading);
 Vue.component('m-alert', Alert);
+Vue.component('m-create', Create);
 
 var List = {
 	name: 'List',
 	data: function(){
 		return {
 			loading: true,
+			showCreate: false,
 			alertObj:{
 				show: false,
 				msg: '提示信息'

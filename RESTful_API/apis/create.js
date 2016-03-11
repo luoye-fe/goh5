@@ -26,7 +26,8 @@ module.exports = function(Router) {
         var obj = req.body;
         var Work = global.dbHandel.getModel('work');
         Work.create({
-            'user': req.cookies.user_name,
+            'uid': Work.find({}).exec(function(err,docs){return docs.legnth}) + 1,
+            'user_name': req.cookies.user_name,
             'createTime': Date.now(),
             'lastSaveTime': Date.now(),
             'about':{
