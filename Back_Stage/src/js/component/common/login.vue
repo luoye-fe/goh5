@@ -1,29 +1,29 @@
 <template>
 	<div class="dialog_con" v-show="showLogin" transition="fade">
-		<div class="dialog_bg" v-on:click="this.showLogin = false"></div>
+		<div class="dialog_bg" @click="this.showLogin = false"></div>
 		<div class="dialog_main_con all_center">
 			<div class="dialog_head">
 				<h2>登录</h2>
-				<a href="javascript:void(0)" class="dialog_link" v-on:click="this.showLogin = false">关闭</a>
+				<a href="javascript:void(0)" class="dialog_link" @click="this.showLogin = false">关闭</a>
 			</div>
 			<div class="dialog_main">
 				<div class="user">
 					<div class="item">
 						<label for="user_name">用户名：</label>
-						<input id="user_name" type="text" placeholder="请输入用户名" v-bind:class="{'erro_input':erro.target == 'user_name'}" v-model="user_name" v-on:blur="bl" v-on:focus="fo"></input>					
+						<input id="user_name" type="text" placeholder="请输入用户名" v-bind:class="{'erro_input':erro.target == 'user_name'}" v-model="user_name" @blur="bl" @focus="fo"></input>					
 					</div>
 					<div class="item">
 						<label for="password">密码：</label>
-						<input id="password" type="password" placeholder="请输入密码" v-bind:class="{'erro_input':erro.target == 'password'}" v-model="password" v-on:blur="bl" v-on:focus="fo"></input>	
+						<input id="password" type="password" placeholder="请输入密码" v-bind:class="{'erro_input':erro.target == 'password'}" v-model="password" @blur="bl" @focus="fo"></input>	
 					</div>
 					<div class="item clearfix">
 						<input type="checkbox" value="记住账号" v-model="remember"><span>记住账号</span></input>
 						<input type="checkbox" value="一周内免登录" v-model="noneedPassword"><span>一周内免登录</span></input>
-						<a v-on:click="funshowSignup()">注册</a>
+						<a @click="funshowSignup()">注册</a>
 					</div>
 					<span class="erro_text" v-show="erro.iserro">{{erro.text}}</span>
 				</div>
-				<a href="javascript:void(0)" class="btn user_btn" v-on:click="login">登录</a>
+				<a href="javascript:void(0)" class="btn user_btn" @click="login">登录</a>
 			</div>
 			<div class="dialog_bottom">
 				<span class="advance_browser">为了获得更好的体验，建议使用<a target="_balck" href="http://www.google.cn/intl/zh-CN/chrome/browser/desktop/index.html"> 谷歌浏览器(Chrome)</a></span>

@@ -1,8 +1,8 @@
 <template>
 	<h1>欢迎来到 Go H5!</h1>
 	<h2>请先登录！</h2>
-	<a href="javascript:void(0)" v-on:click="showLogin = !showLogin">登录</a>
-	<a href="javascript:void(0)" v-on:click="showSignup = !showSignup">注册</a>
+	<a href="javascript:void(0)" @click="showLogin = !showLogin">登录</a>
+	<a href="javascript:void(0)" @click="showSignup = !showSignup">注册</a>
 	<m-login :show-login.sync="showLogin" :show-signup.sync="showSignup"></m-login>
 	<m-signup :show-login.sync="showLogin" :show-signup.sync="showSignup"></m-signup>
 </template>

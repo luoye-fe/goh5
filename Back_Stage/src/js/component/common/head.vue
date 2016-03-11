@@ -17,7 +17,7 @@
 				<li v-show="page == 'edit'">记录</li>
 				<li v-show="page == 'edit'">预览</li>
 				<li v-show="page == 'edit'">设置</li>
-				<li v-on:click="logout" style="background: #ff5151;">退出</li>
+				<li @click="logout" style="background: #ff5151;">退出</li>
 			</ul>
 		</div>
 	</div>

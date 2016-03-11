@@ -1,31 +1,31 @@
 <template>
 	<div class="dialog_con" v-show="showSignup" transition="fade">
-		<div class="dialog_bg" v-on:click="this.showSignup = false"></div>
+		<div class="dialog_bg" @click="this.showSignup = false"></div>
 		<div class="dialog_main_con all_center">
 			<div class="dialog_head">
 				<h2>注册</h2>
-				<a href="javascript:void(0)" class="dialog_link" v-on:click="this.showSignup = false">关闭</a>
+				<a href="javascript:void(0)" class="dialog_link" @click="this.showSignup = false">关闭</a>
 			</div>
 			<div class="dialog_main">
 				<div class="user">
 					<div class="item">
 						<label for="user_name">用户名：</label>
-						<input id="user_name" type="text" placeholder="请输入用户名" v-bind:class="{'erro_input':erro.target == 'user_name'}" v-model="user_name" v-on:blur="bl" v-on:focus="fo"></input>					
+						<input id="user_name" type="text" placeholder="请输入用户名" v-bind:class="{'erro_input':erro.target == 'user_name'}" v-model="user_name" @blur="bl" @focus="fo"></input>					
 					</div>
 					<div class="item">
 						<label for="password">密码：</label>
-						<input id="password" type="password" placeholder="请输入密码" v-bind:class="{'erro_input':erro.target == 'password'}" v-model="password" v-on:blur="bl" v-on:focus="fo"></input>	
+						<input id="password" type="password" placeholder="请输入密码" v-bind:class="{'erro_input':erro.target == 'password'}" v-model="password" @blur="bl" @focus="fo"></input>	
 					</div>
 					<div class="item">
 						<label for="password">确认密码：</label>
-						<input id="password" type="password" placeholder="请再次输入密码" v-bind:class="{'erro_input':erro.target == 'passwordAgain'}" v-model="passwordAgain" v-on:blur="bl" v-on:focus="fo"></input>	
+						<input id="password" type="password" placeholder="请再次输入密码" v-bind:class="{'erro_input':erro.target == 'passwordAgain'}" v-model="passwordAgain" @blur="bl" @focus="fo"></input>	
 					</div>
 					<div class="item clearfix">
-						<a v-on:click="funshowLogin()">已有帐号？</a>
+						<a @click="funshowLogin()">已有帐号？</a>
 					</div>
 					<span class="erro_text" v-show="erro.iserro">{{erro.text}}</span>
 				</div>
-				<a href="javascript:void(0)" class="btn user_btn" v-on:click="signup">注册</a>
+				<a href="javascript:void(0)" class="btn user_btn" @click="signup">注册</a>
 			</div>
 			<div class="dialog_bottom">
 				<span class="advance_browser">为了获得更好的体验，建议使用<a target="_balck" href="http://www.google.cn/intl/zh-CN/chrome/browser/desktop/index.html"> 谷歌浏览器(Chrome)</a></span>

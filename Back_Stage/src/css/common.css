@@ -6,7 +6,7 @@ html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 {-webkit-text-size-ad
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display: block}
 a, input, select, button, textarea {font-family: 'Microsoft YaHei', arial, helvetica, sans-serif}
 a {text-decoration: none;color: #3990e6}
-body {font-family: 'Microsoft YaHei', arial, helvetica, sans-serif;-webkit-text-size-adjust: none;-webkit-user-select: none;font-size: 14px;background: #f8f8f8}
+body {font-family: 'Microsoft YaHei', arial, helvetica, sans-serif;-webkit-text-size-adjust: none;-webkit-user-select: none;font-size: 14px;background: #eee;}
 ol, ul {list-style: none}
 blockquote, q {quotes: none}
 img, table {border: 0}
