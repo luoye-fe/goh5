@@ -1,4 +1,4 @@
-// 说明：主组件监听事件，并分发 alertObj 参数，然后在主组件活着其它组件中触发主组件监听的事件即可。需要两个参数，show/msg
+// 说明：主组件监听事件，并分发 alertObj 参数，然后在组件中触发主组件监听的事件即可。需要两个参数，show/msg
 <template>
 	<div class="tips_con" v-show="alertObj.show">
 		<h1>{{alertObj.msg}}</h1>

@@ -1,9 +1,9 @@
 <template>
-	<div class="dialog_bg">
+	<div class="dialog_bg" v-show="showSignup">
 		<div class="dialog_con all_center">
 			<div class="dialog_head">
 				<h2>注册</h2>
-				<a href="javascript:void(0)" class="dialog_link" v-on:click="closeSingup">关闭</a>
+				<a href="javascript:void(0)" class="dialog_link" v-on:click="this.showSignup = false">关闭</a>
 			</div>
 			<div class="dialog_main">
 				<div class="user">
@@ -20,7 +20,7 @@
 						<input id="password" type="password" placeholder="请再次输入密码" v-bind:class="{'erro_input':erro.target == 'passwordAgain'}" v-model="passwordAgain" v-on:blur="bl" v-on:focus="fo"></input>	
 					</div>
 					<div class="item clearfix">
-						<a v-on:click="showLogin">已有帐号？</a>
+						<a v-on:click="funshowLogin()">已有帐号？</a>
 					</div>
 					<span class="erro_text" v-show="erro.iserro">{{erro.text}}</span>
 				</div>
@@ -63,13 +63,11 @@ var Singup = {
 			}
 		}
 	},
+	props: ['showLogin','showSignup'],
 	methods:{
-		closeSingup: function(){
-			this.$dispatch('show-signup', false);
-		},
-		showLogin:function(){
-			this.$dispatch('show-signup', false);
-			this.$dispatch('show-login', true);
+		funshowLogin:function(){
+			this.showSignup = false;
+			this.showLogin = true;
 		},
 		bl: function(){
 			this.erro.iserro = false;

@@ -3,8 +3,8 @@
 	<h2>请先登录！</h2>
 	<a href="javascript:void(0)" v-on:click="showLogin = !showLogin">登录</a>
 	<a href="javascript:void(0)" v-on:click="showSignup = !showSignup">注册</a>
-	<m-login v-show="showLogin"></m-login>
-	<m-signup v-show="showSignup"></m-signup>
+	<m-login :show-login.sync="showLogin" :show-signup.sync="showSignup"></m-login>
+	<m-signup :show-login.sync="showLogin" :show-signup.sync="showSignup"></m-signup>
 </template>
 
 <script>
@@ -27,14 +27,7 @@ var Home = {
 			showSignup: false,
 		}
 	},
-	events: {
-		'show-login': function(msg){
-			this.showLogin = msg;
-		},
-		'show-signup': function(msg){
-			this.showSignup = msg;
-		}
-	}
+
 }
 module.exports = Home;
 

@@ -1,9 +1,9 @@
 <template>
-	<div class="dialog_bg">
+	<div class="dialog_bg" v-show="showLogin">
 		<div class="dialog_con all_center">
 			<div class="dialog_head">
 				<h2>登录</h2>
-				<a href="javascript:void(0)" class="dialog_link" v-on:click="closeLogin">关闭</a>
+				<a href="javascript:void(0)" class="dialog_link" v-on:click="this.showLogin = false">关闭</a>
 			</div>
 			<div class="dialog_main">
 				<div class="user">
@@ -18,7 +18,7 @@
 					<div class="item clearfix">
 						<input type="checkbox" value="记住账号" v-model="remember"><span>记住账号</span></input>
 						<input type="checkbox" value="一周内免登录" v-model="noneedPassword"><span>一周内免登录</span></input>
-						<a v-on:click="showSingup">注册</a>
+						<a v-on:click="funshowSignup()">注册</a>
 					</div>
 					<span class="erro_text" v-show="erro.iserro">{{erro.text}}</span>
 				</div>
@@ -56,6 +56,7 @@ var Login = {
 			}
 		}
 	},
+	props: ['showLogin','showSignup'],
 	created:function(){
 		if(localStorage.remember == 'true' && localStorage.userInfo){
 			var userInfo = JSON.parse(localStorage.userInfo);
@@ -64,12 +65,9 @@ var Login = {
 		}
 	},
 	methods:{
-		closeLogin: function(){
-			this.$dispatch('show-login', false);
-		},
-		showSingup:function(){
-			this.$dispatch('show-login', false);
-			this.$dispatch('show-signup', true);
+		funshowSignup:function(){
+			this.showLogin = false;
+			this.showSignup = true;
 		},
 		bl: function(){
 			this.erro.iserro = false;
