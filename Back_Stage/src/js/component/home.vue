@@ -36,7 +36,6 @@ var Home = {
 		}
 	}
 }
-
 module.exports = Home;
 
 </script>

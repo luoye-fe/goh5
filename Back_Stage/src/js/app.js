@@ -4,8 +4,6 @@ var $ = require('jQuery');
 var Vue = require('Vue');
 var utils = require('utils');
 
-window.utils = utils;
-
 var Router = require('vue-route');
 Vue.use(Router);
 var router = new Router();
