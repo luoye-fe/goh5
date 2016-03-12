@@ -1,5 +1,5 @@
 <template>
-	<div class="create_con">
+	<div class="head_con">
 		<div class="item left">Go H5</div>
 		<div class="item center" v-show="page == 'edit'">
 			<ul class="create_group">
@@ -24,12 +24,12 @@
 </template>
 
 <style>
-	.create_con{width: 100%;height: 50px;background: #3f4a58;display: flex;display: -webkit-flex;justify-content: space-between;}
-	.create_con .item{color: #fff;line-height: 50px;font-size: 12px;}
-	.create_con .item>ul>li{display: inline-block;vertical-align: top;}
-	.create_con .item.left{margin-left: 20px;font-size: 22px;}
-	.create_con .item.center{}
-	.create_con .item.right{}
+	.head_con{width: 100%;height: 50px;background: #3f4a58;display: flex;display: -webkit-flex;justify-content: space-between;}
+	.head_con .item{color: #fff;line-height: 50px;font-size: 12px;}
+	.head_con .item>ul>li{display: inline-block;vertical-align: top;}
+	.head_con .item.left{margin-left: 20px;font-size: 22px;}
+	.head_con .item.center{}
+	.head_con .item.right{}
 	.btn_group{margin-right: 17px}
 	.btn_group li{background: #76838e;height: 28px;line-height: 28px;margin: 11px 3px 0;padding: 0 10px;border-radius: 6px;cursor: pointer;transition: all ease 0.3s;-webkit-transition: all ease 0.3s;}
 	.btn_group li:hover{background: #01d7b2!important;}

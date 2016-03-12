@@ -87,7 +87,7 @@ var List = {
 				itemsPerPage: 7,
 				pagesLength: 5,
 				onChange: function() {
-					console.log(this.currentPage);
+					// console.log(this.currentPage);
 				},
 				setTotalItems: function(cb){
 					this.totalItems = 50;
@@ -103,7 +103,7 @@ var List = {
 			type: 'get',
 			success: function(data){
 				_this.$data.loading = false;
-				console.log(data);
+				// console.log(data);
 			}
 		})
 	},

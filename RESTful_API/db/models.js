@@ -6,7 +6,6 @@ module.exports = {
         password: { type: String, required: true }
     },
     work: {
-        'uid':{ type: String },
         'user_name': { type: String, required: true },
         'createTime': { type: Number, required: true },
         'lastSaveTime': { type: Number, required: true },
