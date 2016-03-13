@@ -42,7 +42,7 @@ var Router = require('vue-route');
 Vue.use(Router);
 var router = new Router();
 
-var Login = {
+var Login = Vue.extend({
 	name:'Login',
 	data: function(){
 		return {
@@ -129,7 +129,9 @@ var Login = {
 			})
 		}
 	}
-}
+})
+
+Vue.component('m-login', Login);
 
 module.exports = Login;
 

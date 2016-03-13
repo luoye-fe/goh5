@@ -27,6 +27,7 @@
 			</ul>
 		</div>
 	</div>
+
 	<m-loading v-show="loading"></m-loading>
 	<m-alert :alert-obj.sync="alertObj"></m-alert>
 	<m-create :show-create.sync="showCreate"></m-create>
@@ -59,11 +60,10 @@ Vue.use(Router);
 var router = new Router();
 
 var Head = require('../common/head.vue');
-var Pagination = require('../common/pagination.vue');
+// var Pagination = require('../common/pagination.vue');
 var Loading = require('../common/loading.vue');
 var Alert = require('../common/alert.vue');
 var Create = require('./create.vue');
-
 
 var List = Vue.extend({
 	data: function(){
@@ -96,6 +96,10 @@ var List = Vue.extend({
 			console.log(data);
 			_this.loading = false;
 		});
+	},
+	components: {
+		// 'm-pagination': Pagination,
+		// <m-pagination :pagination-conf.sync="paginationConf"></m-pagination>
 	},
 	methods: {
 		logout: function(){

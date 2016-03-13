@@ -67,6 +67,7 @@ var Head = Vue.extend({
 	}
 })
 
+
 Vue.component('m-head', Head);
 
 module.exports = Head;

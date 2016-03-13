@@ -50,7 +50,7 @@ var loginSucc = function(Vm,userInfo){
 	Vm.passwordAgain = '';
 }
 
-var Singup = {
+var Singup = Vue.extend({
 	name:'Login',
 	data: function(){
 		return {
@@ -128,7 +128,9 @@ var Singup = {
 			})
 		}
 	}
-}
+})
+
+Vue.component('m-signup', Singup);
 
 module.exports = Singup;
 </script>

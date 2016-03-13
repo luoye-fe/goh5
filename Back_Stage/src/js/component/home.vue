@@ -16,19 +16,15 @@ var $ = require('jQuery');
 var Login = require('./common/login.vue');
 var Signup = require('./common/signup.vue');
 
-Vue.component('m-login', Login);
-Vue.component('m-signup', Signup);
-
-var Home = {
+var Home = Vue.extend({
 	name: 'Home',
 	data: function(){
 		return {
 			showLogin: false,
 			showSignup: false,
 		}
-	},
-
-}
+	}
+})
 module.exports = Home;
 
 </script>
