@@ -23,3 +23,14 @@
     }
 }	
 </style>
+
+<script>
+	
+var Vue = require('Vue');
+var Loading = Vue.extend({})
+
+Vue.component('m-loading', Loading);
+
+module.exports = Loading;
+
+</script>

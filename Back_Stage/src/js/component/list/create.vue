@@ -34,7 +34,7 @@
 var Vue = require('Vue');
 var $ = require('jQuery');
 
-var Create = {
+var Create = Vue.extend({
 	data: function(){
 		return {
 			title: '',
@@ -57,7 +57,9 @@ var Create = {
 			})
 		}
 	}
-}
+})
+
+Vue.component('m-create', Create);
 
 module.exports = Create;
 

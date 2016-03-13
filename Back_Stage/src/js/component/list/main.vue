@@ -27,7 +27,6 @@
 			</ul>
 		</div>
 	</div>
-	<m-pagination :pagination-conf.sync="paginationConf"></m-pagination>
 	<m-loading v-show="loading"></m-loading>
 	<m-alert :alert-obj.sync="alertObj"></m-alert>
 	<m-create :show-create.sync="showCreate"></m-create>
@@ -65,14 +64,8 @@ var Loading = require('../common/loading.vue');
 var Alert = require('../common/alert.vue');
 var Create = require('./create.vue');
 
-Vue.component('m-head', Head);
-Vue.component('m-pagination', Pagination);
-Vue.component('m-loading', Loading);
-Vue.component('m-alert', Alert);
-Vue.component('m-create', Create);
 
-var List = {
-	name: 'List',
+var List = Vue.extend({
 	data: function(){
 		return {
 			loading: true,
@@ -81,33 +74,30 @@ var List = {
 				show: false,
 				msg: '提示信息'
 			},
+			worksDat: '',
+			listType: 0, // 0:默认 1:自己
 			paginationConf: {
 				currentPage: 1,
 				// totalItems: 30,
 				itemsPerPage: 7,
 				pagesLength: 5,
-				onChange: function() {
-					// console.log(this.currentPage);
+				onChange: function(){
+
 				},
 				setTotalItems: function(cb){
 					this.totalItems = 50;
-					cb && cb();
 				}
 			}
 		}
 	},
 	created: function(){
 		var _this = this;
-		$.ajax({
-			url: '/api/list?me=1',
-			type: 'get',
-			success: function(data){
-				_this.$data.loading = false;
-				// console.log(data);
-			}
-		})
+		this.loadList(this.listType,function(data){
+			console.log(data);
+			_this.loading = false;
+		});
 	},
-	methods:{
+	methods: {
 		logout: function(){
 			$.ajax({
 				url: '/api/user/logout',
@@ -117,9 +107,20 @@ var List = {
 				}
 			})
 		},
+		loadList: function(type, cb){
+			$.ajax({
+				url: '/api/list',
+				type: 'get',
+				success: function(data){
+					cb & cb(data);
+					// List.data().loading = false;
+					// console.log(loading);
+				}
+			})
+		},
 		ceshi: function(){
 			this.$emit('showAlert',{show: true,msg: 'loye'});
-		}
+		},
 	},
 	events: {
 		showAlert: function(obj){
@@ -127,8 +128,7 @@ var List = {
 			this.alertObj.msg = obj.msg;
 		}
 	}
-}
-
+})
 
 module.exports = List;
 

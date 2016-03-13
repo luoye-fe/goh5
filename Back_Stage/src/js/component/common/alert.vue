@@ -15,7 +15,7 @@
 var Vue = require('Vue');
 var $ = require('jQuery');
 
-var Alert = {
+var Alert = Vue.extend({
 	data: function(){
 		return {
 			show: false,
@@ -23,7 +23,9 @@ var Alert = {
 		}
 	},
 	props:['alertObj']
-}
+})
+
+Vue.component('m-alert', Alert);
 
 module.exports = Alert;
 

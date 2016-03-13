@@ -5,14 +5,24 @@ module.exports = function(Router) {
     Router.get('/list', function(req, res, next) {
         var query = req.query;
         var Work = global.dbHandel.getModel('work');
-        var limit = Number(query.limit) || 10;
+        var limit = Number(query.limit) || 7;
         var page = Number(query.page) || 1;
         if(query.me == '1'){
             Work.find({'user_name': req.cookies.user_name}).limit(limit).skip((page - 1) * limit).exec(function(err, docs) {
                 if (err) {
                     res.send(err);
                 } else {
-                    res.send(docs);
+                    Work.find({'user_name': req.cookies.user_name}).exec(function(err,allDoc){
+                        var resData = {
+                            iserro: 0,
+                            msg: '读取成功！',
+                            data: {
+                                listData: docs,
+                                totalItems: allDoc.length
+                            }
+                        }
+                        res.send(resData);
+                    })
                 }
             })
         }else{
@@ -20,7 +30,17 @@ module.exports = function(Router) {
                 if (err) {
                     res.send(err);
                 } else {
-                    res.send(docs);
+                    Work.find({}).exec(function(err,allDoc){
+                        var resData = {
+                            iserro: 0,
+                            msg: '读取成功！',
+                            data: {
+                                listData: docs,
+                                totalItems: allDoc.length
+                            }
+                        }
+                        res.send(resData);
+                    })
                 }
             })
         }

@@ -44,7 +44,7 @@ var Router = require('vue-route');
 Vue.use(Router);
 var router = new Router();
 
-var Head = {
+var Head = Vue.extend({
 	name:'Head',
 	data: function(){
 		return {
@@ -65,7 +65,9 @@ var Head = {
 			})
 		}
 	}
-}
+})
+
+Vue.component('m-head', Head);
 
 module.exports = Head;
 	

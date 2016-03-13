@@ -47,7 +47,7 @@ vm.$data.paginationConf = {
 var Vue = require('Vue');
 var $ = require('jQuery');
 
-var Pagination = {
+var Pagination = Vue.extend({
 	name: 'Pagination',
 	data: function(){
 		return {
@@ -69,8 +69,7 @@ var Pagination = {
 			});
 		}else{
 			_this.getPagination(1,2);
-		}
-		
+		}		
 	},
 	props:['paginationConf'],
 	methods: {
@@ -144,7 +143,8 @@ var Pagination = {
       		deep: true
 		}
 	}
-}
+})
 
+Vue.component('m-pagination', Pagination);
 module.exports = Pagination;
 </script>

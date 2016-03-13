@@ -39,7 +39,7 @@ module.exports = function(Router) {
             'status': 0
         }, function(err, doc) {
             if (err) {
-                // res.send(err);
+                res.send(err);
             } else {
                 var resData = {
                     iserro: 0,
