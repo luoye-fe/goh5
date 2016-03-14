@@ -17,17 +17,11 @@
 						<span>创建新作品</span>
 					</div>
 				</li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
+				<li v-for="item in listData" track-by="$index">{{item.user_name}}</li>
 			</ul>
 		</div>
 	</div>
-
+	<m-pagination :pagination-conf="paginationConf"></m-pagination>
 	<m-loading v-show="loading"></m-loading>
 	<m-alert :alert-obj.sync="alertObj"></m-alert>
 	<m-create :show-create.sync="showCreate"></m-create>
@@ -60,12 +54,26 @@ Vue.use(Router);
 var router = new Router();
 
 var Head = require('../common/head.vue');
-// var Pagination = require('../common/pagination.vue');
+var Pagination = require('../common/pagination.vue');
 var Loading = require('../common/loading.vue');
 var Alert = require('../common/alert.vue');
 var Create = require('./create.vue');
 
+var loadListData = function(params,cb){
+	var type = params.type || 1;
+	var page = params.page || 1;
+	$.ajax({
+		url: '/api/list?page=' + page + '&me=' + type,
+		type: 'get',
+		success: function(data){
+			cb & cb(data);
+		}
+	})
+}
+
+var listVm = null;
 var List = Vue.extend({
+	name: 'List',
 	data: function(){
 		return {
 			loading: true,
@@ -74,32 +82,33 @@ var List = Vue.extend({
 				show: false,
 				msg: '提示信息'
 			},
-			worksDat: '',
+			listData: '',
 			listType: 0, // 0:默认 1:自己
 			paginationConf: {
 				currentPage: 1,
-				// totalItems: 30,
+				totalItems: 0,
 				itemsPerPage: 7,
 				pagesLength: 5,
 				onChange: function(){
-
-				},
-				setTotalItems: function(cb){
-					this.totalItems = 50;
+					var _this = this;
+					loadListData({type: this.listType,page: this.currentPage},function(data){
+						_this.totalItems = data.data.totalItems;
+						console.log(data);
+						listVm.loading = false;
+						listVm.listData = data.data.listData;
+					});
 				}
 			}
 		}
 	},
+	init: function(){
+		listVm = this;
+	},
 	created: function(){
-		var _this = this;
-		this.loadList(this.listType,function(data){
-			console.log(data);
-			_this.loading = false;
-		});
+
 	},
 	components: {
-		// 'm-pagination': Pagination,
-		// <m-pagination :pagination-conf.sync="paginationConf"></m-pagination>
+		'm-pagination': Pagination,
 	},
 	methods: {
 		logout: function(){
@@ -108,17 +117,6 @@ var List = Vue.extend({
 				type: 'post',
 				success: function(){
 					router.go('/');
-				}
-			})
-		},
-		loadList: function(type, cb){
-			$.ajax({
-				url: '/api/list',
-				type: 'get',
-				success: function(data){
-					cb & cb(data);
-					// List.data().loading = false;
-					// console.log(loading);
 				}
 			})
 		},
@@ -133,6 +131,7 @@ var List = Vue.extend({
 		}
 	}
 })
+
 
 module.exports = List;
 
