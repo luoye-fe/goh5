@@ -1,5 +1,5 @@
 <template>
-	<div class="loading_con" transition="fade-scale">
+	<div class="loading_con" v-show="show">
 	    <div class="all_center loading_center">
 	        <div class="all_center">
 	            <img src="/dist/img/loading.png">
@@ -27,7 +27,13 @@
 <script>
 	
 var Vue = require('Vue');
-var Loading = Vue.extend({})
+var Loading = Vue.extend({
+	name: 'Loading',
+	data: function(){
+		return {}
+	},
+	props: ['show']
+})
 
 Vue.component('m-loading', Loading);
 

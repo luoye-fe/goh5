@@ -46,7 +46,7 @@ var Create = Vue.extend({
 			var _this = this;
 			$.ajax({
 				url: '/api/create',
-				type: 'post',
+				type: 'get',
 				data:{
 					title: _this.title
 				},

@@ -103,7 +103,7 @@ var Login = Vue.extend({
 			}
 			$.ajax({
 				url:'/api/user/login',
-				type:'post',
+				type:'get',
 				data:{
 					user_name:user_name,
 					password:password,

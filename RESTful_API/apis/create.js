@@ -22,8 +22,8 @@ var mainCodeDefault = {
 
 // create work
 module.exports = function(Router) {
-    Router.post('/create', function(req, res, next) {
-        var obj = req.body;
+    Router.get('/create', function(req, res, next) {
+        var obj = req.query;
         var Work = global.dbHandel.getModel('work');
         Work.create({
             'user_name': req.cookies.user_name,

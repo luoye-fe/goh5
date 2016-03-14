@@ -4,7 +4,7 @@ var safeWord = '骆也最帅！'; // 哈哈哈
 
 
 var login = function(req, res) {
-    var obj = req.body;
+    var obj = req.query;
     var User = global.dbHandel.getModel('user');
     User.find({ 'user_name': obj.user_name }).exec(function(err, doc) {
         if (doc == '') {
@@ -19,6 +19,7 @@ var login = function(req, res) {
         } else {
             if (doc[0].password == md5(safeWord + obj.password)) {
                 req.session.isLogin = 1;
+                req.session.user_name = obj.user_name;
                 res.cookie('user_name', obj.user_name, { expires: new Date(Date.now() + 10000 * 60 * 60 * 24 * 7) });
                 if (obj.noneedPassword == 'true') {
                     req.session.noneedPassword = 1;
@@ -48,7 +49,7 @@ var login = function(req, res) {
 }
 
 var signup = function(req, res) {
-    var obj = req.body;
+    var obj = req.query;
     var User = global.dbHandel.getModel('user');
     User.find({ 'user_name': obj.user_name }).exec(function(err, doc) {
         if (doc != '') {
@@ -87,6 +88,7 @@ var signup = function(req, res) {
 
 var logout = function(req, res) {
     req.session.isLogin = 0;
+    req.session.user_name = null;
     res.cookie('isLogin', 0, { expires: 0});
     var resData = {
         iserro: 0,
@@ -98,7 +100,7 @@ var logout = function(req, res) {
 
 // act:login/sinup/logout
 module.exports = function(Router) {
-    Router.post('/user/:act', function(req, res, next) {
+    Router.get('/user/:act', function(req, res, next) {
         if (req.params.act == 'login') {
             login(req, res);
             return;

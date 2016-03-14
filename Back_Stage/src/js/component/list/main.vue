@@ -31,14 +31,14 @@
 					<div class="bottom">
 						<a href="javascript:void(0)" v-link="{path:'/edit/' + item._id}">编辑</a>
 						<a href="javascript:void(0)">复制</a>
-						<a href="javascript:void(0)">删除</a>
+						<a href="javascript:void(0)" @click="deleteWork(item._id)">删除</a>
 					</div>
 				</li>
 			</ul>
 		</div>
 	</div>
 	<m-pagination :pagination-conf="paginationConf"></m-pagination>
-	<m-loading v-show="loading"></m-loading>
+	<m-loading :show.sync="loading"></m-loading>
 	<m-alert :alert-obj.sync="alertObj"></m-alert>
 	<m-create :show-create.sync="showCreate"></m-create>
 </template>
@@ -116,14 +116,12 @@ var List = Vue.extend({
 					listVm.loadListData({me: listVm.listType,page: this.currentPage},function(data){
 						if(!data.iserro){
 							_this.totalItems = data.data.totalItems;
-							listVm.loading = false;
 							listVm.listData = data.data.listData;
 						}else{
 							listVm.alertObj = {
 								show: true,
 								msg: data.msg
 							}
-							listVm.loading = false;
 						}
 					});
 				}
@@ -158,6 +156,7 @@ var List = Vue.extend({
 			this.paginationConf.onChange();
 		},
 		loadListData: function(params,cb){
+			this.loading = true;
 			var _this = this;
 			var me = params.me === undefined ? 1 : params.me;
 			var page = params.page || 1;
@@ -170,6 +169,22 @@ var List = Vue.extend({
 				},
 				success: function(data){
 					cb && cb(data);
+					_this.loading = false
+				}
+			})
+		},
+		deleteWork: function(id){
+			this.loading = true;
+			var _this = this;
+			$.ajax({
+				url: '/api/delete',
+				type: 'get',
+				data: {
+					_id: id
+				},
+				success: function(data){
+					_this.loading = true;
+					_this.paginationConf.onChange();
 				}
 			})
 		}

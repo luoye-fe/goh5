@@ -2,7 +2,7 @@
 
 var route = require('express').Router();
 
-var routes = ['./root.js', './list.js', './create.js', './user.js'];
+var routes = ['./root.js', './list.js', './create.js', './user.js', './delete.js'];
 
 module.exports = [];
 routes.forEach(function(item) {
