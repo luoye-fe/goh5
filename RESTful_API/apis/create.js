@@ -27,10 +27,10 @@ module.exports = function(Router) {
         var Work = global.dbHandel.getModel('work');
         Work.create({
             'user_name': req.cookies.user_name,
+            'title': obj.title,
             'createTime': Date.now(),
             'lastSaveTime': Date.now(),
             'about':{
-                title: obj.title,
                 thumbnail: '/dist/img/eg.jpg'
             },
             'mainCode': mainCodeDefault,

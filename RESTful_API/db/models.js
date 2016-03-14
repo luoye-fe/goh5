@@ -7,6 +7,7 @@ module.exports = {
     },
     work: {
         'user_name': { type: String, required: true },
+        'title': {type: String, required: true},
         'createTime': { type: Number, required: true },
         'lastSaveTime': { type: Number, required: true },
         'about': {type: Object, required: true},
