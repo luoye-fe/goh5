@@ -38,7 +38,8 @@ var webpackConfig = {
         vendor: [
             pwd + '/src/js/lib/' + aliasFile('vue'), 
             pwd + '/src/js/lib/' + aliasFile('jquery'), 
-            pwd + '/src/js/lib/' + aliasFile('vue-router')
+            pwd + '/src/js/lib/' + aliasFile('vue-router'),
+            pwd + '/src/js/lib/' + aliasFile('jquery-qrcode')
         ]
     },
     output: {
@@ -57,11 +58,12 @@ var webpackConfig = {
     resolve: {
         extensions: ['', '.js', '.json', '.scss'],
         alias: {
-            Vue: pwd + '/src/js/lib/' + aliasFile('vue'),
-            jQuery: pwd + '/src/js/lib/' + aliasFile('jquery'),
-            $: pwd + '/src/js/lib/' + aliasFile('jquery'),
+            'Vue': pwd + '/src/js/lib/' + aliasFile('vue'),
+            'jQuery': pwd + '/src/js/lib/' + aliasFile('jquery'),
+            '$': pwd + '/src/js/lib/' + aliasFile('jquery'),
             'vue-route': pwd + '/src/js/lib/' + aliasFile('vue-router'),
-            utils: pwd + '/src/js/utils.js'
+            'utils': pwd + '/src/js/utils.js',
+            'qrcode': pwd + '/src/js/lib/' + aliasFile('jquery-qrcode')
         }
     },
 };
