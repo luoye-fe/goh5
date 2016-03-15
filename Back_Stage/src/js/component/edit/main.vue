@@ -1,8 +1,8 @@
 <template>
-	<m-head></m-head>
-	
-	<m-pagelist :pages-data.sync="pagesData" :current-page="currentPage"></m-pagelist>
-
+	<div class="edit_bg" style="position: fixed;top: 0;left: 0;right: 0;bottom: 0;background-color: #d0cfd8"></div>
+	<m-head :main-code.sync="mainCode"></m-head>	
+	<m-pagelist :pages-data.sync="pagesData" :current-page.sync="currentPage"></m-pagelist>
+	<m-phone :work-data.sync="workData"></m-phone>
 	<m-loading :show.sync="loading"></m-loading>
 </template>
 
@@ -23,13 +23,14 @@ var router = new Router();
 var Head = require('../common/head.vue');
 var Loading = require('../common/loading.vue');
 var PageList = require('./pageList.vue');
+var Phone = require('./phone.vue');
 
 var Edit = Vue.extend({
 	name: 'Edit',
 	data: function(){
 		return {
 			id: '',
-			worksData: '',
+			workData: '',
 			loading: true,
 			mainCode: '',
 			pagesData: '',
@@ -51,9 +52,9 @@ var Edit = Vue.extend({
 			},
 			success: function(data){
 				_this.loading = false;
-				_this.worksData = data.data[0];
-				_this.mainCode = _this.worksData.mainCode;
-				_this.pagesData = _this.worksData.mainCode.pages;
+				_this.workData = data.data[0];
+				_this.mainCode = _this.workData.mainCode;
+				_this.pagesData = _this.workData.mainCode.pages;
 			}
 		})
 	},
@@ -61,7 +62,8 @@ var Edit = Vue.extend({
 
 	},
 	components: {
-		'm-pagelist': PageList
+		'm-pagelist': PageList,
+		'm-phone': Phone
 	},
 	methods: {
 

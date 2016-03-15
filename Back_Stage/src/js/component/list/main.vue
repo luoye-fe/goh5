@@ -44,7 +44,7 @@
 </template>
 
 <style>
-.list_con{width: 960px;margin: 50px auto 0;}
+.list_con{width: 960px;margin: 80px auto 0;}
 .list_con .list_head{width: 100%;height: 44px;position: relative;font-size: 0;background: #fff;}
 .list_con .list_head ul{display: inline-block;vertical-align: top;font-size: 0;}
 .list_con .list_head ul li{display: inline-block;vertical-align: top;line-height: 44px;width: 150px;text-align: center;cursor: pointer;transition: all ease 0.2s;-webkit-transition: all ease 0.2s;font-size: 16px;}

@@ -14,12 +14,12 @@
 
 <style>
 
-.pages_con{position: fixed;background: #fff;display: flex;flex-direction:column;width: 280px;box-sizing: border-box;height: 100%;padding-bottom: 60px;}
+.pages_con{position: fixed;background: #fff;display: flex;flex-direction:column;width: 280px;box-sizing: border-box;height: 100%;padding-bottom: 60px;top: 60px;left: 0;}
 .pages_con .item{display: flex;flex-direction: column;}
 .pages_con .head {height: 40px;line-height: 40px;text-align: center;color: #fff;background: #0fcebd;font-size: 16px;width: 100%;}
 .pages_con .item.pages_list {flex: 1;}
 .pages_con .item.pages_list ul{position: relative;width: 280px;padding: 0 20px;box-sizing: border-box;overflow-y: auto;flex:1;}
-.pages_con .item.pages_list ul li{display: block;height: 36px;line-height: 36px;margin-top: 10px;color: #666;text-align: center;background: #dcdcdc;cursor: pointer;width: 100%;border-radius: 6px;font-weight: bold;}
+.pages_con .item.pages_list ul li{display: block;height: 36px;line-height: 36px;margin-top: 10px;color: #666;text-align: center;background: #dcdcdc;cursor: pointer;width: 100%;border-radius: 4px;font-weight: bold;}
 .pages_con .item.pages_list ul li:last-child{margin-bottom: 10px;}
 .pages_con .item.pages_list ul li.active {background: #0fcebd;color: #fff}
 .pages_con .item.nav_bottom{width: 280px;text-align: center;height: 44px;background: #3f4a58;font-size: 16px;}

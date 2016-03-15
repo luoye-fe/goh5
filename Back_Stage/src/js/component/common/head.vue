@@ -13,7 +13,7 @@
 		</div>
 		<div class="item right">
 			<ul class="btn_group">
-				<li v-show="page == 'edit'">保存</li>
+				<li v-show="page == 'edit'" @click="save()">保存</li>
 				<li v-show="page == 'edit'">记录</li>
 				<li v-show="page == 'edit'">预览</li>
 				<li v-show="page == 'edit'">设置</li>
@@ -24,7 +24,7 @@
 </template>
 
 <style>
-.head_con{width: 100%;height: 60px;background: #31364a;display: flex;display: -webkit-flex;justify-content: space-between;position: relative;}
+.head_con{width: 100%;height: 60px;background: #31364a;display: flex;display: -webkit-flex;justify-content: space-between;position: fixed;top: 0;z-index: 99;}
 .head_con .item{color: #fff;line-height: 60px;font-size: 12px;}
 .head_con .item>ul>li{display: inline-block;vertical-align: top;}
 .head_con .item.left{margin-left: 20px;font-size: 22px;}
@@ -65,6 +65,7 @@ var Head = Vue.extend({
 	created: function(){
 
 	},
+	props: ['mainCode'],
 	methods:{
 		logout: function(){
 			$.ajax({
@@ -72,6 +73,20 @@ var Head = Vue.extend({
 				type: 'get',
 				success: function(){
 					router.go('/');
+				}
+			})
+		},
+		save: function(){
+			var _this = this;
+			$.ajax({
+				url: '/api/work/save',
+				type: 'get',
+				data: {
+					_id: _this.$route.params.id,
+					mainCode: JSON.stringify(_this.mainCode)
+				},
+				success: function(data){
+					console.log(data);
 				}
 			})
 		}
