@@ -58,7 +58,7 @@ var Head = Vue.extend({
 		logout: function(){
 			$.ajax({
 				url: '/api/user/logout',
-				type: 'post',
+				type: 'get',
 				success: function(){
 					router.go('/');
 				}

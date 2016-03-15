@@ -79,7 +79,7 @@
 var Vue = require('Vue');
 var $ = require('jQuery');
 
-require('qrcode');
+var qrcode = require('qrcode');
 
 var Router = require('vue-route');
 Vue.use(Router);
@@ -115,6 +115,7 @@ var List = Vue.extend({
 					var _this = this;
 					listVm.loadListData({me: listVm.listType,page: this.currentPage},function(data){
 						if(!data.iserro){
+							listVm.loading = false;
 							_this.totalItems = data.data.totalItems;
 							listVm.listData = data.data.listData;
 						}else{
@@ -141,22 +142,12 @@ var List = Vue.extend({
 		'm-pagination': Pagination,
 	},
 	methods: {
-		logout: function(){
-			$.ajax({
-				url: '/api/user/logout',
-				type: 'post',
-				success: function(){
-					router.go('/');
-				}
-			})
-		},
 		changeListTab: function(type){
 			this.listType = type;
 			this.paginationConf.currentPage = 1;
 			this.paginationConf.onChange();
 		},
 		loadListData: function(params,cb){
-			this.loading = true;
 			var _this = this;
 			var me = params.me === undefined ? 1 : params.me;
 			var page = params.page || 1;
@@ -169,12 +160,10 @@ var List = Vue.extend({
 				},
 				success: function(data){
 					cb && cb(data);
-					_this.loading = false
 				}
 			})
 		},
 		deleteWork: function(id){
-			this.loading = true;
 			var _this = this;
 			$.ajax({
 				url: '/api/delete',
@@ -183,7 +172,6 @@ var List = Vue.extend({
 					_id: id
 				},
 				success: function(data){
-					_this.loading = true;
 					_this.paginationConf.onChange();
 				}
 			})
