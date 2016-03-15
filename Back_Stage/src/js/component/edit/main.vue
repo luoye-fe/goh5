@@ -77,7 +77,14 @@ var Edit = Vue.extend({
 		'pagesData': function(){
 			console.log('页面信息:');
 			this.$log('pagesData');
-		}
+		},
+		'currentPage': {
+			handler: function(){
+				console.log('第几页:');
+				this.$log('currentPage');
+			},
+			deep: true
+		},
 	}
 })
 

@@ -17,7 +17,7 @@
 					</div>
 				</li>
 				<li v-for="item in listData" track-by="$index">
-					<div class="top" v-qrcode="item._id">
+					<div class="top" v-qrcode="'http://luoye.goh5.com:3030/#!/show/' + item._id">
 						<a href="javascript:void(0)" class="qrcode" v-link="{path:'/show/' + item._id}"></a>
 						<img :src="item.about.thumbnail">
 					</div>
@@ -84,7 +84,7 @@ var Router = require('vue-route');
 Vue.use(Router);
 var router = new Router();
 
-var filter = require('../../filter/index.js');
+var dateFilter = require('../../filter/date.js');
 
 var Head = require('../common/head.vue');
 var Pagination = require('../common/pagination.vue');
@@ -185,7 +185,7 @@ Vue.directive('qrcode',function(value){
 		$(target).find('.qrcode').qrcode({
 			width: 160,
 			height: 160,
-			text: '/show/' + value,
+			text: value,
 			render: 'canvas'
 		});
 		$(target).find('.qrcode').fadeIn('fast');

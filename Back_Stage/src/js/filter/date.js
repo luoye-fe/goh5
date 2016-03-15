@@ -7,7 +7,6 @@ Vue.filter('Date', function(value,format) {
 	return new Date(value).Format(format);
 })
 
-
 Date.prototype.Format = function (fmt) {  
     var o = {
         "M+": this.getMonth() + 1, //月份 
