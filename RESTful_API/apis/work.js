@@ -15,7 +15,7 @@ var getWork = function(req, res) {
             var resData = {
                 iserro: 0,
                 msg: '查询成功',
-                data: docs
+                data: docs[0]
             };
             res.send(resData);
         }

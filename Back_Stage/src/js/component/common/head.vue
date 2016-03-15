@@ -3,7 +3,7 @@
 		<div class="item left">Go H5</div>
 		<div class="item center" v-show="page == 'edit'">
 			<ul class="create_group">
-				<li><div class="icon icon1"></div><span>文本</span></li>
+				<li @click="addText()"><div class="icon icon1"></div><span>文本</span></li>
 				<li><div class="icon icon2"></div><span>图片</span></li>
 				<li><div class="icon icon3"></div><span>背景</span></li>
 				<li><div class="icon icon4"></div><span>图集</span></li>
@@ -55,17 +55,21 @@ var Router = require('vue-route');
 Vue.use(Router);
 var router = new Router();
 
+var tpl = require('../../template/tpl.js');
+var utils = require('utils');
+
+
 var Head = Vue.extend({
 	name:'Head',
 	data: function(){
 		return {
-			page : this.$route.path.split('/')[1],
+			page : this.$route.path.split('/')[1]
 		}
 	},
 	created: function(){
 
 	},
-	props: ['mainCode'],
+	props: ['mainCode','currentPage','currentPageData'],
 	methods:{
 		logout: function(){
 			$.ajax({
@@ -89,6 +93,15 @@ var Head = Vue.extend({
 					console.log(data);
 				}
 			})
+		},
+		addText: function(){
+			var index = this.mainCode.pages[this.currentPage - 1].items.length + 1;
+			var num = utils.getAllItemsLen(this.mainCode) + 1;
+			var model = tpl.txt(index, num, 'flay');
+			this.mainCode.pages[this.currentPage - 1].items.push(model);
+			this.currentPageData = this.mainCode.pages[this.currentPage - 1].items;
+			console.log('本页元素信息:');
+			this.$log('mainCode.pages[currentPage - 1].items')
 		}
 	}
 })
