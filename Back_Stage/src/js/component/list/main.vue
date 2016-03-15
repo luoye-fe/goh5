@@ -71,7 +71,6 @@
 .list_con .list_body ul li .bottom{text-align: left;}
 .list_con .list_body ul li .bottom a{display: inline-block;vertical-align: top;color: #01d7b2;font-size: 14px;line-height: 32px;margin: 0 8px;transition: all ease 0.2s;-webkit-transition: all ease 0.2s;}
 .list_con .list_body ul li .bottom a:hover{text-decoration: underline;}
-
 </style>
 
 <script>

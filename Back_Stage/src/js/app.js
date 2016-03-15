@@ -13,6 +13,7 @@ Vue.config.debug = true;
 // vue component
 var Home = require('./component/home.vue');
 var List = require('./component/list/main.vue');
+var Edit = require('./component/edit/main.vue');
 
 router.map({
     '/': {
@@ -20,15 +21,16 @@ router.map({
     },
     '/list': {
         component: List
+    },
+    '/edit/:id': {
+        component: Edit
     }
 })
 
 router.beforeEach(function() {
-    if (utils.getCookie('isLogin') == '1') {
-        router.go('/list');
-    }else{
-    	router.go('/');
-    }
+    // if (utils.getCookie('isLogin') != '1') {
+    //     router.go('/');
+    // }
 })
 
 router.redirect({
