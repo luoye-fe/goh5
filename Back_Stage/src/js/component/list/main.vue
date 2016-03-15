@@ -29,9 +29,9 @@
 						</div>
 					</div>
 					<div class="bottom">
-						<a href="javascript:void(0)" v-link="{path:'/edit/' + item._id}">编辑</a>
+						<a href="javascript:void(0)" v-show="listType === 1" v-link="{path:'/edit/' + item._id}">编辑</a>
 						<a href="javascript:void(0)">复制</a>
-						<a href="javascript:void(0)" @click="deleteWork(item._id)">删除</a>
+						<a href="javascript:void(0)" v-show="listType === 1" @click="deleteWork(item._id)">删除</a>
 					</div>
 				</li>
 			</ul>
