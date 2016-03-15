@@ -1,5 +1,8 @@
 <template>
 	<m-head></m-head>
+	
+	<m-pagelist :pages-data.sync="pagesData" :current-page="currentPage"></m-pagelist>
+
 	<m-loading :show.sync="loading"></m-loading>
 </template>
 
@@ -19,14 +22,19 @@ var router = new Router();
 
 var Head = require('../common/head.vue');
 var Loading = require('../common/loading.vue');
+var PageList = require('./pageList.vue');
 
 var Edit = Vue.extend({
 	name: 'Edit',
 	data: function(){
 		return {
 			id: '',
-			mainCode: '',
+			worksData: '',
 			loading: true,
+			mainCode: '',
+			pagesData: '',
+			currentPage: 1,
+			currentItems: [],
 		}
 	},
 	init: function(){
@@ -43,12 +51,17 @@ var Edit = Vue.extend({
 			},
 			success: function(data){
 				_this.loading = false;
-				console.log(data);
+				_this.worksData = data.data[0];
+				_this.mainCode = _this.worksData.mainCode;
+				_this.pagesData = _this.worksData.mainCode.pages;
 			}
 		})
 	},
 	ready: function(){
 
+	},
+	components: {
+		'm-pagelist': PageList
 	},
 	methods: {
 
@@ -57,7 +70,9 @@ var Edit = Vue.extend({
 
 	},
 	watch: {
-
+		'pagesData': function(){
+			this.$log('pagesData');
+		}
 	}
 })
 
