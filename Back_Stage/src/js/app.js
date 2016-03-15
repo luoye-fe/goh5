@@ -28,9 +28,9 @@ router.map({
 })
 
 router.beforeEach(function() {
-    // if (utils.getCookie('isLogin') != '1') {
-    //     router.go('/');
-    // }
+    if (utils.getCookie('isLogin') != '1') {
+        router.go('/');
+    }
 })
 
 router.redirect({
