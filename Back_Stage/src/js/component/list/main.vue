@@ -84,15 +84,19 @@ var Router = require('vue-route');
 Vue.use(Router);
 var router = new Router();
 
-var store = require('../../store/index.js');
+var store = require('../../store/store.js');
 
 var dateFilter = require('../../filter/date.js');
+
+var directionQrcode = require('../../directive/qrcode.js');
 
 var Head = require('../common/head.vue');
 var Pagination = require('../common/pagination.vue');
 var Loading = require('../common/loading.vue');
 var Alert = require('../common/alert.vue');
 var Create = require('./create.vue');
+
+
 
 var listVm = null;
 var List = Vue.extend({
@@ -181,23 +185,7 @@ var List = Vue.extend({
 	}
 })
 
-Vue.directive('qrcode',function(value){
-	var _this = this;
-	var target = $(this.el);
-	target.mouseenter(function(){
-		$(target).find('.qrcode').qrcode({
-			width: 160,
-			height: 160,
-			text: value,
-			render: 'canvas'
-		});
-		$(target).find('.qrcode').fadeIn('fast');
-	})
-	target.mouseleave(function(){
-		$(target).find('.qrcode').fadeOut('fast');
-		$(target).find('.qrcode').html('');
-	})
-})
+
 
 
 module.exports = List;

@@ -1,6 +1,6 @@
 <template>
 	<div class="head_con">
-		<div class="item left">Go H5</div>
+		<a href="javascript:void(0)" v-link="{path: '/list'}" class="item left">Go H5</a>
 		<div class="item center" v-show="page == 'edit'">
 			<ul class="create_group">
 				<li @click="addText()"><div class="icon icon1"></div><span>文本</span></li>
@@ -55,8 +55,8 @@ var Router = require('vue-route');
 Vue.use(Router);
 var router = new Router();
 
-var store = require('../../store/index.js');
-var actions = require('../../store/actions.js');
+var store = require('../../store/store.js');
+var actions = require('../../store/action/index.js');
 
 var tpl = require('../../template/tpl.js');
 var utils = require('utils');

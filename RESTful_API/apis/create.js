@@ -13,7 +13,7 @@ var mainCodeDefault = {
             main: {
                 background: '#fff',
                 type: '',
-                height: 504,
+                height: 486,
             },
             items: []
         }

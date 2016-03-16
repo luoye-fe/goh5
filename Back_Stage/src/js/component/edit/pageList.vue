@@ -34,8 +34,8 @@
 var Vue = require('Vue');
 var $ = require('jQuery');
 
-var store = require('../../store/index.js');
-var actions = require('../../store/actions.js');
+var store = require('../../store/store.js');
+var actions = require('../../store/action/index.js');
 
 var PageList = Vue.extend({
 	name: 'PgaeList',

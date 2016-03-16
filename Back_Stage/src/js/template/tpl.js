@@ -9,7 +9,7 @@ module.exports = {
             class: className ? className : '',
             id: 'n_' + num,
             attr: {},
-            content: '<p style="display:block;">文案文案文案</p>'
+            content: '<p style="display:block;">文本文本文本</p>'
         };
     },
     pic: function(index, num, src, height, width) {

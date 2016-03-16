@@ -2,7 +2,11 @@
 
 var $ = require('jQuery');
 
-var actions = {}
+var utils = require('utils');
+
+var actionModule = ['./item.js','./page.js']
+
+var actions = {};
 
 actions.initData = function(state, id, cb) {
     $.ajax({
@@ -18,18 +22,9 @@ actions.initData = function(state, id, cb) {
     })
 }
 
-actions.selectPage = function(state, idnex){
-	state.dispatch('SELECTPAGE', idnex);
-}
-
-actions.addPage = function(state){
-	state.dispatch('ADDPAGE');
-}
-
-actions.addText = function(state){
-	state.dispatch('ADDTEXT');
-}
-
+actionModule.forEach(function(item){
+	utils.mixin(actions,require(item));
+})
 
 
 module.exports = actions;

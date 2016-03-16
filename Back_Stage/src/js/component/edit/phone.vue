@@ -2,17 +2,17 @@
     <div class="phone_con">
         <div class="phone_title">{{workData.title}}</div>
         <div class="phone_screen">
-            <div v-for="item in currentPageData.items" track-by="$index" :id="item.id" :class="item.class" :style="item.style" :title="item.id" :attr="item.attr | json" :type="item.type">
+            <div v-for="item in currentPageData.items" track-by="$index" :id="item.id" :class="item.class" :style="item.style" :title="item.id" :attr="item.attr | json" :type="item.type" @click="selectItem(item.id)" v-operate-item>
                 <div class="content">{{{item.content}}}</div>
-                <div class="edit_mode_layer"></div>
-                <div class="edit_mode edit_mode_radius_t_l"></div>
-                <div class="edit_mode edit_mode_radius_t_m"></div>
-                <div class="edit_mode edit_mode_radius_t_r"></div>
-                <div class="edit_mode edit_mode_radius_m_l"></div>
-                <div class="edit_mode edit_mode_radius_m_r"></div>
-                <div class="edit_mode edit_mode_radius_b_l"></div>
-                <div class="edit_mode edit_mode_radius_b_m"></div>
-                <div class="edit_mode edit_mode_radius_b_r"></div>
+                <div class="edit_mode_layer" v-show="checkedItems.indexOf(item.id) != -1"></div>
+                <div class="edit_mode edit_mode_radius_t_l" v-show="checkedItems.indexOf(item.id) != -1"></div>
+                <div class="edit_mode edit_mode_radius_t_m" v-show="checkedItems.indexOf(item.id) != -1"></div>
+                <div class="edit_mode edit_mode_radius_t_r" v-show="checkedItems.indexOf(item.id) != -1"></div>
+                <div class="edit_mode edit_mode_radius_m_l" v-show="checkedItems.indexOf(item.id) != -1"></div>
+                <div class="edit_mode edit_mode_radius_m_r" v-show="checkedItems.indexOf(item.id) != -1"></div>
+                <div class="edit_mode edit_mode_radius_b_l" v-show="checkedItems.indexOf(item.id) != -1"></div>
+                <div class="edit_mode edit_mode_radius_b_m" v-show="checkedItems.indexOf(item.id) != -1"></div>
+                <div class="edit_mode edit_mode_radius_b_r" v-show="checkedItems.indexOf(item.id) != -1"></div>
             </div>
         </div>
     </div>
@@ -52,9 +52,10 @@
 var Vue = require('Vue');
 var $ = require('jQuery');
 
-var store = require('../../store/index.js');
-var actions = require('../../store/actions.js');
+var store = require('../../store/store.js');
+var actions = require('../../store/action/index.js');
 
+var operateItem = require('../../directive/operateItem.js')
 
 var Phone = Vue.extend({
     name: 'Phone',
@@ -70,6 +71,9 @@ var Phone = Vue.extend({
             },
             currentPageData: function(){
                 return store.state.currentPageData;
+            },
+            checkedItems: function(){
+                return store.state.checkedItems;
             }
         },
         actions: actions
@@ -78,7 +82,7 @@ var Phone = Vue.extend({
 
     },
     methods: {
-
+        selectItem: actions.selectItem
     }
 })
 

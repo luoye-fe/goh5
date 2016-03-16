@@ -64,7 +64,7 @@ var webpackConfig = {
             'jQuery': pwd + '/src/js/library/' + aliasFile('jquery'),
             '$': pwd + '/src/js/library/' + aliasFile('jquery'),
             'vue-route': pwd + '/src/js/library/' + aliasFile('vue-router'),
-            'utils': pwd + '/src/js/util/utils.js',
+            'utils': pwd + '/src/js/util/index.js',
             'qrcode': pwd + '/src/js/library/' + aliasFile('jquery-qrcode')
         }
     },

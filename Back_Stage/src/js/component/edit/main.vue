@@ -20,8 +20,8 @@ var Router = require('vue-route');
 Vue.use(Router);
 var router = new Router();
 
-var store = require('../../store/index.js');
-var actions = require('../../store/actions.js');
+var store = require('../../store/store.js');
+var actions = require('../../store/action/index.js');
 
 var Head = require('../common/head.vue');
 var Loading = require('../common/loading.vue');
