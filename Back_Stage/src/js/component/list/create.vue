@@ -34,6 +34,10 @@
 var Vue = require('Vue');
 var $ = require('jQuery');
 
+var Router = require('vue-route');
+Vue.use(Router);
+var router = new Router();
+
 var Create = Vue.extend({
 	data: function(){
 		return {
@@ -52,7 +56,7 @@ var Create = Vue.extend({
 				},
 				success: function(data){
 					var id = data.data._id;
-					console.log(id);
+					router.go('/edit/' + id);
 				}
 			})
 		}
