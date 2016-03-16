@@ -2,12 +2,12 @@
 
 var actions = {};
 
-actions.addText = function(state) {
-    state.dispatch('ADDTEXT');
+actions.addText = function(store) {
+    store.dispatch('ADDTEXT');
 }
 
-actions.selectItem = function(state, id, multi) {
-    state.dispatch('SELECTITEM', id, multi);
+actions.selectItem = function(store, index, multi) {
+    store.dispatch('SELECTITEM', index, multi);
 }
 
 module.exports = actions;

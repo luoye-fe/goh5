@@ -4,12 +4,12 @@
 var actions = {};
 
 
-actions.selectPage = function(state, idnex) {
-    state.dispatch('SELECTPAGE', idnex);
+actions.selectPage = function(store, idnex) {
+    store.dispatch('SELECTPAGE', idnex);
 }
 
-actions.addPage = function(state) {
-    state.dispatch('ADDPAGE');
+actions.addPage = function(store) {
+    store.dispatch('ADDPAGE');
 }
 
 

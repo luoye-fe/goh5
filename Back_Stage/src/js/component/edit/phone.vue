@@ -2,19 +2,20 @@
     <div class="phone_con">
         <div class="phone_title">{{workData.title}}</div>
         <div class="phone_screen">
-            <div v-for="item in currentPageData.items" track-by="$index" :id="item.id" :class="item.class" :style="item.style" :title="item.id" :attr="item.attr | json" :type="item.type" @click="selectItem(item.id)" v-operate-item>
+            <div v-for="item in currentPageData.items" track-by="$index" :id="item.id" :class="item.class" :style="item.style" :title="item.id" :attr="item.attr | json" :type="item.type" :index="$index" @click="selectItem($index);" v-operate-item>
                 <div class="content">{{{item.content}}}</div>
-                <div class="edit_mode_layer" v-show="checkedItems.indexOf(item.id) != -1"></div>
-                <div class="edit_mode edit_mode_radius_t_l" v-show="checkedItems.indexOf(item.id) != -1"></div>
-                <div class="edit_mode edit_mode_radius_t_m" v-show="checkedItems.indexOf(item.id) != -1"></div>
-                <div class="edit_mode edit_mode_radius_t_r" v-show="checkedItems.indexOf(item.id) != -1"></div>
-                <div class="edit_mode edit_mode_radius_m_l" v-show="checkedItems.indexOf(item.id) != -1"></div>
-                <div class="edit_mode edit_mode_radius_m_r" v-show="checkedItems.indexOf(item.id) != -1"></div>
-                <div class="edit_mode edit_mode_radius_b_l" v-show="checkedItems.indexOf(item.id) != -1"></div>
-                <div class="edit_mode edit_mode_radius_b_m" v-show="checkedItems.indexOf(item.id) != -1"></div>
-                <div class="edit_mode edit_mode_radius_b_r" v-show="checkedItems.indexOf(item.id) != -1"></div>
+                <div class="edit_mode_layer" v-show="checkedItems.indexOf($index) != -1"></div>
+                <div class="edit_mode edit_mode_radius_t_l" v-show="checkedItems.indexOf($index) != -1"></div>
+                <div class="edit_mode edit_mode_radius_t_m" v-show="checkedItems.indexOf($index) != -1"></div>
+                <div class="edit_mode edit_mode_radius_t_r" v-show="checkedItems.indexOf($index) != -1"></div>
+                <div class="edit_mode edit_mode_radius_m_l" v-show="checkedItems.indexOf($index) != -1"></div>
+                <div class="edit_mode edit_mode_radius_m_r" v-show="checkedItems.indexOf($index) != -1"></div>
+                <div class="edit_mode edit_mode_radius_b_l" v-show="checkedItems.indexOf($index) != -1"></div>
+                <div class="edit_mode edit_mode_radius_b_m" v-show="checkedItems.indexOf($index) != -1"></div>
+                <div class="edit_mode edit_mode_radius_b_r" v-show="checkedItems.indexOf($index) != -1"></div>
             </div>
         </div>
+        <button @click="test(this.checkedItems[0],'top')">测试</button>
     </div>
 </template>
 

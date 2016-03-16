@@ -4,11 +4,11 @@ var $ = require('jQuery');
 
 var utils = require('utils');
 
-var actionModule = ['./item.js','./page.js']
+var actionModule = ['./item.js', './page.js', './dom.js'];
 
 var actions = {};
 
-actions.initData = function(state, id, cb) {
+actions.initData = function(store, id, cb) {
     $.ajax({
         url: '/api/work/getWork',
         type: 'get',
@@ -16,14 +16,14 @@ actions.initData = function(state, id, cb) {
             _id: id
         },
         success: function(data) {
-            state.dispatch('INITDATA', data.data);
+            store.dispatch('INITDATA', data.data);
             cb && cb(data);
         }
     })
 }
 
-actionModule.forEach(function(item){
-	utils.mixin(actions,require(item));
+actionModule.forEach(function(item) {
+    utils.mixin(actions, require(item));
 })
 
 

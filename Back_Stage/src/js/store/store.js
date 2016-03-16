@@ -15,10 +15,12 @@ var state = {
     checkedItems: []
 }
 
+var actions = require('./action/index.js');
 var mutations = require('./mutation/index.js');
 
 module.exports = new Vuex.Store({
     state,
     mutations,
+    actions,
     strict: true
 })
