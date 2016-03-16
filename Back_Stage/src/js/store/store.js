@@ -17,6 +17,11 @@ var state = {
         show: false,
         msg: '提示信息',
         type: 'info' // 四种样式 success/info/warning/danger
+    },
+    confirmObj:{
+        show: false,
+        msg: '提示信息',
+        event: 'func'
     }
 }
 

@@ -39,8 +39,9 @@
 	</div>
 	<m-pagination :pagination-conf="paginationConf"></m-pagination>
 	<m-loading :show.sync="loading"></m-loading>
-	<m-alert></m-alert>
 	<m-create :show-create.sync="showCreate"></m-create>
+	<m-alert></m-alert>
+	<m-confirm></m-confirm>
 </template>
 
 <style>
@@ -85,6 +86,7 @@ Vue.use(Router);
 var router = new Router();
 
 var store = require('../../store/store.js');
+var actions = require('../../store/action/index.js');
 
 var dateFilter = require('../../filter/date.js');
 
@@ -95,7 +97,7 @@ var Pagination = require('../common/pagination.vue');
 var Loading = require('../common/loading.vue');
 var Alert = require('../common/alert.vue');
 var Create = require('./create.vue');
-
+var Confirm = require('../common/confirm.vue');
 
 
 var listVm = null;
@@ -134,11 +136,13 @@ var List = Vue.extend({
 	init: function(){
 		listVm = this;
 	},
-	created: function(){
-
-	},
-	ready: function(){
-		
+	vuex: {
+	  	getters: {
+	  		confirmObj: function(){
+				return store.state.confirmObj;
+			}
+	  	},
+	  	actions: actions
 	},
 	components: {
 		'm-pagination': Pagination,
@@ -167,22 +171,28 @@ var List = Vue.extend({
 		},
 		deleteWork: function(id){
 			var _this = this;
-			$.ajax({
-				url: '/api/delete',
-				type: 'get',
-				data: {
-					_id: id
-				},
-				success: function(data){
-					_this.paginationConf.onChange();
+			var confirmParams = {
+				show: true,
+				msg: '是否删除本作品？',
+				event: function(){
+					_this.loading = true;
+					$.ajax({
+						url: '/api/delete',
+						type: 'get',
+						data: {
+							_id: id
+						},
+						success: function(data){
+							_this.loading = false;
+							_this.paginationConf.onChange();
+						}
+					})
 				}
-			})
+			}
+			actions.confirm(store,confirmParams);			
 		}
 	}
 })
-
-
-
 
 module.exports = List;
 

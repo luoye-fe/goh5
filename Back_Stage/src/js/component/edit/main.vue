@@ -50,6 +50,11 @@ var Edit = Vue.extend({
 		this.initData(this.$route.params.id, function(){
 			_this.loading = false;
 		});
+		$(window).bind("beforeunload",function(){
+			if(_this.$route.path.indexOf('edit') !== -1){
+				return "请确认您的场景已保存"
+			}
+		})
 	},
 	components: {
 		'm-pagelist': PageList,
@@ -65,6 +70,8 @@ var Edit = Vue.extend({
 		
 	}
 })
+
+
 
 module.exports = Edit;
 	

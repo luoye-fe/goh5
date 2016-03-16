@@ -25,12 +25,7 @@ var store = require('../../store/store.js');
 var actions = require('../../store/action/index.js');
 
 var Alert = Vue.extend({
-	data: function(){
-		return {
-			show: false,
-			msg: '提示信息'
-		}
-	},
+	name: 'Alert',
 	vuex: {
 	  	getters: {
 	  		alertObj: function(){
