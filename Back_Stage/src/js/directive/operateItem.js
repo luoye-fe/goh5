@@ -27,7 +27,8 @@ Vue.directive('operateItem', function() {
         var preClientY = ev.clientY;
 
         var itemLeft, itemTop;
-        
+
+
         $(window).bind('mousemove', function(ev) {
             for (var i = 0; i < store.state.checkedItems.length; i++) {
                 var obj = $('.j_screen').children().eq(store.state.checkedItems[i]);
@@ -52,7 +53,7 @@ Vue.directive('operateItem', function() {
                         actions.alert(store, alertMsg);
                     }
                 }
-                actions.setStyle(store, i, {
+                actions.setStyle(store, store.state.checkedItems[i], {
                     left: (x / conWidth * 100).toFixed(1) + '%',
                     top: (y / conHeight * 100).toFixed(1) + '%'
                 })
