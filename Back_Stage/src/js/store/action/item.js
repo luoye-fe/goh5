@@ -10,4 +10,8 @@ actions.selectItem = function(store, index, multi) {
     store.dispatch('SELECTITEM', index, multi);
 }
 
+actions.removeAllItems = function(store) {
+    store.dispatch('REMOVEALLITEMS');
+}
+
 module.exports = actions;

@@ -1,5 +1,5 @@
 <template>
-	<div class="edit_bg" style="position: fixed;top: 0;left: 0;right: 0;bottom: 0;background-color: #d0cfd8"></div>
+	<div class="edit_bg" style="position: fixed;top: 0;left: 0;right: 0;bottom: 0;background-color: #d0cfd8" @click="removeAllItems()"></div>
 	<m-head></m-head>	
 	<m-page-list></m-page-list>
 	<m-phone></m-phone>
@@ -64,7 +64,8 @@ var Edit = Vue.extend({
 		'm-attr-list': AttrList
 	},
 	methods: {
-		initData: actions.initData
+		initData: actions.initData,
+		removeAllItems: actions.removeAllItems
 	},
 	events: {
 
