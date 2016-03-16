@@ -2,13 +2,12 @@
 
 // 数独的写操作都在vuex中，读操作不在此，比如获取css属性，在utils中，不放在这
 
-
 var $ = require('jQuery');
 
 var utils = require('utils');
 
 
-var mutationModule = ['./item.js', './page.js', './dom.js'];
+var mutationModule = ['./item.js', './page.js', './dom.js', './common.js'];
 
 var mutations = {};
 

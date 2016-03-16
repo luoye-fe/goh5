@@ -4,6 +4,7 @@
 	<m-pagelist></m-pagelist>
 	<m-phone></m-phone>
 	<m-loading :show.sync="loading"></m-loading>
+	<m-alert></m-alert>
 </template>
 
 <style>

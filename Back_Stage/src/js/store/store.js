@@ -12,7 +12,12 @@ var state = {
     pagesData: '',
     currentPage: 1,
     currentPageData: '',
-    checkedItems: []
+    checkedItems: [],
+    alertObj:{
+        show: false,
+        msg: '提示信息',
+        type: 'info' // 四种样式 success/info/warning/danger
+    }
 }
 
 var actions = require('./action/index.js');

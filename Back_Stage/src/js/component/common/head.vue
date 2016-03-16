@@ -96,7 +96,11 @@ var Head = Vue.extend({
 					mainCode: JSON.stringify(_this.workData.mainCode)
 				},
 				success: function(data){
-					console.log(data);
+					actions.alert(store, {
+						show: true,
+						msg: '保存成功',
+						type: 'success'
+					})
 				}
 			})
 		},

@@ -39,7 +39,7 @@
 	</div>
 	<m-pagination :pagination-conf="paginationConf"></m-pagination>
 	<m-loading :show.sync="loading"></m-loading>
-	<m-alert :alert-obj.sync="alertObj"></m-alert>
+	<m-alert></m-alert>
 	<m-create :show-create.sync="showCreate"></m-create>
 </template>
 
@@ -106,10 +106,6 @@ var List = Vue.extend({
 		return {
 			loading: true,
 			showCreate: false,
-			alertObj:{
-				show: false,
-				msg: '提示信息'
-			},
 			listData: '',
 			listType: 1, // 0:默认 1:自己
 			paginationConf: {

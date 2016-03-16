@@ -19,13 +19,48 @@ Vue.directive('operateItem', function() {
     })
 
     // 拖动元素
-    $(target).bind('mousedown', function() {
-        var index = $(target).attr('index');
-        
+    $(target).bind('mousedown', function(ev) {
+        var conWidth = parseFloat($('.j_screen').css('width'));
+        var conHeight = parseFloat($('.j_screen').css('height'));
 
-        actions.setStyle(store, index, {
-            top: '10%',
-            left: '20%'
-        })
+        var preClientX = ev.clientX;
+        var preClientY = ev.clientY;
+
+        var itemLeft, itemTop;
+        
+        $(window).bind('mousemove', function(ev) {
+            for (var i = 0; i < store.state.checkedItems.length; i++) {
+                var obj = $('.j_screen').children().eq(store.state.checkedItems[i]);
+
+                itemLeft = itemLeft ? itemLeft : parseFloat(obj.css('left'));
+                itemTop = itemTop ? itemTop : parseFloat(obj.css('top'));
+
+                var difX = ev.clientX - preClientX;
+                var difY = ev.clientY - preClientY;
+
+                var x = difX + itemLeft;
+                var y = difY + itemTop;
+
+                var alertMsg = {
+                    show: true,
+                    msg: '超出屏幕外的元素将不可见',
+                    type: 'warning'
+                }
+
+                if (x < 0 || y < 0 || parseFloat(obj.outerWidth()) + parseFloat(obj.css('left')) > conWidth || parseFloat(obj.outerHeight()) + parseFloat(obj.css('top')) > conHeight) {
+                    if(!store.state.alertObj.show){
+                        actions.alert(store, alertMsg);
+                    }
+                }
+                actions.setStyle(store, i, {
+                    left: (x / conWidth * 100).toFixed(1) + '%',
+                    top: (y / conHeight * 100).toFixed(1) + '%'
+                })
+            }
+        });
+        $(window).bind('mouseup', function() {
+            $(window).unbind('mousemove');
+            $(window).unbind('mouseup');
+        });
     })
 })

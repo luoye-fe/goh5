@@ -5,7 +5,7 @@ module.exports = {
     txt: function(index, num ,className) {
         return {
             type: 'txt',
-            style: 'width:28%;top:0%;left:0%;z-index:' + index + ';color:#1a1a1a;line-height:1.5;padding:1%;font-size:1em;',
+            style: 'width:28%;top:0%;left:0%;z-index:' + index + ';color:#1a1a1a;line-height:1.5;padding:1%;font-size:1em;position: absolute;',
             class: className ? className : '',
             id: 'n_' + num,
             attr: {},
@@ -15,7 +15,7 @@ module.exports = {
     pic: function(index, num, src, height, width) {
         return {
             type: 'pic',
-            style: 'height:' + height + ';width:' + width + ';top:0%;left:0%;z-index:' + index + ';',
+            style: 'height:' + height + ';width:' + width + ';top:0%;left:0%;z-index:' + index + ';position: absolute;',
             class: '',
             id: 'n_' + num,
             attr: {},
@@ -25,7 +25,7 @@ module.exports = {
     video: function(index, num, videoid, pic_url) {
         return {
             type: 'video',
-            style: 'height:37.5%;width:100%;top:0%;left:0%;z-index:' + index + ';',
+            style: 'height:37.5%;width:100%;top:0%;left:0%;z-index:' + index + ';position: absolute;',
             class: '',
             id: 'n_' + num,
             attr: {},

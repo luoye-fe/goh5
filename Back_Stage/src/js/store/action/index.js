@@ -4,7 +4,7 @@ var $ = require('jQuery');
 
 var utils = require('utils');
 
-var actionModule = ['./item.js', './page.js', './dom.js'];
+var actionModule = ['./item.js', './page.js', './dom.js', './common.js'];
 
 var actions = {};
 

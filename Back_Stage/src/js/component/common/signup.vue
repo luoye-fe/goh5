@@ -4,7 +4,7 @@
 		<div class="dialog_main_con all_center">
 			<div class="dialog_head">
 				<h2>注册</h2>
-				<a href="javascript:void(0)" class="dialog_link" @click="this.showSignup = false">关闭</a>
+				<a href="javascript:void(0)" class="dialog_link close" @click="this.showSignup = false">&times;</a>
 			</div>
 			<div class="dialog_main">
 				<div class="user">

@@ -4,7 +4,7 @@
 		<div class="dialog_main_con small all_center">
 			<div class="dialog_head">
 				<h2>创建新作品</h2>
-				<a href="javascript:void(0)" class="dialog_link" @click="this.showCreate = false">关闭</a>
+				<a href="javascript:void(0)" class="dialog_link close" @click="this.showCreate = false">&times;</a>
 			</div>
 			<div class="dialog_main">
 				<div class="create_con all_center">
