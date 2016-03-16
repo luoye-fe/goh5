@@ -37,5 +37,12 @@ router.redirect({
     '*': '/'
 })
 
-var Blank = Vue.extend({});
-router.start(Blank, '#app');
+var APP = Vue.extend({
+    
+});
+
+router.start(APP, '#app');
+
+
+
+

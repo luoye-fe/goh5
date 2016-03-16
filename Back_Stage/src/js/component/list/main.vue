@@ -84,6 +84,8 @@ var Router = require('vue-route');
 Vue.use(Router);
 var router = new Router();
 
+var store = require('../../store/index.js');
+
 var dateFilter = require('../../filter/date.js');
 
 var Head = require('../common/head.vue');
@@ -95,6 +97,7 @@ var Create = require('./create.vue');
 var listVm = null;
 var List = Vue.extend({
 	name: 'List',
+	store,
 	data: function(){
 		return {
 			loading: true,

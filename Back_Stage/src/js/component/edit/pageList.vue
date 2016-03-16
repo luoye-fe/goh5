@@ -3,7 +3,7 @@
 		<div class="item pages_list">
 			<div class="head">页面列表</div>
 			<ul>
-				<li v-for="item in pagesData" :class="{'active':currentPage == $index+1}" @click="selectPage($index)">第{{$index+1}}页</li>
+				<li v-for="item in pagesData" :class="{'active':currentPage == $index+1}" @click="selectPage($index+1)">第{{$index+1}}页</li>
 			</ul>
 		</div>
 		<div class="item nav_bottom">
@@ -34,6 +34,9 @@
 var Vue = require('Vue');
 var $ = require('jQuery');
 
+var store = require('../../store/index.js');
+var actions = require('../../store/actions.js');
+
 var PageList = Vue.extend({
 	name: 'PgaeList',
 	data: function(){
@@ -41,26 +44,23 @@ var PageList = Vue.extend({
 
 		}
 	},
-	created: function(){
-
+	vuex: {
+	  	getters: {
+	  		pagesData: function(){
+				return store.state.pagesData;
+			},
+		    currentPage: function(){
+				return store.state.currentPage;
+			}
+	  	},
+	  	actions: actions
 	},
-	props: ['pagesData','currentPage'],
+	created: function(){
+		
+	},
 	methods: {
-		selectPage: function($index){
-			this.currentPage = $index + 1;
-		},
-		addPage: function(){
-			var model = {
-            	main: {
-                	background: '#fff',
-            	    type: '',
-        	        height: 504,
-    	        },
-	            items: []
-        	}
-        	this.pagesData.push(model);
-        	this.selectPage(this.pagesData.length - 1);
-		}
+		selectPage: actions.selectPage,
+		addPage: actions.addPage
 	}
 
 })

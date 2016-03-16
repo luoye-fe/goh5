@@ -55,9 +55,11 @@ var Router = require('vue-route');
 Vue.use(Router);
 var router = new Router();
 
+var store = require('../../store/index.js');
+var actions = require('../../store/actions.js');
+
 var tpl = require('../../template/tpl.js');
 var utils = require('utils');
-
 
 var Head = Vue.extend({
 	name:'Head',
@@ -66,10 +68,14 @@ var Head = Vue.extend({
 			page : this.$route.path.split('/')[1]
 		}
 	},
-	created: function(){
-
-	},
-	props: ['mainCode','currentPage','currentPageData'],
+	vuex: {
+        getters: {
+            workData: function(){
+				return store.state.workData;
+			}
+        },
+        actions: actions
+    },
 	methods:{
 		logout: function(){
 			$.ajax({
@@ -87,22 +93,14 @@ var Head = Vue.extend({
 				type: 'get',
 				data: {
 					_id: _this.$route.params.id,
-					mainCode: JSON.stringify(_this.mainCode)
+					mainCode: JSON.stringify(_this.workData.mainCode)
 				},
 				success: function(data){
 					console.log(data);
 				}
 			})
 		},
-		addText: function(){
-			var index = this.mainCode.pages[this.currentPage - 1].items.length + 1;
-			var num = utils.getAllItemsLen(this.mainCode) + 1;
-			var model = tpl.txt(index, num, 'flay');
-			this.mainCode.pages[this.currentPage - 1].items.push(model);
-			this.currentPageData = this.mainCode.pages[this.currentPage - 1].items;
-			console.log('本页元素信息:');
-			this.$log('mainCode.pages[currentPage - 1].items')
-		}
+		addText: actions.addText
 	}
 })
 

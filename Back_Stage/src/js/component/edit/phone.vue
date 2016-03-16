@@ -2,7 +2,7 @@
     <div class="phone_con">
         <div class="phone_title">{{workData.title}}</div>
         <div class="phone_screen">
-            <div v-for="item in currentPageData" track-by="$index" :id="item.id" :class="item.class" :style="item.style" :title="item.id" :attr="item.attr | json" :type="item.type">
+            <div v-for="item in currentPageData.items" track-by="$index" :id="item.id" :class="item.class" :style="item.style" :title="item.id" :attr="item.attr | json" :type="item.type">
                 <div class="content">{{{item.content}}}</div>
                 <div class="edit_mode_layer"></div>
                 <div class="edit_mode edit_mode_radius_t_l"></div>
@@ -52,6 +52,10 @@
 var Vue = require('Vue');
 var $ = require('jQuery');
 
+var store = require('../../store/index.js');
+var actions = require('../../store/actions.js');
+
+
 var Phone = Vue.extend({
     name: 'Phone',
     data: function(){
@@ -59,10 +63,20 @@ var Phone = Vue.extend({
 
         }
     },
+    vuex: {
+        getters: {
+            workData: function(){
+                return store.state.workData;
+            },
+            currentPageData: function(){
+                return store.state.currentPageData;
+            }
+        },
+        actions: actions
+    },
     ready: function(){
 
     },
-    props: ['workData','currentPage','pagesData','currentPageData'],
     methods: {
 
     }
