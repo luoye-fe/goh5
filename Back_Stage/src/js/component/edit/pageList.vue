@@ -1,5 +1,5 @@
 <template>
-	<div class="pages_con">
+	<div class="pages_con left">
 		<div class="item pages_list">
 			<div class="head">页面列表</div>
 			<ul>
@@ -37,8 +37,8 @@ var $ = require('jQuery');
 var store = require('../../store/store.js');
 var actions = require('../../store/action/index.js');
 
-var PageList = Vue.extend({
-	name: 'PgaeList',
+var pageList = Vue.extend({
+	name: 'pageList',
 	data: function(){
 		return {
 
@@ -65,6 +65,6 @@ var PageList = Vue.extend({
 
 })
 
-module.exports = PageList;
+module.exports = pageList;
 
 </script>

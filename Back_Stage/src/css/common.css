@@ -43,6 +43,22 @@ button::-moz-focus-inner, input::-moz-focus-inner {padding: 0;border: 0}
 .dialog_con .dialog_main_con .dialog_bottom .dialog_btn li:last-child:hover{background: #44cb83;}
 
 
+/* 侧边列表 */
+.side_con{position: fixed;background: #fff;display: flex;flex-direction:column;width: 280px;box-sizing: border-box;height: 100%;padding-bottom: 60px;top: 60px;}
+.side_con.left{left: 0;}
+.side_con.right{right: 0;}
+.side_con .item{display: flex;flex-direction: column;}
+.side_con .head{height: 40px;line-height: 40px;text-align: center;color: #fff;background: #0fcebd;font-size: 16px;width: 100%;}
+.side_con .item.pages_list{}
+.side_con .item.pages_list ul{position: relative;width: 280px;padding: 0 20px;box-sizing: border-box;overflow-y: auto;flex:1;}
+.side_con .item.pages_list ul li{display: block;height: 36px;line-height: 36px;margin-top: 10px;color: #666;text-align: center;background: #dcdcdc;cursor: pointer;width: 100%;border-radius: 4px;font-weight: bold;}
+.side_con .item.pages_list ul li:last-child{margin-bottom: 10px;}
+.side_con .item.pages_list ul li.active {background: #0fcebd;color: #fff}
+.side_con .item.nav_bottom{width: 280px;text-align: center;height: 44px;background: #3f4a58;font-size: 16px;}
+.side_con .item.nav_bottom a{color: #10c3b3;display: block;cursor: pointer;line-height: 44px;}
+.side_con .item.nav_bottom a img{display: inline-block;vertical-align: middle;margin-right: 10px;width: 16px;height: 16px;}
+.side_con .item.nav_bottom a span{display: inline-block;vertical-align: middle;}
+
 /* 关闭按钮 */
 .close {font-size: 21px;font-weight: bold;line-height: 1;color: #000;text-shadow: 0 1px 0 #fff;filter: alpha(opacity=20);opacity: 0.2;transition: all ease 0.2s;-webkit-transition: all ease 0.2s;}
 .close:hover, .close:focus {color: #000;text-decoration: none;cursor: pointer;filter: alpha(opacity=50);opacity: 0.5;}

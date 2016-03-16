@@ -28,7 +28,6 @@ Vue.directive('operateItem', function() {
 
         var itemLeft, itemTop;
 
-
         $(window).bind('mousemove', function(ev) {
             for (var i = 0; i < store.state.checkedItems.length; i++) {
                 var obj = $('.j_screen').children().eq(store.state.checkedItems[i]);

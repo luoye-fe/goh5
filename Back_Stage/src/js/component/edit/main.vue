@@ -1,8 +1,9 @@
 <template>
 	<div class="edit_bg" style="position: fixed;top: 0;left: 0;right: 0;bottom: 0;background-color: #d0cfd8"></div>
 	<m-head></m-head>	
-	<m-pagelist></m-pagelist>
+	<m-page-list></m-page-list>
 	<m-phone></m-phone>
+	<m-attr-list></m-attr-list>
 	<m-loading :show.sync="loading"></m-loading>
 	<m-alert></m-alert>
 </template>
@@ -28,6 +29,7 @@ var Head = require('../common/head.vue');
 var Loading = require('../common/loading.vue');
 var PageList = require('./pageList.vue');
 var Phone = require('./phone.vue');
+var AttrList = require('./attrList.vue');
 
 var Edit = Vue.extend({
 	name: 'Edit',
@@ -57,8 +59,9 @@ var Edit = Vue.extend({
 		})
 	},
 	components: {
-		'm-pagelist': PageList,
-		'm-phone': Phone
+		'm-page-list': PageList,
+		'm-phone': Phone,
+		'm-attr-list': AttrList
 	},
 	methods: {
 		initData: actions.initData
