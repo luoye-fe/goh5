@@ -122,9 +122,106 @@
 					</ul>
 				</div>
 				<div class="attr_main" v-show="nav_top_btn == 1">
+					<ul class="group">
+						<li v-for="item in aniStyleAttr">
+							<div class="group_head" :class="{'active':group_index === 0}" @click="group_index == $index ? group_index = null : group_index = $index">
+								<h4>动画 {{$index + 1}}</h4>
+								<span class="caret" :class="{'caret_close':group_index !== $index}"></span>
+							</div>
+							<div class="group_main" v-show="group_index === $index">
+								<ul>
+									<li style-attr="ani-name">
+										<span>动画名称</span>
+										<select :value="item['ani-name']" @input="setAni($index,$event)">
+											<option value="none">none | 无效果</option>
+                                            <option value="flash">flash | 闪烁</option>
+                                            <option value="shake">shake | 摇动</option>
+                                            <option value="bounce">bounce | 弹性</option>
+                                            <option value="wiggle">wiggle | 扭动</option>
+                                            <option value="tada">tada | 弹加摇动</option>
+                                            <option value="swing">swing | 摇摆(小)</option>
+                                            <option value="wobble">wobble | 摇晃(大)</option>
+                                            <option value="pulse">pulse | 脉冲放大</option>
+                                            <option value="flip">flip</option> 兼容性有问题
+                                            <option value="rollIn">rollIn | 滚入</option>
+                                            <option value="lightSpeedIn">lightSpeedIn | 惯性出现</option>
+                                            <option value="flipInX">flipInX | X轴翻滚出现</option>
+                                            <option value="flipInY">flipInY | Y轴翻滚出现</option>
+                                            <option value="fadeIn">fadeIn | 淡入</option>
+                                            <option value="fadeInUp">fadeInUp | 向上淡入</option>
+                                            <option value="fadeInDown">fadeInDown | 向下淡入</option>
+                                            <option value="fadeInLeft">fadeInLeft | 从左淡入</option>
+                                            <option value="fadeInRight">fadeInRight | 从右淡入</option>
+                                            <option value="fadeInUpBig">fadeInUpBig | 向上淡入（大幅度）</option>
+                                            <option value="fadeInDownBig">fadeInDownBig | 向下淡入(大幅度)</option>
+                                            <option value="fadeInLeftBig">fadeInLeftBig | 从左淡入(大幅度)</option>
+                                            <option value="fadeInRightBig">fadeInRightBig | 从右淡入(大幅度)</option>
+                                            <option value="bounceIn">bounceIn | 弹入</option>
+                                            <option value="bounceInUp">bounceInUp | 向上弹出</option>
+                                            <option value="bounceInDown">bounceInDown | 从下弹出</option>
+                                            <option value="bounceInLeft">bounceInLeft | 从左弹出</option>
+                                            <option value="bounceInRight">bounceInRight | 从右弹出</option>
+                                            <option value="rotateIn">rotateIn | 旋转出现</option>
+                                            <option value="rotateInUpLeft">rotateInUpLeft | 向上转出（左）</option>
+                                            <option value="rotateInDownLeft">rotateInDownLeft | 向下转出（左）</option>
+                                            <option value="rotateInUpRight">rotateInUpRight | 向上转出（右）</option>
+                                            <option value="rotateInDownRight">rotateInDownRight | 向下转出（右）</option>
+                                            <option value="rollOut">rollOut | 滚出</option>
+                                            <option value="hinge">hinge | 悬挂掉出</option>
+                                            <option value="lightSpeedOut">lightSpeedOut | 惯性消失</option>
+                                            <option value="flipOutX">flipOutX | X轴翻滚消失</option>
+                                            <option value="flipOutY">flipOutY | Y轴翻滚消失</option>
+                                            <option value="fadeOut">fadeOut | 淡出</option>
+                                            <option value="fadeOutUp">fadeOutUp | 向上淡出</option>
+                                            <option value="fadeOutDown">fadeOutDown | 向下淡出</option>
+                                            <option value="fadeOutLeft">fadeOutLeft | 向左淡出</option>
+                                            <option value="fadeOutRight">fadeOutRight | 向右淡出</option>
+                                            <option value="fadeOutUpBig">fadeOutUpBig | 向上淡出（大幅度）</option>
+                                            <option value="fadeOutDownBig">fadeOutDownBig | 向下淡出（大幅度）</option>
+                                            <option value="fadeOutLeftBig">fadeOutLeftBig | 向左淡出（大幅度）</option>
+                                            <option value="fadeOutRightBig">fadeOutRightBig | 向右淡出（大幅度）</option>
+                                            <option value="bounceOut">bounceOut | 弹出后消失</option>
+                                            <option value="bounceOutUp">bounceOutUp | 向上弹出</option>
+                                            <option value="bounceOutDown">bounceOutDown | 向下弹出</option>
+                                            <option value="bounceOutLeft">bounceOutLeft | 向左弹出</option>
+                                            <option value="bounceOutRight">bounceOutRight | 向右弹出</option>
+                                            <option value="rotateOut">rotateOut | 旋转消失</option>
+                                            <option value="rotateOutUpLeft">rotateOutUpLeft | 向上转出（左）</option>
+                                            <option value="rotateOutDownLeft">rotateOutDownLeft | 向下转出（左）</option>
+                                            <option value="rotateOutUpRight">rotateOutUpRight | 向上转出（右）</option>
+                                            <option value="rotateOutDownRight">rotateOutDownRight | 向下转出（右）</option>
+										</select>
+									</li>
+									<li style-attr="ani-duration">
+										<span>动画时长</span>
+										<input type="range" min="0" max="10" step="0.1" :value="item['ani-duration'] | Number '0'" @input="setAni($index,$event,'number','s')"></input>
+										<input type="number" min="0" max="10" step="0.1" :value="item['ani-duration'] | Number '0'" @input="setAni($index,$event,'number','s')"></input>
+									</li>
+									<li style-attr="ani-tween">
+										<span>动画曲线</span>
+										<select :value="item['ani-tween']" @input="setAni($index,$event)">
+											<option value="ease">ease</option>
+											<option value="linear">linear</option>
+										</select>
+									</li>
+									<li style-attr="ani-delay">
+										<span>动画延时</span>
+										<input type="range" min="0" max="50" step="1" :value="item['ani-delay'] | Number '0'" @input="setAni($index,$event,'number','s')"></input>
+										<input type="number" min="0" max="50" step="1" :value="item['ani-delay'] | Number '0'" @input="setAni($index,$event,'number','s')"></input>
+									</li>
+									<li style-attr="ani-count">
+										<span>动画次数</span>
+										<input type="number" min="0" max="10" step="1" :value="item['ani-count'] | Number '0'" @input="setAni($index,$event,'number')" :disabled="item['ani-count'] === 'infinite'"></input>
+										<input type="checkbox" id="infinite" :value="item['ani-count'] === 'infinite'" @change="setAni($index,$event,'checked')" style="margin-left: 15px;"></input>
+										<label for="infinite" style="margin-left: 8px;">循环</label>
+									</li>
+								</ul>
+							</div>
+						</li>
+					</ul>
 					<ul class="ani_btn">
-						<li>添加动画</li>
-						<li>预览动画</li>
+						<li @click="addAni()">添加动画</li>
+						<li @click="reloadAni()">预览动画</li>
 					</ul>
 				</div>
 				<div class="attr_main" v-show="nav_top_btn == 2">
@@ -161,6 +258,7 @@
 .attrList .main .attr_main .group>li .group_main>ul>li input[type="text"]{width: 100px;border: 1px solid #ccd5db;height: 20px;line-height: 20px;font-size: 12px;color: #76838f;padding: 0 5px;}
 .attrList .main .attr_main .group>li .group_main>ul>li input[type="range"]{width: 100px;margin-right: 20px;}
 .attrList .main .attr_main .group>li .group_main>ul>li input[type="number"]{width: 45px;border: 1px solid #ccd5db;height: 20px;line-height: 20px;font-size: 12px;color: #76838f;padding: 0 0 0 3px;}
+.attrList .main .attr_main .group>li .group_main>ul>li input[type="number"]:disabled{cursor: not-allowed;}
 .attrList .main .attr_main .group>li .group_main>ul>li select{display: inline-block;vertical-align: middle;width: 165px;}
 .attrList .main .attr_main .group>li .group_main>ul>li label{font-size: 12px;margin-right: 10px;line-height: 38px;color: #76838f;display: inline-block;vertical-align: middle;}
 ::-webkit-color-swatch-wrapper {background-color: #fff;padding: 0;}
@@ -263,7 +361,7 @@ var AttrList = Vue.extend({
 		},
 		formatBoxShadow: function(boxShadowStr){
 			var result = {};
-			var _arr = boxShadowStr.split(' ');
+			var _arr = boxShadowStr.replace(/(^\s+)|(\s+$)/g,'').split(' ');
 			result['box-shadow-x'] = _arr[0];
 			result['box-shadow-y'] = _arr[1];
 			result['box-shadow-blur'] = _arr[2];
@@ -272,11 +370,70 @@ var AttrList = Vue.extend({
 			result['box-shadow-place'] = _arr[5] ? _arr[5] : '';
 			return result;
 		},
-		setAni: function(ev,type,px){
-
+		addAni: function(){
+			var model = 'none 0s ease 0s 1 none';
+			var _aniStr = utils.getStyle(this.checkedItems[0],'-webkit-animation',true) || utils.getStyle(this.checkedItems[0],'animation',true);
+			actions.setStyle(store,this.checkedItems[0],{
+				'animation': _aniStr + ',' + model,
+				'-webkit-animation': _aniStr + ',' + model
+			},true);
+			var aniStr = utils.getStyle(this.checkedItems[0],'-webkit-animation',true) || utils.getStyle(this.checkedItems[0],'animation',true);
+			this.aniStyleAttr = this.formatAni(aniStr);
+		},
+		setAni: function(index,ev,type,px){
+			var styleAttr = $(ev.target).parents('li[style-attr]').attr('style-attr');
+			var value;
+			if(type === 'checked'){
+				value = $(ev.target)[0].checked ? 'infinite' : 1;
+			}else{
+				value = $(ev.target).val();
+			}
+			if(px){
+				value = value + px;
+			}
+			this.aniStyleAttr[index][styleAttr] = value;
+			var resultStr = [];
+			for(var i = 0;i < this.aniStyleAttr.length;i++){
+				resultStr.push(this.aniStyleAttr[i]['ani-name'] + ' ' + this.aniStyleAttr[i]['ani-duration'] + ' ' + this.aniStyleAttr[i]['ani-tween'] + ' ' + this.aniStyleAttr[i]['ani-delay'] + ' ' + this.aniStyleAttr[i]['ani-count'] + ' none');
+			}
+			actions.setStyle(store,this.checkedItems[0],{
+				'animation': resultStr.join(','),
+				'-webkit-animation': resultStr.join(',')
+			},true);
 		},
 		formatAni: function(aniStr){
-
+			var result = [];
+			var _arr1 = aniStr.replace(/(^\s+)|(\s+$)/g,'').split(',');
+			for(var i = 0;i < _arr1.length;i++){
+				if(_arr1[i] != ''){
+					_arr1[i] = _arr1[i].replace(/(^\s+)|(\s+$)/g,'');
+					var _currentResult = {};
+					var _arr2 = _arr1[i].split(' ');
+					_currentResult['ani-name'] = _arr2[0];
+					_currentResult['ani-duration'] = _arr2[1];
+					_currentResult['ani-tween'] = _arr2[2];
+					_currentResult['ani-delay'] = _arr2[3];
+					_currentResult['ani-count'] = _arr2[4];
+					_currentResult['ani-mode'] = _arr2[5];
+					result.push(_currentResult);
+				}
+			}
+			return result;
+		},
+		reloadAni: function(){
+			var _this = this;
+			var _AniStr = utils.getStyle(this.checkedItems[0],'-webkit-animation',true) || utils.getStyle(this.checkedItems[0],'animation',true);
+			actions.setStyle(store,this.checkedItems[0],{
+				'animation': '',
+				'-webkit-animation': ''
+			},true);
+			$('.j_screen>div').eq(this.checkedItems[0])[0].style.width = $('.j_screen>div').eq(this.checkedItems[0])[0].style.width;
+			setTimeout(function(){
+				actions.setStyle(store,_this.checkedItems[0],{
+					'animation': _AniStr,
+					'-webkit-animation': _AniStr
+				},true);
+			}, 1);
 		}
 	},
 	watch: {
@@ -287,11 +444,8 @@ var AttrList = Vue.extend({
 					this.itemType = $('.j_screen>div').eq(this.checkedItems[0]).attr('type');
 					this.style = utils.getStyle(this.checkedItems[0],'all');
 					this.boxShadowStyle = this.formatBoxShadow(utils.getStyle(this.checkedItems[0],'box-shadow'));
-					var aniStr = utils.getStyle(this.checkedItems[0],'-webkit-animation') || utils.getStyle(this.checkedItems[0],'animation');
-					console.log(this.itemType);
-					// 调试
-					// this.$log('style');
-					// this.$log('boxShadowStyle');
+					var aniStr = utils.getStyle(this.checkedItems[0],'-webkit-animation',true) || utils.getStyle(this.checkedItems[0],'animation',true);
+					this.aniStyleAttr = this.formatAni(aniStr);
 				}
 			},
 			deep: true,

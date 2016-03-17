@@ -5,31 +5,31 @@ module.exports = {
     txt: function(index, num ,className) {
         return {
             type: 'txt',
-            style: 'width:28%;top:0%;left:0%;z-index:' + index + ';color:#1a1a1a;line-height:1.5;padding:5px;font-size:1em;position: absolute;background-color: rgba(0,0,0,0);box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);-webkit-animation: none 0s ease 0s 1 none;animation: none 0s ease 0s 1 none;',
+            style: 'width:28%;top:0%;left:0%;z-index:' + index + ';color:#1a1a1a;line-height:1.5;padding:5px;font-size:1em;position: absolute;background-color: rgba(0,0,0,0);box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);',
             class: className ? className : '',
             id: 'n_' + num,
             attr: {},
-            content: '<p style="display:block;">文本文本文本</p>'
+            content: '<p style="display:block;-webkit-animation: none 0s ease 0s 1 none;animation: none 0s ease 0s 1 none;">文本文本文本</p>'
         };
     },
     pic: function(index, num, src, height, width) {
         return {
             type: 'pic',
-            style: 'height:' + height + ';width:' + width + ';top:0%;left:0%;z-index:' + index + ';position: absolute;background-color: rgba(0,0,0,0);box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);-webkit-animation: none 0s ease 0s 1 none;animation: none 0s ease 0s 1 none;',
+            style: 'height:' + height + ';width:' + width + ';top:0%;left:0%;z-index:' + index + ';position: absolute;background-color: rgba(0,0,0,0);box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);',
             class: '',
             id: 'n_' + num,
             attr: {},
-            content: '<img style="width:100%;height:100%;" src="' + src + '">'
+            content: '<img style="width:100%;height:100%;-webkit-animation: none 0s ease 0s 1 none;animation: none 0s ease 0s 1 none;" src="' + src + '">'
         };
     },
     video: function(index, num, videoid, pic_url) {
         return {
             type: 'video',
-            style: 'height:37.5%;width:100%;top:0%;left:0%;z-index:' + index + ';position: absolute;background-color: rgba(0,0,0,0);box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);-webkit-animation: none 0s ease 0s 1 none;animation: none 0s ease 0s 1 none;',
+            style: 'height:37.5%;width:100%;top:0%;left:0%;z-index:' + index + ';position: absolute;background-color: rgba(0,0,0,0);box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);',
             class: '',
             id: 'n_' + num,
             attr: {},
-            content: '<video style="width:100%;height:100%" data-vid="' + videoid + '" poster="' + pic_url + '" controls="controls" preload="none" src="http://video.proc.sina.cn/video_explore/location.php?video_id=' + videoid + '">您的浏览器不支持video标签。</video>'
+            content: '<video style="width:100%;height:100%;-webkit-animation: none 0s ease 0s 1 none;animation: none 0s ease 0s 1 none;" data-vid="' + videoid + '" poster="' + pic_url + '" controls="controls" preload="none" src="http://video.proc.sina.cn/video_explore/location.php?video_id=' + videoid + '">您的浏览器不支持video标签。</video>'
         };
     }
 };
