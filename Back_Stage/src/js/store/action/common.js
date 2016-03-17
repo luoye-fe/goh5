@@ -16,4 +16,12 @@ actions.hideConfirm = function(store) {
 	store.dispatch('HIDECONFIRM');
 }
 
+actions.materialLib = function(store,params){
+	store.dispatch('MATERIALLIB', params);
+}
+
+actions.hideMaterialLib = function(store){
+	store.dispatch('HIDEMATERIALLIB');
+}
+
 module.exports = actions;

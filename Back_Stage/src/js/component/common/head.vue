@@ -4,9 +4,9 @@
 		<div class="item center" v-show="page == 'edit'">
 			<ul class="create_group">
 				<li @click="addText()"><div class="icon icon1"></div><span>文本</span></li>
-				<li><div class="icon icon2"></div><span>图片</span></li>
-				<li><div class="icon icon3"></div><span>背景</span></li>
-				<li><div class="icon icon4"></div><span>图集</span></li>
+				<li @click="materialLib({show:true,msg:'插入图片',type:'pic'})"><div class="icon icon2"></div><span>图片</span></li>
+				<li @click="materialLib({show:true,msg:'更改背景',type:'bg'})"><div class="icon icon3"></div><span>背景</span></li>
+				<!-- <li><div class="icon icon4"></div><span>图集</span></li> -->
 				<li><div class="icon icon5"></div><span>视频</span></li>
 				<li><div class="icon icon6"></div><span>音乐</span></li>
 			</ul>
@@ -104,7 +104,8 @@ var Head = Vue.extend({
 				}
 			})
 		},
-		addText: actions.addText
+		addText: actions.addText,
+		materialLib: actions.materialLib
 	}
 })
 

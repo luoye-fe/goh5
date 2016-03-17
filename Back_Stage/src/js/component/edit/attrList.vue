@@ -55,10 +55,15 @@
 									<li style-attr="border-style">
 										<span>样式</span>
 										<select :value="style['border-style']" @input="setStyleDirect($event)">
-											<option value="">无</option>
+											<option value="none">无</option>
 											<option value="solid">直线</option>
 											<option value="dashed">虚线</option>
-											<option>双实线</option>
+											<option value="dotted">点线</option>
+											<option value="double">双实线</option>
+											<option value="groove">3D凹槽</option>
+											<option value="ridge">3D垄状</option>
+											<option value="inset">3D内阴影</option>
+											<option value="outset">3D外阴影</option>
 										</select>
 									</li>
 									<li style-attr="border-width">
@@ -200,8 +205,10 @@
 									<li style-attr="ani-tween">
 										<span>动画曲线</span>
 										<select :value="item['ani-tween']" @input="setAni($index,$event)">
-											<option value="ease">ease</option>
-											<option value="linear">linear</option>
+											<option value="ease">ease | 自然</option>
+											<option value="linear">linear | 匀速</option>
+											<option value="ease-in">linear | 加速</option>
+											<option value="ease-out">linear | 减速</option>
 										</select>
 									</li>
 									<li style-attr="ani-delay">
@@ -322,7 +329,7 @@ var AttrList = Vue.extend({
 				if(value.indexOf('#') > -1 && value.length !== 7){
 					return;
 				}
-				if(value.indexOf('#') > -1 && value.length !== 7){
+				if(!utils.checkIsColor(value)){
 					return;
 				}
 			}
@@ -346,7 +353,7 @@ var AttrList = Vue.extend({
 				if(value.indexOf('#') > -1 && value.length !== 7){
 					return;
 				}
-				if(value.indexOf('#') > -1 && value.length !== 7){
+				if(!utils.checkIsColor(value)){
 					return;
 				}
 			}

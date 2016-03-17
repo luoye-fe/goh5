@@ -6,6 +6,7 @@
 	<m-attr-list></m-attr-list>
 	<m-loading :show.sync="loading"></m-loading>
 	<m-alert></m-alert>
+	<m-material-lib></m-material-lib>
 </template>
 
 <style>
@@ -30,6 +31,8 @@ var Loading = require('../common/loading.vue');
 var PageList = require('./pageList.vue');
 var Phone = require('./phone.vue');
 var AttrList = require('./attrList.vue');
+var MaterialLib = require('./materialLib.vue')
+
 
 var Edit = Vue.extend({
 	name: 'Edit',
@@ -61,7 +64,8 @@ var Edit = Vue.extend({
 	components: {
 		'm-page-list': PageList,
 		'm-phone': Phone,
-		'm-attr-list': AttrList
+		'm-attr-list': AttrList,
+		'm-material-lib': MaterialLib
 	},
 	methods: {
 		initData: actions.initData,

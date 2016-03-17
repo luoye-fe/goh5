@@ -22,6 +22,11 @@ var state = {
         show: false,
         msg: '提示信息',
         event: 'func'
+    },
+    materialLibObj: {
+        show: false,
+        msg: '素材库',
+        type: 'pic' // pic:图片 bg:背景 pics:图集 and so on
     }
 }
 
