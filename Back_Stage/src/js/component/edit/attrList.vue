@@ -22,7 +22,7 @@
 										<input type="color" :value="style['background-color']" @input="setStyleDirect($event,'color')"></input>
 										<input type="text" :value="style['background-color']" @input="setStyleDirect($event,'color')"></input>
 									</li>
-									<li style-attr="color">
+									<li style-attr="color" v-show="itemType === 'txt'">
 										<span>文字颜色</span>
 										<input type="color" :value="style['color']" @input="setStyleDirect($event,'color')"></input>
 										<input type="text" :value="style['color']" @input="setStyleDirect($event,'color')"></input>
@@ -37,7 +37,7 @@
 										<input type="range" min="0" max="50" step="1" :value="style['padding'] | Number '0'" @input="setStyleDirect($event,'number','px')"></input>
 										<input type="number" min="0" max="50" step="1" :value="style['padding'] | Number '0'" @input="setStyleDirect($event,'number','px')"></input>
 									</li>
-									<li style-attr="line-height">
+									<li style-attr="line-height" v-show="itemType === 'txt'">
 										<span>行高</span>
 										<input type="range" min="0" max="50" step="0.5" :value="style['line-height']" @input="setStyleDirect($event,'number')"></input>
 										<input type="number" min="0" max="50" step="0.5" :value="style['line-height']" @input="setStyleDirect($event,'number')"></input>
@@ -113,7 +113,7 @@
 									</li>
 									<li style-attr="box-shadow-place">
 										<span>内部阴影</span>
-										<label for="inset">是否设置为内部阴影</label>
+										<label for="inset">设置为内部阴影</label>
 										<input type="checkbox" id="inset" :value="boxShadowStyle['box-shadow-place'] === inset" @change="setBoxShadow($event,'checked')"></input>
 									</li>
 								</ul>
@@ -192,10 +192,12 @@ var AttrList = Vue.extend({
 	name: 'AttrList',
 	data: function(){
 		return {
+			itemType: '',
 			nav_top_btn: 0,
 			group_index: 0,
 			style: {},
-			boxShadowStyle: {}
+			boxShadowStyle: {},
+			aniStyleAttr: [],
 		}
 	},
 	vuex: {
@@ -269,6 +271,12 @@ var AttrList = Vue.extend({
 			result['box-shadow-color'] = _arr[4];
 			result['box-shadow-place'] = _arr[5] ? _arr[5] : '';
 			return result;
+		},
+		setAni: function(ev,type,px){
+
+		},
+		formatAni: function(aniStr){
+
 		}
 	},
 	watch: {
@@ -276,8 +284,11 @@ var AttrList = Vue.extend({
 			handler: function(value){
 				var _this = this;
 				if(this.checkedItems[0] !== undefined){
+					this.itemType = $('.j_screen>div').eq(this.checkedItems[0]).attr('type');
 					this.style = utils.getStyle(this.checkedItems[0],'all');
 					this.boxShadowStyle = this.formatBoxShadow(utils.getStyle(this.checkedItems[0],'box-shadow'));
+					var aniStr = utils.getStyle(this.checkedItems[0],'-webkit-animation') || utils.getStyle(this.checkedItems[0],'animation');
+					console.log(this.itemType);
 					// 调试
 					// this.$log('style');
 					// this.$log('boxShadowStyle');

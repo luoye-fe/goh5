@@ -22,7 +22,7 @@
 
 .phone_con{position: relative;margin: 90px auto 0;background-size: 100%;background-image: url(/dist/img/phone.svg);background-repeat: no-repeat;width: 326px;height: 620px;}
 .phone_con .phone_title{position: absolute;top: 65px;width: 80%;left: 10%;text-align: center;color: #fff;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;height: 20px;font-size: 18px;}
-.phone_con .phone_screen{width: 320px;height: 486px;position: absolute;top: 97px;left: 3px;}
+.phone_con .phone_screen{width: 320px;height: 486px;position: absolute;top: 97px;left: 3px;background: #fff;}
 .phone_con .phone_screen>div{cursor: pointer;}
 
 .nr p, .nr h1, .nr h2, .nr h3, .nr h4, .nr h5, .nr h6 {display: inline;font-weight: normal;}
