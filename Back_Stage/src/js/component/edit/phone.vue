@@ -15,7 +15,6 @@
                 <div class="edit_mode edit_mode_radius_b_r" v-show="checkedItems.indexOf($index) != -1"></div>
             </div>
         </div>
-        <button @click="test(this.checkedItems[0],'top')">测试</button>
     </div>
 </template>
 

@@ -81,6 +81,13 @@ button::-moz-focus-inner, input::-moz-focus-inner {padding: 0;border: 0}
 .btn:hover{background: #fff;color: #01d7b2;}
 .user_btn{width: 300px;margin: 25px auto;text-align: center;}
 
+/* 三角 */
+.caret{display: inline-block;width: 0;height: 0;margin-left: 2px;vertical-align: middle;border-top: 4px dashed;border-top: 4px solid \9;border-right: 4px solid transparent;border-left: 4px solid transparent;transition: all ease 0.2s;-webkit-transition: all ease 0.2s;transform-origin: 50% 50%;-webkit-transform-origin: 50% 50%;}
+.caret_close{transform: rotate(-90deg);}
+.caret_open{transform: rotate(0deg);}
+
+
+
 /* 定位 */
 .vertical_center {position: absolute;top: 50%;-webkit-transform: translateY(-50%);}
 .horizontal_center {position: absolute;left: 50%;-webkit-transform: translateX(-50%);}
@@ -96,6 +103,8 @@ button::-moz-focus-inner, input::-moz-focus-inner {padding: 0;border: 0}
 .fade-scale-transition{transition: all linear 0.2s;-webkit-transition: all linear 0.2s;}
 .fade-scale-enter, .fade-scale-leave{opacity: 0;transform: scale(1.08);-webkit-transform: scale(1.08);}
 
+.fromRight-transition{transition: all ease 0.2s;-webkit-transition: all ease 0.2s;}
+.fromRight-enter,.fromRight-leave{transform: translateX(100%);-webkit-transform: translateX(100%);}
 
 
 

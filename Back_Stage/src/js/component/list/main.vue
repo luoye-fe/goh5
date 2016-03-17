@@ -88,7 +88,7 @@ var router = new Router();
 var store = require('../../store/store.js');
 var actions = require('../../store/action/index.js');
 
-var dateFilter = require('../../filter/date.js');
+var dateFilter = require('../../filter/index.js');
 
 var directionQrcode = require('../../directive/qrcode.js');
 

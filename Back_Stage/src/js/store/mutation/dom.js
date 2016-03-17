@@ -5,13 +5,12 @@ var mutations = {};
 // isIn 操作本元素style还是content中的style
 mutations.SETSTYLE = function(state, index, params, isIn) {
     var str = isIn ? state.currentPageData.items[index].content.match(/style=\"([\s\S]+)\"/)[1] : state.currentPageData.items[index].style;
-    str = str.replace(/[\s]/ig, '')
     var arr1 = str.split(';');
     var result = {};
     for (var i = 0; i < arr1.length; i++) {
         if (arr1[i] !== '') {
             var arr2 = arr1[i].split(':');
-            result[arr2[0]] = arr2[1];
+            result[arr2[0].replace(/(^\s+)|(\s+$)/g,'')] = arr2[1].replace(/(^\s+)|(\s+$)/g,'');
         }
     }
     for (var item in params) {

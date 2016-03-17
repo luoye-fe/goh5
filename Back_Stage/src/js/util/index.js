@@ -46,16 +46,24 @@ utils.getAllItemsLen = function() {
     return len;
 };
 
-utils.getStyle = function(index, style, isIn) {
+utils.getStyle = function(index, cssStyle, isIn) {
 	var str = isIn ? store.state.currentPageData.items[index].content.match(/style=\"([\s\S]+)\"/)[1] : store.state.currentPageData.items[index].style;
-	str = str.replace(/[\s]/ig, '')
+    var result = {};
 	var _arr1 = str.split(';');
 	for (var i = 0; i < _arr1.length; i++) {
 	    var _arr2 = _arr1[i].split(':');
-	    if (style == _arr2[0]) {
+        if(_arr2[0] !== ''){
+            _arr2[0] = _arr2[0].replace(/(^\s+)|(\s+$)/g,'');
+            _arr2[1] = _arr2[1].replace(/(^\s+)|(\s+$)/g,'');
+            result[_arr2[0]] = _arr2[1];
+        }
+	    if (cssStyle == _arr2[0] && cssStyle !== 'all') {
 	        return _arr2[1];
 	    }
 	}
+    if(cssStyle === 'all'){
+        return result;
+    }
 	return null;
 }
 

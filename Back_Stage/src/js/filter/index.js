@@ -22,3 +22,15 @@ Date.prototype.Format = function (fmt) {
     if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
     return fmt;
 }
+
+Vue.filter('Number', function(value, defaultNum) {
+    if(isNaN(parseFloat(value))){
+        if(defaultNum){
+            return defaultNum;
+        }else{
+            return 0;
+        }
+    }else{
+        return parseFloat(value);
+    }
+})
