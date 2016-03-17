@@ -218,6 +218,14 @@ var AttrList = Vue.extend({
 		setStyleDirect: function(ev, type, px){ // px 单位
 			var styleAttr = $(ev.target).parents('li[style-attr]').attr('style-attr');
 			var value = $(ev.target).val();
+			if(type === 'color'){
+				if(value.indexOf('#') > -1 && value.length !== 7){
+					return;
+				}
+				if(value.indexOf('#') > -1 && value.length !== 7){
+					return;
+				}
+			}
 			if(px){
 				value = value + px;
 			}
@@ -233,6 +241,14 @@ var AttrList = Vue.extend({
 				value = $(ev.target)[0].checked ? 'inset' : '';
 			}else{
 				value = $(ev.target).val();
+			}
+			if(type === 'color'){
+				if(value.indexOf('#') > -1 && value.length !== 7){
+					return;
+				}
+				if(value.indexOf('#') > -1 && value.length !== 7){
+					return;
+				}
 			}
 			if(px){
 				value = value + px;
