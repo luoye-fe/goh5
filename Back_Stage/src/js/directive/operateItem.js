@@ -19,7 +19,7 @@ Vue.directive('operateItem', function() {
     })
 
     // 拖动元素
-    $(target).bind('mousedown', function(ev) {
+    $(target).find('.content').bind('mousedown', function(ev) {
         var conWidth = parseFloat($('.j_screen').css('width'));
         var conHeight = parseFloat($('.j_screen').css('height'));
 

@@ -2,17 +2,17 @@
     <div class="phone_con">
         <div class="phone_title">{{workData.title}}</div>
         <div class="phone_screen j_screen">
-            <div v-for="item in currentPageData.items" track-by="$index" :id="item.id" :class="item.class" :style="item.style" :title="item.id" :attr="item.attr | json" :type="item.type" :index="$index" @click="selectItem($index);" v-operate-item>
+            <div v-for="item in currentPageData.items" track-by="$index" :id="item.id" :class="item.class" :style="item.style" :title="item.id" :attr="item.attr | json" :type="item.type" :index="$index" @click="selectItem($index);" v-operate-item v-change-size>
                 <div class="content">{{{item.content}}}</div>
                 <div class="edit_mode_layer" v-show="checkedItems.indexOf($index) != -1"></div>
                 <div class="edit_mode edit_mode_radius_t_l" v-show="checkedItems.indexOf($index) != -1"></div>
                 <div class="edit_mode edit_mode_radius_t_m" v-show="checkedItems.indexOf($index) != -1"></div>
                 <div class="edit_mode edit_mode_radius_t_r" v-show="checkedItems.indexOf($index) != -1"></div>
-                <div class="edit_mode edit_mode_radius_m_l" v-show="checkedItems.indexOf($index) != -1"></div>
                 <div class="edit_mode edit_mode_radius_m_r" v-show="checkedItems.indexOf($index) != -1"></div>
-                <div class="edit_mode edit_mode_radius_b_l" v-show="checkedItems.indexOf($index) != -1"></div>
-                <div class="edit_mode edit_mode_radius_b_m" v-show="checkedItems.indexOf($index) != -1"></div>
                 <div class="edit_mode edit_mode_radius_b_r" v-show="checkedItems.indexOf($index) != -1"></div>
+                <div class="edit_mode edit_mode_radius_b_m" v-show="checkedItems.indexOf($index) != -1"></div>
+                <div class="edit_mode edit_mode_radius_b_l" v-show="checkedItems.indexOf($index) != -1"></div>
+                <div class="edit_mode edit_mode_radius_m_l" v-show="checkedItems.indexOf($index) != -1"></div>
             </div>
         </div>
     </div>
@@ -24,6 +24,8 @@
 .phone_con .phone_title{position: absolute;top: 65px;width: 80%;left: 10%;text-align: center;color: #fff;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;height: 20px;font-size: 18px;}
 .phone_con .phone_screen{width: 320px;height: 486px;position: absolute;top: 97px;left: 3px;background: #fff;}
 .phone_con .phone_screen>div{cursor: pointer;}
+
+.phone_con .phone_screen>div .content{position: relative;width: 100%;height: 100%;}
 
 .nr p, .nr h1, .nr h2, .nr h3, .nr h4, .nr h5, .nr h6 {display: inline;font-weight: normal;}
 .nr h1 {font-size: 2em;}
@@ -55,7 +57,8 @@ var $ = require('jQuery');
 var store = require('../../store/store.js');
 var actions = require('../../store/action/index.js');
 
-var operateItem = require('../../directive/operateItem.js')
+var operateItem = require('../../directive/operateItem.js');
+var changeSize = require('../../directive/changeSize.js');
 
 var Phone = Vue.extend({
     name: 'Phone',
