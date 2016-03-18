@@ -8,6 +8,7 @@ var actions = require('../store/action/index.js');
 var utils = require('utils');
 
 Vue.directive('changeSize', function() {
+    
     var _this = this;
     var target = this.el;
 
@@ -25,7 +26,7 @@ Vue.directive('changeSize', function() {
             var itemLeft = itemLeft ? itemLeft : parseFloat($(target).css('left'));
             var itemTop = itemTop ? itemTop : parseFloat($(target).css('top'));
 
-            var btnIndex = obj.index('.edit_mode');
+            var btnIndex = index;
 
             $(window).bind('mousemove', function(ev) {
 
@@ -133,6 +134,7 @@ Vue.directive('changeSize', function() {
                         }
                         break;
                 }
+                console.log(styleParams);
                 actions.setStyle(store, store.state.checkedItems[0], styleParams);
             })
             $(window).bind('mouseup', function() {
@@ -142,7 +144,9 @@ Vue.directive('changeSize', function() {
         })
     }
 
+
     for (var i = 0; i < $(target).find('.edit_mode').length; i++) {
         bindEvent($(target).find('.edit_mode').eq(i), i);
     }
+
 })

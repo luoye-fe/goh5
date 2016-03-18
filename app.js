@@ -22,7 +22,9 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(session({
     secret: 'who am i ?',
-    cookie: { maxAge: 1000 * 60 * 60 * 24 * 7 }
+    cookie: { maxAge: 1000 * 60 * 60 * 24 * 7 },
+    saveUninitialized: true,
+    resave: true
 }));
 
 
@@ -44,6 +46,8 @@ app.get('/show', function(req, res, next) {
     res.sendFile(pwd + '/Front_Stage/index.html');
 })
 
+// 用户上传的图片
+app.use('/img', express.static(pwd + '/User/UploadImg/'));
 
 routers.forEach(function(Router) {
     app.use('/api', Router);

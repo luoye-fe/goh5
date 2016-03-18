@@ -29,11 +29,11 @@
 					</div>
 					<div class="lib_main_body">
 						<ul class="pics_con">
-							<li>
-								<img src="">
+							<li v-for="item in imgList">
+								<img :src="'/img/'+item.file_name" @click="addPic('/img/'+item.file_name)">
 							</li>
 						</ul>
-						<div class="fenye"></div>
+						<m-pagination :pagination-conf="paginationConf"></m-pagination>
 					</div>
 				</div>
 			</div>
@@ -81,12 +81,25 @@ var actions = require('../../store/action/index.js');
 
 var Pagination = require('../common/pagination.vue');
 
+var MaterialLibVm = null;
 var MaterialLib = Vue.extend({
 	name:'MaterianlLib',
 	data: function(){
 		return {
-			imgList: []
+			imgList: [],
+			paginationConf: {
+				currentPage: 1,
+				totalItems: 0,
+				itemsPerPage: 7,
+				pagesLength: 5,
+				onChange: function(){
+					MaterialLibVm.loadImg(MaterialLibVm.paginationConf.currentPage);
+				}
+			}
 		}
+	},
+	init: function(){
+		MaterialLibVm = this;
 	},
 	components:{
 		'm-pagination': Pagination
@@ -102,6 +115,7 @@ var MaterialLib = Vue.extend({
 	},
 	methods:{
 		hideMaterialLib: actions.hideMaterialLib,
+		addPic: actions.addPic,
 		uploadImg: function(ev){
 			var files = {};
 			if(ev.target.files.length > 6){
@@ -136,26 +150,24 @@ var MaterialLib = Vue.extend({
 						msg: data.msg,
 						type: 'success'
 					})
+					_this.paginationConf.currentPage = 1;
+					_this.paginationConf.onChange();
 				}
 			})
-		}
-	},
-	watch: {
-		'materialLibObj': {
-			handler: function(value){
-				var _this = this;
-				if(value.show){
-					$.ajax({
-						url: '/api/img/list',
-						type: 'get',
-						success: function(data){
-							console.log(data);
-						}
-					})
+		},
+		loadImg: function(page){
+			var _this = this;
+			$.ajax({
+				url: '/api/img/list',
+				type: 'get',
+				data: {
+					page: page
+				},
+				success: function(data){
+					_this.imgList = data.data.imgList
+					_this.paginationConf.totalItems = data.data.totalItems;
 				}
-			},
-			immediate: true,
-			deep: true
+			})
 		}
 	}
 })

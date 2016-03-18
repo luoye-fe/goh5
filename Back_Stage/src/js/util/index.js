@@ -49,7 +49,7 @@ utils.getAllItemsLen = function() {
 };
 
 utils.getStyle = function(index, cssStyle, isIn) {
-    var str = isIn ? store.state.currentPageData.items[index].content.match(/style=\"([\s\S]+)\"/)[1] : store.state.currentPageData.items[index].style;
+    var str = isIn ? store.state.currentPageData.items[index].content.match(/style=\"([\s\S]+?)\"/)[1] : store.state.currentPageData.items[index].style;
     var result = {};
     var _arr1 = str.split(';');
     for (var i = 0; i < _arr1.length; i++) {

@@ -11,7 +11,7 @@
 </template>
 
 <style>
-.page-list {font-size: 0;color: #333;text-align: center;margin-bottom: 20px;}
+.page-list {font-size: 0;color: #333;text-align: center;margin-bottom: 20px;margin-top: 10px;}
 .page-list .pagination {font-size: 0;display: inline-block;vertical-align: middle;*display: inline;*zoom: 1;}
 .page-list .pagination li {display: inline-block;vertical-align: middle;font-size: 14px;text-align: center;border: 1px solid #ddd;margin: 0 5px;cursor: pointer;background: #fff;transition: all ease 0.3s;-webkit-transition: all ease 0.3s;-o-transition: all ease 0.3s;-moz-transition: all ease 0.3s;}
 .page-list .pagination li:hover {background: #01d7b2;color: #fff;border: 1px solid #01d7b2;}

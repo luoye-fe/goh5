@@ -1,0 +1,21 @@
+{
+    "apps": [{
+        "name": "goh5",
+        "script": "app.js",
+        "watch": true,
+        "node_args": "--harmony",
+        "merge_logs": true,
+        "env": {
+            "NODE_ENV": "development",
+            "AWESOME_SERVICE_API_TOKEN": "xxx"
+        },
+        "env_production": {
+            "NODE_ENV": "production"
+        },
+        "env_staging": {
+            "NODE_ENV": "staging",
+            "TEST": true
+        },
+        "ignore_watch": ["node_modules", "client/img", "User"],
+    }]
+}

@@ -35,7 +35,6 @@ var upload = function(req, res) {
         data: ''
     }
     res.send(resData);
-    res.end();
 }
 
 var getImgList = function(req, res) {
@@ -43,7 +42,7 @@ var getImgList = function(req, res) {
     var UploadImg = global.dbHandel.getModel('uploadImg');
     var limit = Number(query.limit) || 6;
     var page = Number(query.page) || 1;
-    UploadImg.find({'user_name': req.session.user_name}).sort({ 'upload_time': -1 }).exec(function(err,docs){
+    UploadImg.find({'user_name': req.session.user_name}).sort({ 'upload_time': -1 }).limit(limit).skip((page - 1) * limit).exec(function(err,docs){
         if(err){
             res.send(err);
         }else{

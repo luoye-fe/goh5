@@ -13,6 +13,15 @@ mutations.ADDTEXT = function(state) {
     mutations.SELECTITEM(state, index - 1);
 };
 
+mutations.ADDPIC = function(state, src) {
+    state.checkedItems = [];
+    var index = state.currentPageData.items.length + 1;
+    var num = utils.getAllItemsLen() + 1;
+    var model = tpl.pic(index, num, src);
+    state.currentPageData.items.push(model);
+    mutations.SELECTITEM(state, index - 1);
+};
+
 mutations.SELECTITEM = function(state, index, multi) {
     if (multi) {
         state.checkedItems.push(index);
@@ -25,5 +34,7 @@ mutations.SELECTITEM = function(state, index, multi) {
 mutations.REMOVEALLITEMS = function(state, index, multi) {
     state.checkedItems = [];
 };
+
+
 
 module.exports = mutations;

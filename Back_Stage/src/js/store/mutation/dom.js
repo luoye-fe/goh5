@@ -4,7 +4,7 @@ var mutations = {};
 
 // isIn 操作本元素style还是content中的style
 mutations.SETSTYLE = function(state, index, params, isIn) {
-    var str = isIn ? state.currentPageData.items[index].content.match(/style=\"([\s\S]+)\"/)[1] : state.currentPageData.items[index].style;
+    var str = isIn ? state.currentPageData.items[index].content.match(/style=\"([\s\S]+?)\"/)[1] : state.currentPageData.items[index].style;
     var arr1 = str.split(';');
     var result = {};
     for (var i = 0; i < arr1.length; i++) {
@@ -21,7 +21,7 @@ mutations.SETSTYLE = function(state, index, params, isIn) {
         resultStr += item + ':' + result[item] + ';'
     }
     if (isIn) {
-        state.currentPageData.items[index].content = state.currentPageData.items[index].content.replace(/style=\"([\s\S]+)\"/, 'style="' + resultStr + '"');
+        state.currentPageData.items[index].content = state.currentPageData.items[index].content.replace(/style=\"([\s\S]+?)\"/, 'style="' + resultStr + '"');
     } else {
         state.currentPageData.items[index].style = resultStr;
     }

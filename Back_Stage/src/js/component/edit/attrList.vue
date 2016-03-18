@@ -73,8 +73,8 @@
 									</li>
 									<li style-attr="border-radius">
 										<span>圆角</span>
-										<input type="range" min="0" max="50" :value="style['border-radius'] | Number" @input="setStyleDirect($event,'number','px')"></input>
-										<input type="number" min="0" max="50" :value="style['border-radius'] | Number" @input="setStyleDirect($event,'number','px')"></input>
+										<input type="range" min="0" max="50" step="1" :value="style['border-radius'] | Number" @input="setStyleDirect($event,'number','px')"></input>
+										<input type="number" min="0" max="50" step="1" :value="style['border-radius'] | Number" @input="setStyleDirect($event,'number','px')"></input>
 									</li>
 									<li style-attr="border-color">
 										<span>颜色</span>
@@ -133,6 +133,7 @@
 								<h4>动画 {{$index + 1}}</h4>
 								<span class="caret" :class="{'caret_close':group_index !== $index}"></span>
 							</div>
+							<span class="deleteAni close" @click="delAni($index)">&times;</span>
 							<div class="group_main" v-show="group_index === $index">
 								<ul>
 									<li style-attr="ani-name">
@@ -213,8 +214,8 @@
 									</li>
 									<li style-attr="ani-delay">
 										<span>动画延时</span>
-										<input type="range" min="0" max="50" step="1" :value="item['ani-delay'] | Number '0'" @input="setAni($index,$event,'number','s')"></input>
-										<input type="number" min="0" max="50" step="1" :value="item['ani-delay'] | Number '0'" @input="setAni($index,$event,'number','s')"></input>
+										<input type="range" min="0" max="50" step="0.1" :value="item['ani-delay'] | Number '0'" @input="setAni($index,$event,'number','s')"></input>
+										<input type="number" min="0" max="50" step="0.1" :value="item['ani-delay'] | Number '0'" @input="setAni($index,$event,'number','s')"></input>
 									</li>
 									<li style-attr="ani-count">
 										<span>动画次数</span>
@@ -248,12 +249,15 @@
 .attrList .main .nav_top_btn li:hover{background: #01d7b2;color: #fff;}
 .attrList .main .attr_main{flex: 1;height: 100%;overflow-y: auto;background: #f0f3f4;}
 .attrList .main .attr_main .group{margin-top: 10px;position: relative;z-index: 2;overflow: hidden;}
-.attrList .main .attr_main .group>li{}
+.attrList .main .attr_main .group>li{position: relative;}
 .attrList .main .attr_main .group>li .group_head{font-size: 12px;color: #76838f;padding: 0 15px;border-bottom: 1px solid #ccd5db;position: relative;cursor: pointer;position: relative;z-index: 2;}
 .attrList .main .attr_main .group>li .group_head:hover{background: #f6f9fa;}
 .attrList .main .attr_main .group>li .group_head.active{background: #f6f9fa;}
 .attrList .main .attr_main .group>li .group_head h4{display: inline-block;vertical-align: middle;line-height: 44px;}
 .attrList .main .attr_main .group>li .group_head .caret{position: absolute;right: 20px;top: 50%;margin-top: -4px;}
+.attrList .main .attr_main .group>li .deleteAni{position: absolute;display: block;color: #ff5151;font-size: 34px;top: 4px;right: 40px;z-index: 9;}
+.attrList .main .attr_main .group>li .deleteAni.close{opacity: 0.5;}
+.attrList .main .attr_main .group>li .deleteAni.close:hover{opacity: 1;}
 .attrList .main .attr_main .group>li .group_main{background: #fff;overflow: hidden;position: relative;z-index: 1;}
 .attrList .main .attr_main .group>li .group_main>ul{padding: 0 20px 10px;}
 .attrList .main .attr_main .group>li .group_main>ul>li{height: 37px;border-bottom: 1px solid #ccd5db;font-size: 0;}
@@ -338,8 +342,8 @@ var AttrList = Vue.extend({
 			}
 			var params = {};
 			params[styleAttr] = value;
-			actions.setStyle(store,this.checkedItems[0], params)
-			this.style = utils.getStyle(this.checkedItems[0],'all');
+			actions.setStyle(store,this.checkedItems[0], params,true)
+			this.style = utils.getStyle(this.checkedItems[0],'all',true);
 		},
 		setBoxShadow: function(ev,type,px){
 			var styleAttr = $(ev.target).parents('li[style-attr]').attr('style-attr');
@@ -364,7 +368,7 @@ var AttrList = Vue.extend({
 			var boxShadowValue = this.boxShadowStyle['box-shadow-x'] + ' ' + this.boxShadowStyle['box-shadow-y'] + ' ' + this.boxShadowStyle['box-shadow-blur'] + ' ' + this.boxShadowStyle['box-shadow-size'] + ' ' + this.boxShadowStyle['box-shadow-color'] + ' ' + this.boxShadowStyle['box-shadow-place'];
 			actions.setStyle(store,this.checkedItems[0], {
 				'box-shadow': boxShadowValue
-			})
+			},true)
 		},
 		formatBoxShadow: function(boxShadowStr){
 			var result = {};
@@ -386,6 +390,21 @@ var AttrList = Vue.extend({
 			},true);
 			var aniStr = utils.getStyle(this.checkedItems[0],'-webkit-animation',true) || utils.getStyle(this.checkedItems[0],'animation',true);
 			this.aniStyleAttr = this.formatAni(aniStr);
+		},
+		delAni: function(index){
+			console.log(this.aniStyleAttr);
+			var result = [];
+			this.aniStyleAttr = result.concat(this.aniStyleAttr.slice(index-1,index),this.aniStyleAttr.slice(index+1));
+			console.log(this.aniStyleAttr);
+			var resultStr = [];
+			for(var i = 0;i < this.aniStyleAttr.length;i++){
+				resultStr.push(this.aniStyleAttr[i]['ani-name'] + ' ' + this.aniStyleAttr[i]['ani-duration'] + ' ' + this.aniStyleAttr[i]['ani-tween'] + ' ' + this.aniStyleAttr[i]['ani-delay'] + ' ' + this.aniStyleAttr[i]['ani-count'] + ' none');
+			}
+			actions.setStyle(store,this.checkedItems[0],{
+				'animation': resultStr.join(','),
+				'-webkit-animation': resultStr.join(',')
+			},true);
+			this.group_index = 0;
 		},
 		setAni: function(index,ev,type,px){
 			var styleAttr = $(ev.target).parents('li[style-attr]').attr('style-attr');
@@ -449,8 +468,8 @@ var AttrList = Vue.extend({
 				var _this = this;
 				if(this.checkedItems[0] !== undefined){
 					this.itemType = $('.j_screen>div').eq(this.checkedItems[0]).attr('type');
-					this.style = utils.getStyle(this.checkedItems[0],'all');
-					this.boxShadowStyle = this.formatBoxShadow(utils.getStyle(this.checkedItems[0],'box-shadow'));
+					this.style = utils.getStyle(this.checkedItems[0],'all',true);
+					this.boxShadowStyle = this.formatBoxShadow(utils.getStyle(this.checkedItems[0],'box-shadow',true));
 					var aniStr = utils.getStyle(this.checkedItems[0],'-webkit-animation',true) || utils.getStyle(this.checkedItems[0],'animation',true);
 					this.aniStyleAttr = this.formatAni(aniStr);
 				}
