@@ -13,11 +13,13 @@ var port = 3030;
 
 var routers = require('./Restful_API/apis/index.js');
 
+global.userPath = __dirname + '/User';
 global.dbHandel = require('./Restful_API/db/dbHandel.js');
 global.db = mongoose.connect("mongodb://localhost:27017/goh5");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(bodyParser({ uploadDir: "./public/upload" }));  
 app.use(cookieParser());
 app.use(session({
     secret: 'who am i ?',

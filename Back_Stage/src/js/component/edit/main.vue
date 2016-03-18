@@ -4,9 +4,9 @@
 	<m-page-list></m-page-list>
 	<m-phone></m-phone>
 	<m-attr-list></m-attr-list>
-	<m-loading :show.sync="loading"></m-loading>
+	<m-loading :loading.sync="loading"></m-loading>
 	<m-alert></m-alert>
-	<m-material-lib></m-material-lib>
+	<m-material-lib :loading.sync="loading"></m-material-lib>
 </template>
 
 <style>

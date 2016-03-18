@@ -91,6 +91,7 @@ var MaterialLib = Vue.extend({
 	components:{
 		'm-pagination': Pagination
 	},
+	props: ['loading'],
 	vuex: {
 	  	getters: {
 	  		materialLibObj: function(){
@@ -115,7 +116,28 @@ var MaterialLib = Vue.extend({
 			}else{
 				files = ev.target.files;
 			}
-			console.log(files);
+			var formData = new FormData();
+			for(var item in files){
+				formData.append('files', files[item]);
+			}
+			var _this = this;
+			_this.loading = true;
+			$.ajax({
+				url: '/api/upload',
+				type: 'post',
+				cache: false,
+			    data: formData,
+			    processData: false,
+			    contentType: false,
+				success: function(data){
+					_this.loading = false;
+					actions.alert(store,{
+						show: true,
+						msg: data.msg,
+						type: 'success'
+					})
+				}
+			})
 		}
 	}
 })

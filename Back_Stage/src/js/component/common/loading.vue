@@ -1,5 +1,5 @@
 <template>
-	<div class="loading_con" v-show="show">
+	<div class="loading_con" v-show="loading">
 	    <div class="all_center loading_center">
 	        <div class="all_center">
 	            <img src="/dist/img/loading.png">
@@ -32,7 +32,7 @@ var Loading = Vue.extend({
 	data: function(){
 		return {}
 	},
-	props: ['show']
+	props: ['loading']
 })
 
 Vue.component('m-loading', Loading);

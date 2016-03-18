@@ -38,7 +38,7 @@
 		</div>
 	</div>
 	<m-pagination :pagination-conf="paginationConf"></m-pagination>
-	<m-loading :show.sync="loading"></m-loading>
+	<m-loading :loading.sync="loading"></m-loading>
 	<m-create :show-create.sync="showCreate"></m-create>
 	<m-alert></m-alert>
 	<m-confirm></m-confirm>
