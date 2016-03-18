@@ -1,7 +1,7 @@
 <template>
     <div class="phone_con">
         <div class="phone_title">{{workData.title}}</div>
-        <div class="phone_screen j_screen">
+        <div class="phone_screen grid_bg j_screen">
             <div v-for="item in currentPageData.items" track-by="$index" :id="item.id" :class="item.class" :style="item.style" :title="item.id" :attr="item.attr | json" :type="item.type" :index="$index" @click="selectItem($index);" v-operate-item v-change-size>
                 <div class="content">{{{item.content}}}</div>
                 <div class="edit_mode_cont" v-show="checkedItems.indexOf($index) != -1">
@@ -29,6 +29,8 @@
 .phone_con .phone_screen>div{cursor: pointer;}
 
 .phone_con .phone_screen>div .content{position: relative;width: 100%;height: 100%;}
+
+.phone_screen.grid_bg:after {display: block;width: 100%;height: 100%;content: " ";background-image: url(/dist/img/grid_bg.png);background-size: 320px 486px;opacity: 0.5;}
 
 .content p, .content h1, .content h2, .content h3, .content h4, .content h5, .content h6 {display: inline;font-weight: normal;}
 .content h1 {font-size: 2em;}

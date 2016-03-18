@@ -392,10 +392,8 @@ var AttrList = Vue.extend({
 			this.aniStyleAttr = this.formatAni(aniStr);
 		},
 		delAni: function(index){
-			console.log(this.aniStyleAttr);
 			var result = [];
 			this.aniStyleAttr = result.concat(this.aniStyleAttr.slice(index-1,index),this.aniStyleAttr.slice(index+1));
-			console.log(this.aniStyleAttr);
 			var resultStr = [];
 			for(var i = 0;i < this.aniStyleAttr.length;i++){
 				resultStr.push(this.aniStyleAttr[i]['ani-name'] + ' ' + this.aniStyleAttr[i]['ani-duration'] + ' ' + this.aniStyleAttr[i]['ani-tween'] + ' ' + this.aniStyleAttr[i]['ani-delay'] + ' ' + this.aniStyleAttr[i]['ani-count'] + ' none');
