@@ -22,7 +22,7 @@ mutations.ADDPICORBG = function(state, src, type) {
         state.currentPageData.items.push(model);
         mutations.SELECTITEM(state, index - 1);
     } else if (type === 'bg') {
-        state.currentPageMain.background = 'url(' + src + ')';
+        state.currentPageMain.background = src;
     }
 };
 
@@ -38,7 +38,5 @@ mutations.SELECTITEM = function(state, index, multi) {
 mutations.REMOVEALLITEMS = function(state, index, multi) {
     state.checkedItems = [];
 };
-
-
 
 module.exports = mutations;
