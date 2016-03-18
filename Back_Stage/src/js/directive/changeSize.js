@@ -134,7 +134,6 @@ Vue.directive('changeSize', function() {
                         }
                         break;
                 }
-                console.log(styleParams);
                 actions.setStyle(store, store.state.checkedItems[0], styleParams);
             })
             $(window).bind('mouseup', function() {

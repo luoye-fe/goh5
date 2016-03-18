@@ -57,6 +57,7 @@ Vue.directive('operateItem', function() {
                     top: (y / conHeight * 100).toFixed(1) + '%'
                 })
             }
+            return false;
         });
         $(window).bind('mouseup', function() {
             $(window).unbind('mousemove');
