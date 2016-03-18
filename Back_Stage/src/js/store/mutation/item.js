@@ -14,15 +14,15 @@ mutations.ADDTEXT = function(state) {
 };
 
 mutations.ADDPICORBG = function(state, src, type) {
-    if(type === 'pic'){
+    if (type === 'pic') {
         state.checkedItems = [];
         var index = state.currentPageData.items.length + 1;
         var num = utils.getAllItemsLen() + 1;
         var model = tpl.pic(index, num, src);
         state.currentPageData.items.push(model);
         mutations.SELECTITEM(state, index - 1);
-    }else if(type === 'bg'){
-        
+    } else if (type === 'bg') {
+        state.currentPageMain.background = 'url(' + src + ')';
     }
 };
 
