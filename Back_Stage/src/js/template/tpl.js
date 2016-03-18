@@ -9,7 +9,7 @@ module.exports = {
             class: className ? className : '',
             id: 'n_' + num,
             attr: {},
-            content: '<p style="display:block;box-sizing:border-box;-webkit-animation: none 0s ease 0s 1 none;animation: none 0s ease 0s 1 none;background-color: rgba(0,0,0,0);box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);color:#1a1a1a;line-height:1.5;padding:5px;">文本文本文本</p>'
+            content: '<p style="display:block;widht:100%;height:100%;box-sizing:border-box;-webkit-animation: none 0s ease 0s 1 none;animation: none 0s ease 0s 1 none;background-color: rgba(0,0,0,0);box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);color:#1a1a1a;line-height:1.5;padding:5px;">文本文本文本</p>'
         };
     },
     pic: function(index, num, src) {
