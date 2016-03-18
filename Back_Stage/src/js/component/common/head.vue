@@ -72,6 +72,9 @@ var Head = Vue.extend({
         getters: {
             workData: function(){
 				return store.state.workData;
+			},
+			mainCode: function(){
+				return store.state.mainCode;
 			}
         },
         actions: actions
@@ -93,7 +96,7 @@ var Head = Vue.extend({
 				type: 'get',
 				data: {
 					_id: _this.$route.params.id,
-					mainCode: JSON.stringify(_this.workData.mainCode)
+					mainCode: JSON.stringify(_this.mainCode)
 				},
 				success: function(data){
 					actions.alert(store, {

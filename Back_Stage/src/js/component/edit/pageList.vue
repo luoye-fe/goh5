@@ -68,7 +68,7 @@ var pageList = Vue.extend({
 		selectPage: actions.selectPage,
 		addPage: actions.addPage,
 		delPage: function(index){
-			
+			 actions.addPage(store, index);	
 		}
 	}
 

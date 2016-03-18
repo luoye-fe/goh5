@@ -14,7 +14,7 @@ var mutations = {};
 mutations.INITDATA = function(state, data) {
     state.workData = data;
     state.mainCode = state.workData.mainCode;
-    state.pagesData = state.workData.mainCode.pages;
+    state.pagesData = state.mainCode.pages;
     state.currentPageData = state.pagesData[state.currentPage - 1];
 };
 
