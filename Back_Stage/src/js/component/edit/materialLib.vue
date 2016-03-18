@@ -85,7 +85,7 @@ var MaterialLib = Vue.extend({
 	name:'MaterianlLib',
 	data: function(){
 		return {
-			
+			imgList: []
 		}
 	},
 	components:{
@@ -123,7 +123,7 @@ var MaterialLib = Vue.extend({
 			var _this = this;
 			_this.loading = true;
 			$.ajax({
-				url: '/api/upload',
+				url: '/api/img/upload',
 				type: 'post',
 				cache: false,
 			    data: formData,
@@ -139,9 +139,26 @@ var MaterialLib = Vue.extend({
 				}
 			})
 		}
+	},
+	watch: {
+		'materialLibObj': {
+			handler: function(value){
+				var _this = this;
+				if(value.show){
+					$.ajax({
+						url: '/api/img/list',
+						type: 'get',
+						success: function(data){
+							console.log(data);
+						}
+					})
+				}
+			},
+			immediate: true,
+			deep: true
+		}
 	}
 })
-
 
 module.exports = MaterialLib;
 

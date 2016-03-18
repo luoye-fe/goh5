@@ -49,7 +49,7 @@ var Create = Vue.extend({
 		submit: function(){
 			var _this = this;
 			$.ajax({
-				url: '/api/create',
+				url: '/api/work/create',
 				type: 'get',
 				data:{
 					title: _this.title

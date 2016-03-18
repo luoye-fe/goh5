@@ -18,6 +18,7 @@ module.exports = {
     },
     uploadImg: {
         'user_name': { type: String, required: true },
-        'file_name': { type: String, required: true }
+        'file_name': { type: String, required: true },
+        'upload_time': {type: Number, require: true}
     }
 }
