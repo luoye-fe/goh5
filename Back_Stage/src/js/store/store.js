@@ -12,6 +12,7 @@ var state = {
     pagesData: '',
     currentPage: 1,
     currentPageData: '',
+    currentPageMain: '',
     checkedItems: [],
     alertObj:{
         show: false,

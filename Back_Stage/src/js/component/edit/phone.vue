@@ -1,7 +1,7 @@
 <template>
     <div class="phone_con">
         <div class="phone_title">{{workData.title}}</div>
-        <div class="phone_screen grid_bg j_screen">
+        <div class="phone_screen grid_bg j_screen" :style="'background: '+currentPageMain.background">
             <div v-for="item in currentPageData.items" track-by="$index" :id="item.id" :class="item.class" :style="item.style" :title="item.id" :attr="item.attr | json" :type="item.type" :index="$index" @click="selectItem($index);" v-operate-item v-change-size>
                 <div class="content">{{{item.content}}}</div>
                 <div class="edit_mode_cont" v-show="checkedItems.indexOf($index) != -1">
@@ -25,7 +25,7 @@
 
 .phone_con{position: relative;margin: 90px auto 0;background-size: 100%;background-image: url(/dist/img/phone.svg);background-repeat: no-repeat;width: 326px;height: 620px;}
 .phone_con .phone_title{position: absolute;top: 65px;width: 80%;left: 10%;text-align: center;color: #fff;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;height: 20px;font-size: 18px;}
-.phone_con .phone_screen{width: 320px;height: 486px;position: absolute;top: 97px;left: 3px;background: #fff;}
+.phone_con .phone_screen{width: 320px;height: 486px;position: absolute;top: 97px;left: 3px;}
 .phone_con .phone_screen>div{cursor: pointer;}
 
 .phone_con .phone_screen>div .content{position: relative;width: 100%;height: 100%;}
@@ -65,6 +65,7 @@ var actions = require('../../store/action/index.js');
 var operateItem = require('../../directive/operateItem.js');
 var changeSize = require('../../directive/changeSize.js');
 
+var PhoneVm = null;
 var Phone = Vue.extend({
     name: 'Phone',
     data: function(){
@@ -80,14 +81,17 @@ var Phone = Vue.extend({
             currentPageData: function(){
                 return store.state.currentPageData;
             },
+            currentPageMain: function(){
+                return store.state.currentPageMain;
+            },
             checkedItems: function(){
                 return store.state.checkedItems;
             }
         },
         actions: actions
     },
-    ready: function(){
-
+    init: function(){
+        PhoneVm = this;
     },
     methods: {
         selectItem: actions.selectItem

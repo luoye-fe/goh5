@@ -6,7 +6,7 @@ actions.addText = function(store) {
     store.dispatch('ADDTEXT');
 }
 
-actions.addPic = function(store, src) {
+actions.addPicOrBg = function(store, src, type) {
     store.dispatch('ADDPIC', src);
     store.dispatch('HIDEMATERIALLIB');
 }

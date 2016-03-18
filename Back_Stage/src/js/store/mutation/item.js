@@ -13,13 +13,17 @@ mutations.ADDTEXT = function(state) {
     mutations.SELECTITEM(state, index - 1);
 };
 
-mutations.ADDPIC = function(state, src) {
-    state.checkedItems = [];
-    var index = state.currentPageData.items.length + 1;
-    var num = utils.getAllItemsLen() + 1;
-    var model = tpl.pic(index, num, src);
-    state.currentPageData.items.push(model);
-    mutations.SELECTITEM(state, index - 1);
+mutations.ADDPICORBG = function(state, src, type) {
+    if(type === 'pic'){
+        state.checkedItems = [];
+        var index = state.currentPageData.items.length + 1;
+        var num = utils.getAllItemsLen() + 1;
+        var model = tpl.pic(index, num, src);
+        state.currentPageData.items.push(model);
+        mutations.SELECTITEM(state, index - 1);
+    }else if(type === 'bg'){
+        
+    }
 };
 
 mutations.SELECTITEM = function(state, index, multi) {

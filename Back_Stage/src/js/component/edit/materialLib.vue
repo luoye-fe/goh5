@@ -30,7 +30,7 @@
 					<div class="lib_main_body">
 						<ul class="pics_con">
 							<li v-for="item in imgList">
-								<img :src="'/img/'+item.file_name" @click="addPic('/img/'+item.file_name)">
+								<img :src="'/img/'+item.file_name" @click="addPicOrBg('/img/'+item.file_name,materialLibObj.type)">
 							</li>
 						</ul>
 						<m-pagination :pagination-conf="paginationConf"></m-pagination>
@@ -115,7 +115,7 @@ var MaterialLib = Vue.extend({
 	},
 	methods:{
 		hideMaterialLib: actions.hideMaterialLib,
-		addPic: actions.addPic,
+		addPicOrBg: actions.addPicOrBg,
 		uploadImg: function(ev){
 			var files = {};
 			if(ev.target.files.length > 6){

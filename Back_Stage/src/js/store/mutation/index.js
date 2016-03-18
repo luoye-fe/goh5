@@ -16,6 +16,7 @@ mutations.INITDATA = function(state, data) {
     state.mainCode = state.workData.mainCode;
     state.pagesData = state.mainCode.pages;
     state.currentPageData = state.pagesData[state.currentPage - 1];
+    state.currentPageMain = state.currentPageData.main;
 };
 
 mutationModule.forEach(function(item) {
