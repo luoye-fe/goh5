@@ -2,7 +2,8 @@
 	<div class="edit_bg" style="position: fixed;top: 0;left: 0;right: 0;bottom: 0;background-color: #d0cfd8" @click="removeAllItems()"></div>
 	<m-head></m-head>	
 	<m-page-list></m-page-list>
-	<m-phone></m-phone>
+	<m-phone :bg-grid-status.sync="bgGridStatus"></m-phone>
+	<m-tool-bar :bg-grid-status.sync="bgGridStatus"></m-tool-bar>
 	<m-attr-list></m-attr-list>
 	<m-loading :loading.sync="loading"></m-loading>
 	<m-alert></m-alert>
@@ -32,14 +33,15 @@ var PageList = require('./pageList.vue');
 var Phone = require('./phone.vue');
 var AttrList = require('./attrList.vue');
 var MaterialLib = require('./materialLib.vue')
-
+var ToolBar = require('./toolbar.vue');
 
 var Edit = Vue.extend({
 	name: 'Edit',
 	store,
 	data: function(){
 		return {
-			loading: true
+			loading: true,
+			bgGridStatus: true
 		}
 	},
 	vuex: {
@@ -65,7 +67,8 @@ var Edit = Vue.extend({
 		'm-page-list': PageList,
 		'm-phone': Phone,
 		'm-attr-list': AttrList,
-		'm-material-lib': MaterialLib
+		'm-material-lib': MaterialLib,
+		'm-tool-bar': ToolBar
 	},
 	methods: {
 		initData: actions.initData,

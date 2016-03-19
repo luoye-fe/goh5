@@ -1,7 +1,7 @@
 <template>
     <div class="phone_con">
         <div class="phone_title">{{workData.title}}</div>
-        <div class="phone_screen grid_bg j_screen" :style="currentPageMain.background | FormatBg">
+        <div class="phone_screen j_screen" :style="currentPageMain.background | FormatBg" :class="{'grid_bg': bgGridStatus}">
             <div v-for="item in currentPageData.items" track-by="$index" :id="item.id" :class="item.class" :style="item.style" :title="item.id" :attr="item.attr | json" :type="item.type" :index="$index" @click="selectItem($index);" v-operate-item v-change-size>
                 <div class="content">{{{item.content}}}</div>
                 <div class="edit_mode_cont" v-show="checkedItems.indexOf($index) != -1">
@@ -73,6 +73,7 @@ var Phone = Vue.extend({
 
         }
     },
+    props: ['bgGridStatus'],
     vuex: {
         getters: {
             workData: function(){
