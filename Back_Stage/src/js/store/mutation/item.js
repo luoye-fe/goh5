@@ -44,7 +44,7 @@ mutations.SELECTITEM = function(state, index, multi) {
     }
 };
 
-mutations.REMOVEALLITEMS = function(state, index, multi) {
+mutations.clearCheckedItems = function(state, index, multi) {
     state.checkedItems = [];
 };
 

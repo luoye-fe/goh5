@@ -94,6 +94,14 @@ var Phone = Vue.extend({
     init: function(){
         PhoneVm = this;
     },
+    ready: function(){
+        $(document).bind('click',function(ev){
+            var obj = $(ev.target);
+            if (obj.parents('.j_screen').length === 0 && obj.parents('.pages_con').length === 0 && obj.parents('.side_con').length === 0 && obj.parents('.tool_bar').length === 0) {
+                actions.clearCheckedItems(store);
+            }
+        })
+    },
     methods: {
         selectItem: actions.selectItem
     },

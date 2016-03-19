@@ -63,10 +63,6 @@ var Edit = Vue.extend({
 			}
 		})
 	},
-	ready: function(){
-		var _this = this;
-		
-	},
 	components: {
 		'm-page-list': PageList,
 		'm-phone': Phone,
@@ -75,8 +71,7 @@ var Edit = Vue.extend({
 		'm-tool-bar': ToolBar
 	},
 	methods: {
-		initData: actions.initData,
-		removeAllItems: actions.removeAllItems
+		initData: actions.initData
 	},
 	events: {
 

@@ -22,7 +22,6 @@ Vue.directive('operateItem', function() {
         $(target).find('.content>div').popline();
     })
 
-
     $(target).find('.content>div').bind('blur', function() {
         var html = $(target).find('.content>div').html();
         // 修改数据|还原状态
@@ -31,7 +30,6 @@ Vue.directive('operateItem', function() {
         $(target).css('cursor', 'pointer');
         $(target).find('.content>div').attr('contenteditable', false);
     });
-
 
     // 拖动元素
     $(target).find('.content').bind('mousedown', function(ev) {
