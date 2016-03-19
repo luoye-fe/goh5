@@ -1,2 +1,4 @@
 node_modules/
-User/UploadImg/*
+/User/UploadImg/*
+!/User/UploadImg/.empty
+!/User/UploadImg/
