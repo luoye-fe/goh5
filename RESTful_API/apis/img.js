@@ -20,13 +20,13 @@ var upload = function(req, res) {
         var fileName = path.basename(item.path);
         var saveTo = fs.createWriteStream(global.userPath + '/UploadImg/' + fileName);
         readFrom.pipe(saveTo);
+        UploadImg.create({
+            'user_name': req.session.user_name,
+            'file_name': fileName,
+            'upload_time': Date.now()
+        })
         saveTo.on('finish', function() {
             fs.unlinkSync(item.path);
-            UploadImg.create({
-                'user_name': req.session.user_name,
-                'file_name': fileName,
-                'upload_time': Date.now()
-            })
         });
     })
     var resData = {
