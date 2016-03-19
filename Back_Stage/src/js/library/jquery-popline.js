@@ -598,7 +598,7 @@ var jQuery = require('jQuery');
         '#00AE52',
         '#07A8EC',
         '#002463',
-        '#7349A5',
+        '#ffffff',
         '#000000'
     ];
 

@@ -16,7 +16,6 @@ Vue.directive('operateItem', function() {
         if ($(target).attr('type') !== 'txt') {
             return;
         }
-
         // 文本编辑操作
         $(target).find('.content>div').attr('contenteditable', true);
          $(target).css('cursor', 'auto');

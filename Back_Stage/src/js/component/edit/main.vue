@@ -81,8 +81,6 @@ var Edit = Vue.extend({
 	}
 })
 
-
-
 module.exports = Edit;
 	
 </script>
