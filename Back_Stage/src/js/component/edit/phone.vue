@@ -2,7 +2,7 @@
     <div class="phone_con">
         <div class="phone_title">{{workData.title}}</div>
         <div class="phone_screen j_screen" :style="currentPageMain.background | FormatBg" :class="{'grid_bg': bgGridStatus}">
-            <div v-for="item in currentPageData.items" track-by="$index" :id="item.id" :class="item.class" :style="item.style" :title="'ID : '+item.id" :attr="item.attr | json" :type="item.type" :index="$index" @click="selectItem($index);" v-operate-item v-change-size>
+            <div v-for="item in currentPageData.items" track-by="$index" :id="item.id" :class="item.class" :style="item.style" :title="'ID : '+item.id" :attr="item.attr | json" :type="item.type" :index="$index" @mousedown="selectItem($index);" v-operate-item v-change-size>
                 <div class="content">{{{item.content}}}</div>
                 <div class="edit_mode_cont" v-show="checkedItems.indexOf($index) != -1">
                     <div class="edit_mode_layer">
@@ -95,18 +95,16 @@ var Phone = Vue.extend({
         PhoneVm = this;
     },
     ready: function(){
+        // 点击其它地方隐藏元素属性
         $(document).bind('click',function(ev){
             var obj = $(ev.target);
-            if (obj.parents('.j_screen').length === 0 && obj.parents('.pages_con').length === 0 && obj.parents('.side_con').length === 0 && obj.parents('.tool_bar').length === 0) {
+            if (obj.parents('.j_screen').length === 0 && obj.parents('.pages_con').length === 0 && obj.parents('.side_con').length === 0 && obj.parents('.tool_bar').length === 0 && obj.parents('.popline').length === 0 && obj.parents('.head_con').length === 0) {
                 actions.clearCheckedItems(store);
             }
         })
     },
     methods: {
         selectItem: actions.selectItem
-    },
-    watch: {
-
     }
 })
 

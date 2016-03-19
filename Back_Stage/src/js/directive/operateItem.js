@@ -16,10 +16,13 @@ Vue.directive('operateItem', function() {
         if ($(target).attr('type') !== 'txt') {
             return;
         }
+
         // 文本编辑操作
         $(target).find('.content>div').attr('contenteditable', true);
-        $(target).css('cursor', 'auto');
-        $(target).find('.content>div').popline();
+         $(target).css('cursor', 'auto');
+        $(target).find('.content>div').popline({position: 'fixed'});
+        var obj = $(target).find('.content>div')[0];
+        window.getSelection().selectAllChildren(obj);
     })
 
     $(target).find('.content>div').bind('blur', function() {
