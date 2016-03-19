@@ -39,6 +39,7 @@ mutations.SELECTITEM = function(state, index, multi) {
         state.checkedItems.push(index);
     } else {
         state.checkedItems = [];
+        state.checkedItemDataOnlyOne = state.currentPageData.items[index];
         state.checkedItems.push(index);
     }
 };

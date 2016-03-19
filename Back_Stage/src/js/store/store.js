@@ -14,6 +14,7 @@ var state = {
     currentPageData: '',
     currentPageMain: '',
     checkedItems: [],
+    checkedItemDataOnlyOne: '',
     alertObj:{
         show: false,
         msg: '提示信息',

@@ -2,6 +2,7 @@
 	<div class="side_con right" v-show="checkedItems.length == 1" transition="fromRight">
 		<div class="item attrList">
 			<div class="head">元素属性</div>
+			<div class="item_id">元素ID为 : <span>{{checkedItemDataOnlyOne.id}}</span></div>
 			<div class="main">
 				<ul class="nav_top_btn">
 					<li :class="{'active':nav_top_btn == 0}" @click="this.nav_top_btn=0">样式</li>
@@ -243,7 +244,7 @@
 <style>
 .attrList{height: 100%;display: flex;flex-direction: column;}
 .attrList .main{display: flex;flex-direction: column;flex: 1;}
-.attrList .main .nav_top_btn{font-size: 0;box-sizing: border-box;text-align: center;padding-top: 13px;}
+.attrList .main .nav_top_btn{font-size: 0;box-sizing: border-box;text-align: center;}
 .attrList .main .nav_top_btn li{display: inline-block;vertical-align: top;background: #f0f3f4;text-align: center;line-height: 38px;color: #76838f;font-size: 12px;width: 30%;border-top-right-radius: 8px;border-top-left-radius: 8px;cursor: pointer;margin: 0 3px;transition: all ease 0.2s;-webkit-transition: all ease 0.2s;}
 .attrList .main .nav_top_btn li.active{background: #01d7b2;color: #fff;}
 .attrList .main .nav_top_btn li:hover{background: #01d7b2;color: #fff;}
@@ -283,6 +284,8 @@ input[type=range]:focus{outline: none;}
 .attrList .main .attr_main .ani_btn li:first-child:hover{background: rgba(1,215,178,0.7);}
 .attrList .main .attr_main .ani_btn li:last-child{background: rgba(8,161,239,1);}
 .attrList .main .attr_main .ani_btn li:last-child:hover{background: rgba(8,161,239,0.7);}
+.item_id{font-size: 14px;line-height: 28px;width: 100%;text-align: center;color: #76838f}
+.item_id span{color: #01d7b2;}
 
 </style>
 
@@ -297,6 +300,7 @@ var actions = require('../../store/action/index.js');
 var utils = require('utils');
 var filter = require('../../filter/index.js');
 
+var AttrListVm = null;
 var AttrList = Vue.extend({
 	name: 'AttrList',
 	data: function(){
@@ -306,7 +310,7 @@ var AttrList = Vue.extend({
 			group_index: 0,
 			style: {},
 			boxShadowStyle: {},
-			aniStyleAttr: [],
+			aniStyleAttr: []
 		}
 	},
 	vuex: {
@@ -316,12 +320,15 @@ var AttrList = Vue.extend({
 			},
 			currentPageData: function(){
 				return store.state.currentPageData;
+			},
+			checkedItemDataOnlyOne: function(){
+				return store.state.checkedItemDataOnlyOne;
 			}
 	  	},
 	  	actions: actions
 	},
-	ready: function(){
-		
+	init: function(){
+		AttrListVm = this;
 	},
 	methods: {
 		selectPage: actions.selectPage,

@@ -1,5 +1,5 @@
 <template>
-	<div class="edit_bg" style="position: fixed;top: 0;left: 0;right: 0;bottom: 0;background-color: #d0cfd8" @click="removeAllItems()"></div>
+	<div class="edit_bg" style="position: fixed;top: 0;left: 0;right: 0;bottom: 0;background-color: #d0cfd8"></div>
 	<m-head></m-head>	
 	<m-page-list></m-page-list>
 	<m-phone :bg-grid-status.sync="bgGridStatus"></m-phone>
@@ -62,6 +62,10 @@ var Edit = Vue.extend({
 				return "请确认您的场景已保存"
 			}
 		})
+	},
+	ready: function(){
+		var _this = this;
+		
 	},
 	components: {
 		'm-page-list': PageList,
