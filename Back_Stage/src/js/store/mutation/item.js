@@ -26,6 +26,10 @@ mutations.ADDPICORBG = function(state, src, type) {
     }
 };
 
+mutations.DELBG = function(state){
+    state.currentPageMain.background = '#fff';
+}
+
 mutations.SELECTITEM = function(state, index, multi) {
     if (multi) {
         state.checkedItems.push(index);

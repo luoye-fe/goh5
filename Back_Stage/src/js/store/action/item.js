@@ -11,6 +11,10 @@ actions.addPicOrBg = function(store, src, type) {
     store.dispatch('HIDEMATERIALLIB');
 }
 
+actions.delBg = function(store){
+	store.dispatch('DELBG');
+}
+
 actions.selectItem = function(store, index, multi) {
     store.dispatch('SELECTITEM', index, multi);
 }

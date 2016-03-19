@@ -5,9 +5,9 @@
 			<li><div class="tool_btn tool_btn2">重做</div></li>
 			<li>
 				<div class="tool_btn tool_btn3" @click="setBg()">背景</div>
-				<ul class="bg_btn" v-show="dropDown">
-					<li @click="materialLib({show:true,msg:'更改背景',type:'bg'});dropDown = !dropDown;">更换</li>
-					<li>删除</li>
+				<ul class="bg_btn" v-show="dropDown" @click="dropDown = !dropDown">
+					<li @click="materialLib({show:true,msg:'更改背景',type:'bg'})">更换</li>
+					<li @click="delBg()">删除</li>
 				</ul>
 			</li>
 			<li><div class="tool_btn tool_btn4">预览</div></li>
@@ -64,6 +64,7 @@ var ToolBar = Vue.extend({
     },
 	methods: {
 		materialLib: actions.materialLib,
+		delBg: actions.delPage,
 		setBg: function(){
 			if(!utils.checkIsColor(this.currentPageMain.background)){
 				this.dropDown = !this.dropDown;
@@ -74,7 +75,7 @@ var ToolBar = Vue.extend({
 					type:'bg'
 				})
 			}
-		}
+		},
 	}
 })
 
