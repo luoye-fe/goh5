@@ -13,6 +13,10 @@ mutations.ADDTEXT = function(state) {
     mutations.SELECTITEM(state, index - 1);
 };
 
+mutations.CHANGETEXT = function(state, html) {
+    state.currentPageData.items[state.checkedItems[0]].content = state.currentPageData.items[state.checkedItems[0]].content.replace(/\>[\s\S]+\</, '>' + html + '<');
+}
+
 mutations.ADDPICORBG = function(state, src, type) {
     if (type === 'pic') {
         state.checkedItems = [];
@@ -26,7 +30,7 @@ mutations.ADDPICORBG = function(state, src, type) {
     }
 };
 
-mutations.DELBG = function(state){
+mutations.DELBG = function(state) {
     state.currentPageMain.background = '#fff';
 }
 

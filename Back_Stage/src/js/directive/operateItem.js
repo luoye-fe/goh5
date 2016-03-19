@@ -6,6 +6,7 @@ var store = require('../store/store.js');
 var actions = require('../store/action/index.js');
 
 var utils = require('utils');
+var popline = require('popline');
 
 Vue.directive('operateItem', function() {
     var _this = this;
@@ -16,10 +17,27 @@ Vue.directive('operateItem', function() {
             return;
         }
         // 文本编辑操作
+        $(target).find('.content>div').attr('contenteditable', true);
+        $(target).css('cursor', 'auto');
+        $(target).find('.content>div').popline();
     })
+
+
+    $(target).find('.content>div').bind('blur', function() {
+        var html = $(target).find('.content>div').html();
+        // 修改数据|还原状态
+        actions.changeText(store, html);
+        $(target).find('.content>div').popline("destroy");
+        $(target).css('cursor', 'pointer');
+        $(target).find('.content>div').attr('contenteditable', false);
+    });
+
 
     // 拖动元素
     $(target).find('.content').bind('mousedown', function(ev) {
+        if ($(target).find('.content>div').attr('contenteditable') == 'true') {
+            return;
+        }
         var conWidth = parseFloat($('.j_screen').css('width'));
         var conHeight = parseFloat($('.j_screen').css('height'));
 
@@ -48,7 +66,7 @@ Vue.directive('operateItem', function() {
                 }
 
                 if (x < 0 || y < 0 || parseFloat(obj.outerWidth()) + parseFloat(obj.css('left')) > conWidth || parseFloat(obj.outerHeight()) + parseFloat(obj.css('top')) > conHeight) {
-                    if(!store.state.alertObj.show){
+                    if (!store.state.alertObj.show) {
                         actions.alert(store, alertMsg);
                     }
                 }

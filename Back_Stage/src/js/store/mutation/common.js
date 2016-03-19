@@ -7,6 +7,7 @@ mutations.ALERT = function(state, params) {
     state.alertObj.msg = params.msg || '提示信息';
     state.alertObj.type = params.type || 'info';
 }
+
 mutations.HIDEALERT = function(state) {
     state.alertObj.show = false;
 }

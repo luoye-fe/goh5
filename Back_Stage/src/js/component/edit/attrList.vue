@@ -233,7 +233,7 @@
 					</ul>
 				</div>
 				<div class="attr_main" v-show="nav_top_btn == 2">
-					3
+					敬请期待～
 				</div>
 			</div>
 		</div>
@@ -260,17 +260,17 @@
 .attrList .main .attr_main .group>li .deleteAni.close:hover{opacity: 1;}
 .attrList .main .attr_main .group>li .group_main{background: #fff;overflow: hidden;position: relative;z-index: 1;}
 .attrList .main .attr_main .group>li .group_main>ul{padding: 0 20px 10px;}
-.attrList .main .attr_main .group>li .group_main>ul>li{height: 37px;border-bottom: 1px solid #ccd5db;font-size: 0;}
+.attrList .main .attr_main .group>li .group_main>ul>li{height: 37px;border-bottom: 1px solid #ccd5db;font-size: 0;display: flex;flex: row;justify-content: space-between;align-items: center;}
 .attrList .main .attr_main .group>li .group_main>ul>li span{font-size: 12px;color: #76838f;line-height: 38px;display: inline-block;vertical-align: middle;width: 75px;text-align: left;}
 .attrList .main .attr_main .group>li .group_main>ul>li input{border: none;padding: 0;margin: 0;box-shadow: none;display: inline-block;vertical-align: middle;box-sizing: border-box;transition: all ease 0.2s;-webkit-transition: all ease 0.2s;}
 .attrList .main .attr_main .group>li .group_main>ul>li input[type="text"]:focus{border: 1px solid #01d7b2;}
 .attrList .main .attr_main .group>li .group_main>ul>li input[type="number"]:focus{border: 1px solid #01d7b2;}
-.attrList .main .attr_main .group>li .group_main>ul>li input[type="color"]{width: 45px;margin-right: 20px;border: 1px solid #ccd5db;}
-.attrList .main .attr_main .group>li .group_main>ul>li input[type="text"]{width: 100px;border: 1px solid #ccd5db;height: 20px;line-height: 20px;font-size: 12px;color: #76838f;padding: 0 5px;}
-.attrList .main .attr_main .group>li .group_main>ul>li input[type="range"]{width: 100px;margin-right: 20px;}
-.attrList .main .attr_main .group>li .group_main>ul>li input[type="number"]{width: 45px;border: 1px solid #ccd5db;height: 20px;line-height: 20px;font-size: 12px;color: #76838f;padding: 0 0 0 3px;}
+.attrList .main .attr_main .group>li .group_main>ul>li input[type="color"]{width: 40px;margin-right: 20px;border: 1px solid #ccd5db;}
+.attrList .main .attr_main .group>li .group_main>ul>li input[type="text"]{width: 85px;border: 1px solid #ccd5db;height: 20px;line-height: 20px;font-size: 12px;color: #76838f;padding: 0 5px;}
+.attrList .main .attr_main .group>li .group_main>ul>li input[type="range"]{width: 85px;margin-right: 20px;}
+.attrList .main .attr_main .group>li .group_main>ul>li input[type="number"]{width: 40px;border: 1px solid #ccd5db;height: 20px;line-height: 20px;font-size: 12px;color: #76838f;padding: 0 0 0 3px;}
 .attrList .main .attr_main .group>li .group_main>ul>li input[type="number"]:disabled{cursor: not-allowed;}
-.attrList .main .attr_main .group>li .group_main>ul>li select{display: inline-block;vertical-align: middle;width: 165px;}
+.attrList .main .attr_main .group>li .group_main>ul>li select{display: inline-block;vertical-align: middle;width: 145px;}
 .attrList .main .attr_main .group>li .group_main>ul>li label{font-size: 12px;margin-right: 10px;line-height: 38px;color: #76838f;display: inline-block;vertical-align: middle;}
 ::-webkit-color-swatch-wrapper {background-color: #fff;padding: 0;}
 ::-webkit-color-swatch {border: none;}

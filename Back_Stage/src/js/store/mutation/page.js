@@ -1,5 +1,7 @@
 'use strict';
 
+
+
 var mutations = {};
 
 mutations.SELECTPAGE = function(state, index) {

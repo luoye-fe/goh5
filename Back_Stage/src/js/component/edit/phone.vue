@@ -96,6 +96,9 @@ var Phone = Vue.extend({
     },
     methods: {
         selectItem: actions.selectItem
+    },
+    watch: {
+
     }
 })
 
