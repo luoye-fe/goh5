@@ -1,6 +1,6 @@
 <template>
 	<div class="edit_bg" style="position: fixed;top: 0;left: 0;right: 0;bottom: 0;background-color: #d0cfd8"></div>
-	<m-head></m-head>	
+	<m-head :show-set.sync="showSet"></m-head>	
 	<m-page-list></m-page-list>
 	<m-phone :bg-grid-status.sync="bgGridStatus"></m-phone>
 	<m-tool-bar :bg-grid-status.sync="bgGridStatus"></m-tool-bar>
@@ -8,6 +8,7 @@
 	<m-loading :loading.sync="loading"></m-loading>
 	<m-alert></m-alert>
 	<m-material-lib :loading.sync="loading"></m-material-lib>
+	<m-set-page :show-set.sync="showSet"></m-set-page>
 </template>
 
 <style>
@@ -34,6 +35,7 @@ var Phone = require('./phone.vue');
 var AttrList = require('./attrList.vue');
 var MaterialLib = require('./materialLib.vue')
 var ToolBar = require('./toolbar.vue');
+var SetPage = require('./set.vue');
 
 var Edit = Vue.extend({
 	name: 'Edit',
@@ -41,7 +43,8 @@ var Edit = Vue.extend({
 	data: function(){
 		return {
 			loading: true,
-			bgGridStatus: true
+			bgGridStatus: true,
+			showSet: false
 		}
 	},
 	vuex: {
@@ -76,7 +79,8 @@ var Edit = Vue.extend({
 		'm-phone': Phone,
 		'm-attr-list': AttrList,
 		'm-material-lib': MaterialLib,
-		'm-tool-bar': ToolBar
+		'm-tool-bar': ToolBar,
+		'm-set-page': SetPage
 	},
 	methods: {
 		initData: actions.initData

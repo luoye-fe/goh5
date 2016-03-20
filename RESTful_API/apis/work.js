@@ -1,7 +1,7 @@
 'use strict';
 
 var setConfigDefault = {
-
+    loop: true
 }
 
 var mainCodeDefault = {

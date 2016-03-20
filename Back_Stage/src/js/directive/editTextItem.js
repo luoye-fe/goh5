@@ -22,9 +22,7 @@ Vue.directive('editTextItem', function() {
         var obj = $(target).find('.content>div')[0];
         window.getSelection().selectAllChildren(obj);
 
-
         $(target).find('.content>div').bind('blur', function() {
-            console.log("!!!");
             var html = $(target).find('.content>div').html();
             // 修改数据|还原状态
             actions.changeText(store, html);

@@ -14,10 +14,10 @@
 		<div class="item right">
 			<ul class="btn_group">
 				<li v-show="page == 'edit'" @click="save()">保存</li>
-				<li v-show="page == 'edit'">记录</li>
+				<!-- <li v-show="page == 'edit'">记录</li> -->
 				<li v-show="page == 'edit'">预览</li>
-				<li v-show="page == 'edit'">设置</li>
-				<li @click="logout" style="background: #ff5151;">退出</li>
+				<li v-show="page == 'edit'" @click="showSet = !showSet">设置</li>
+				<li @click="logout()" style="background: #ff5151;">退出</li>
 			</ul>
 		</div>
 	</div>
@@ -68,6 +68,7 @@ var Head = Vue.extend({
 			page : this.$route.path.split('/')[1]
 		}
 	},
+	props: ['showSet'],
 	vuex: {
         getters: {
             workData: function(){
