@@ -13,7 +13,6 @@ var port = 3030;
 
 var routers = require('./Restful_API/apis/index.js');
 
-global.userPath = __dirname + '/User';
 global.dbHandel = require('./Restful_API/db/dbHandel.js');
 global.db = mongoose.connect("mongodb://localhost:27017/goh5");
 
@@ -41,7 +40,7 @@ app.get('/', function(req, res, next) {
 })
 
 // 前台页面
-app.get('/show', function(req, res, next) {
+app.get('/show/:id', function(req, res, next) {
     app.use(lactate.static(pwd + '/Front_Stage/'));
     res.sendFile(pwd + '/Front_Stage/index.html');
 })
@@ -52,7 +51,6 @@ app.use('/img', express.static(pwd + '/User/UploadImg/'));
 routers.forEach(function(Router) {
     app.use('/api', Router);
 })
-
 
 
 app.listen(port);

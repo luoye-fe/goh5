@@ -54,8 +54,16 @@ var Edit = Vue.extend({
 	},
 	created: function(){
 		var _this = this;
-		this.initData(this.$route.params.id, function(){
-			_this.loading = false;
+		this.initData(this.$route.params.id, function(data){
+			if(data.iserro && data.msg === '没有权限'){
+				actions.alert(store,{
+					show:true,
+					msg: data.msg,
+					type: 'danger'
+				})
+			}else{
+				_this.loading = false;
+			}
 		});
 		$(window).bind("beforeunload",function(){
 			if(_this.$route.path.indexOf('edit') !== -1){
@@ -72,12 +80,6 @@ var Edit = Vue.extend({
 	},
 	methods: {
 		initData: actions.initData
-	},
-	events: {
-
-	},
-	watch: {
-		
 	}
 })
 

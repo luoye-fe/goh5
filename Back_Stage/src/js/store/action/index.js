@@ -17,8 +17,8 @@ actions.initData = function(store, id, cb) {
         success: function(data) {
             if (!data.iserro) {
                 store.dispatch('INITDATA', data.data);
-                cb && cb(data);
             }
+            cb && cb(data);
         }
     })
 }
