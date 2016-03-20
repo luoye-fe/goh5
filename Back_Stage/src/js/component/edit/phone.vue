@@ -2,7 +2,7 @@
     <div class="phone_con">
         <div class="phone_title">{{workData.title}}</div>
         <div class="phone_screen j_screen" :style="currentPageMain.background | FormatBg" :class="{'grid_bg': bgGridStatus}">
-            <div v-for="item in currentPageData.items" track-by="$index" :id="item.id" :class="item.class" :style="item.style" :title="'ID : '+item.id" :attr="item.attr | json" :type="item.type" :index="$index" @mousedown="selectItem($index);" v-operate-item v-change-size>
+            <div v-for="item in currentPageData.items" track-by="$index" :id="item.id" :class="item.class" :style="item.style" :title="'ID : '+item.id" :attr="item.attr | json" :type="item.type" :index="$index" @mousedown="selectItem($index);" v-operate-item v-change-size v-context-menu="'#item_context_menu'">
                 <div class="content">{{{item.content}}}</div>
                 <div class="edit_mode_cont" v-show="checkedItems.indexOf($index) != -1">
                     <div class="edit_mode_layer">
@@ -19,6 +19,9 @@
             </div>
         </div>
     </div>
+    <ul id="item_context_menu" class="context_menu">
+        <li>删除</li>
+    </ul>
 </template>
 
 <style>
@@ -64,6 +67,7 @@ var actions = require('../../store/action/index.js');
 
 var operateItem = require('../../directive/operateItem.js');
 var changeSize = require('../../directive/changeSize.js');
+var contextMenu = require('../../directive/contextMenu.js');
 
 var PhoneVm = null;
 var Phone = Vue.extend({
@@ -98,7 +102,7 @@ var Phone = Vue.extend({
         // 点击其它地方隐藏元素属性
         $(document).bind('click',function(ev){
             var obj = $(ev.target);
-            if (obj.parents('.j_screen').length === 0 && obj.parents('.pages_con').length === 0 && obj.parents('.side_con').length === 0 && obj.parents('.tool_bar').length === 0 && obj.parents('.popline').length === 0 && obj.parents('.head_con').length === 0) {
+            if (obj.parents('.j_screen').length === 0 && obj.parents('.pages_con').length === 0 && obj.parents('.side_con').length === 0 && obj.parents('.tool_bar').length === 0 && obj.parents('.popline').length === 0 && obj.parents('.head_con').length === 0 && obj.parents('.context_menu').length === 0) {
                 actions.clearCheckedItems(store);
             }
         })

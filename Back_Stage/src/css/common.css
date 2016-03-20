@@ -87,7 +87,10 @@ button::-moz-focus-inner, input::-moz-focus-inner {padding: 0;border: 0}
 .caret_close{transform: rotate(-90deg);}
 .caret_open{transform: rotate(0deg);}
 
-
+/* 右击菜单 */
+.context_menu{width: 120px;background: #fff;position: fixed;z-index: 999;border:1px solid #ddd;padding: 1px;box-shadow: 0 0 4px rgba(0,0,0,0.4);}
+.context_menu li{height: 32px;line-height: 32px;text-align: center;color: #01d7b2;transition: all ease 0.2s;-webkit-transition: all ease 0.2s;cursor: pointer;}
+.context_menu li:hover{background: #01d7b2;color: #fff;}
 
 /* 定位 */
 .vertical_center {position: absolute;top: 50%;-webkit-transform: translateY(-50%);}
