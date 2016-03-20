@@ -11,7 +11,7 @@ var router = new Router();
 Vue.config.debug = true;
 
 // vue component
-var Home = require('./component/home.vue');
+var Home = require('./component/home/main.vue');
 var List = require('./component/list/main.vue');
 var Edit = require('./component/edit/main.vue');
 

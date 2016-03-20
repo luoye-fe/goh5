@@ -12,8 +12,8 @@
 var Vue = require('Vue');
 var $ = require('jQuery');
 
-var Login = require('./common/login.vue');
-var Signup = require('./common/signup.vue');
+var Login = require('../common/login.vue');
+var Signup = require('../common/signup.vue');
 
 var Home = Vue.extend({
 	name: 'Home',
