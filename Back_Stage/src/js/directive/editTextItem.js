@@ -2,7 +2,6 @@
 var Vue = require('Vue');
 var $ = require('jQuery');
 
-
 var store = require('../store/store.js');
 var actions = require('../store/action/index.js');
 
@@ -22,24 +21,17 @@ Vue.directive('editTextItem', function() {
         $(target).find('.content>div').popline({ position: 'fixed' });
         var obj = $(target).find('.content>div')[0];
         window.getSelection().selectAllChildren(obj);
+
+
+        $(target).find('.content>div').bind('blur', function() {
+            console.log("!!!");
+            var html = $(target).find('.content>div').html();
+            // 修改数据|还原状态
+            actions.changeText(store, html);
+            $(target).find('.content>div').popline("destroy");
+            $(target).css('cursor', 'pointer');
+            $(target).find('.content>div').attr('contenteditable', false);
+            $(target).find('.content>div').unbind('blur')
+        });
     })
-
-    var editOk = function() {
-        var html = $(target).find('.content>div').html();
-        // 修改数据|还原状态
-        actions.changeText(store, html);
-        $(target).find('.content>div').popline("destroy");
-        $(target).css('cursor', 'pointer');
-        $(target).find('.content>div').attr('contenteditable', false);
-    }
-
-    $(target).find('.content>div').bind('focus', function() {
-        console.log("1111");
-    });
-
-    $(target).find('.content>div').bind('blur', function() {
-        console.log("!!");
-        editOk();
-    });
-
 })
