@@ -1,5 +1,4 @@
 'use strict';
-
 var $ = require('jQuery');
 
 var utils = require('utils');
@@ -16,8 +15,10 @@ actions.initData = function(store, id, cb) {
             _id: id
         },
         success: function(data) {
-            store.dispatch('INITDATA', data.data);
-            cb && cb(data);
+            if (!data.iserro) {
+                store.dispatch('INITDATA', data.data);
+                cb && cb(data);
+            }
         }
     })
 }
@@ -25,6 +26,5 @@ actions.initData = function(store, id, cb) {
 actionModule.forEach(function(item) {
     utils.mixin(actions, require(item));
 })
-
 
 module.exports = actions;

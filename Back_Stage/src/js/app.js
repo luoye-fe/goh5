@@ -42,7 +42,3 @@ var APP = Vue.extend({
 });
 
 router.start(APP, '#app');
-
-
-
-
