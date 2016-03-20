@@ -24,7 +24,11 @@ actions.selectItem = function(store, index, multi) {
 }
 
 actions.clearCheckedItems = function(store) {
-    store.dispatch('clearCheckedItems');
+    store.dispatch('CLEARCHECKEDITEMS');
+}
+
+actions.delItem = function(store) {
+    store.dispatch('DELITEM');
 }
 
 module.exports = actions;

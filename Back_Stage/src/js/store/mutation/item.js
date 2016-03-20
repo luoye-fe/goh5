@@ -44,8 +44,22 @@ mutations.SELECTITEM = function(state, index, multi) {
     }
 };
 
-mutations.clearCheckedItems = function(state, index, multi) {
+mutations.CLEARCHECKEDITEMS = function(state, index, multi) {
     state.checkedItems = [];
 };
+
+mutations.DELITEM = function(state) {
+    var result = [];
+    for (var i = 0; i < state.checkedItems.length; i++) {
+        var result = [];
+        delete state.currentPageData.items[state.checkedItems[i]];
+    }
+    for (var i = 0; i < state.currentPageData.items.length; i++) {
+        if (state.currentPageData.items[i] !== undefined) {
+            result.push(state.currentPageData.items[i]);
+        }
+    }
+    state.currentPageData.items = result;
+}
 
 module.exports = mutations;

@@ -20,7 +20,7 @@
         </div>
     </div>
     <ul id="item_context_menu" class="context_menu">
-        <li>删除</li>
+        <li @click="delItem()">删除</li>
     </ul>
 </template>
 
@@ -108,7 +108,8 @@ var Phone = Vue.extend({
         })
     },
     methods: {
-        selectItem: actions.selectItem
+        selectItem: actions.selectItem,
+        delItem: actions.delItem
     }
 })
 

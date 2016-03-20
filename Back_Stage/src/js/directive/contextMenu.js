@@ -24,6 +24,9 @@ Vue.directive('contextMenu', function(eleId) {
         $(eleId).bind('mouseleave', function() {
             $(eleId).fadeOut('fast');
         })
+        $(eleId).bind('click', function() {
+            $(eleId).fadeOut('fast');
+        })
         return false;
     })
 })
