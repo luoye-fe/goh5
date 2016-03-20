@@ -19,7 +19,7 @@
             </div>
         </div>
     </div>
-    <ul id="item_context_menu" class="context_menu">
+    <ul id="item_context_menu" class="context_menu" style="display: none;">
         <li @click="delItem()">删除</li>
     </ul>
 </template>

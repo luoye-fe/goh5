@@ -48,6 +48,7 @@ var loginSucc = function(Vm,userInfo){
 	Vm.user_name = '';
 	Vm.password = '';
 	Vm.passwordAgain = '';
+	Vm.funshowLogin();
 }
 
 var Singup = Vue.extend({
@@ -121,8 +122,6 @@ var Singup = Vue.extend({
 						_this.erro.target = data.data.target;
 						return;
 					}
-					_this.$dispatch('show-signup', false);
-					_this.$dispatch('show-login', true);
 					loginSucc(_this,data.data);
 				}
 			})
