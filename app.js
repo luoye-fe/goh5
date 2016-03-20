@@ -40,9 +40,17 @@ app.get('/', function(req, res, next) {
 })
 
 // 前台页面
+app.engine('.html', require('ejs').__express);
 app.get('/show/:id', function(req, res, next) {
+    app.set('view engine', 'html');
     app.use(lactate.static(pwd + '/Front_Stage/'));
-    res.sendFile(pwd + '/Front_Stage/index.html');
+    var id = req.params.id;
+    var Work = global.dbHandel.getModel('work');
+    Work.find({ '_id': id }).exec(function(err, docs) {
+        res.render(pwd + '/Front_Stage/index.html', {
+            workData: docs[0]
+        });
+    })
 })
 
 // 用户上传的图片

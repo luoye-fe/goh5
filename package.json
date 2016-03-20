@@ -19,6 +19,7 @@
     "connect-multiparty": "^2.0.0",
     "cookie-parser": "^1.4.1",
     "css-loader": "^0.23.1",
+    "ejs": "^2.4.1",
     "express": "^4.13.4",
     "express-session": "^1.13.0",
     "gulp": "^3.9.1",
