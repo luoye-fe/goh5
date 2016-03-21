@@ -17,8 +17,8 @@
 					</div>
 				</li>
 				<li v-for="item in listData" track-by="$index">
-					<div class="top" v-qrcode="'http://luoye.goh5.com:3030/#!/show/' + item._id">
-						<a href="javascript:void(0)" class="qrcode" v-link="{path:'/show/' + item._id}"></a>
+					<div class="top" v-qrcode="host + '/show/' + item._id">
+						<a :href="'http://'+ host + '/show/' + item._id" target="_blank" class="qrcode"></a>
 						<img :src="item.about.thumbnail">
 					</div>
 					<div class="middle">
@@ -110,6 +110,7 @@ var List = Vue.extend({
 			showCreate: false,
 			listData: '',
 			listType: 1, // 0:默认 1:自己
+			host: location.host,
 			paginationConf: {
 				currentPage: 1,
 				totalItems: 0,
