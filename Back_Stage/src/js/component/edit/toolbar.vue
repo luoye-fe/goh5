@@ -19,7 +19,7 @@
 
 <style>
 
-.tool_bar{position: fixed;top: 100px;left: 50%;transform: translateX(-50%);-webkit-transform: translateX(-50%);margin-left: 190px;}
+.tool_bar{position: fixed;top: 100px;left: 50%;transform: translateX(-50%);-webkit-transform: translateX(-50%);margin-left: 190px;z-index: 9998;}
 .tool_bar>ul{}
 .tool_bar>ul>li{color: #fff;width: 30px;height: 30px;cursor: pointer;text-align: center;line-height: 40px;display: block;background-color: rgba(0,0,0,0.5);transition: all ease 0.2s;-webkit-transition: all ease 0.2s;padding: 5px;position: relative;}
 .tool_bar>ul>li:hover{background-color: rgba(0,0,0,0.8);}
