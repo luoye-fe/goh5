@@ -31,7 +31,7 @@ var create = function(req, res) {
         'about': {
             thumbnail: '/dist/img/eg.jpg',
             keyWords: '',
-            desc:'',
+            desc: '',
         },
         'mainCode': mainCodeDefault,
         'setConfig': setConfigDefault,
@@ -105,6 +105,37 @@ var save = function(req, res) {
     })
 }
 
+var saveWork = function(req, res) {
+    var obj = req.query;
+    var Work = global.dbHandel.getModel('work');
+    Work.update({
+        '_id': obj.id,
+        'user_name': req.session.user_name
+    }, {
+        '$set': {
+            'title': obj.title,
+            'about.keyWords': obj.keywords,
+            'about.desc': obj.desc
+        }
+    }).exec(function(err, docs) {
+        if (docs == '') {
+            var resData = {
+                iserro: 1,
+                msg: '没有权限',
+                data: {}
+            };
+            res.send(resData);
+        } else {
+            var resData = {
+                iserro: 0,
+                msg: '保存成功',
+                data: docs
+            };
+            res.send(resData);
+        }
+    })
+}
+
 
 module.exports = function(Router) {
     Router.get('/work/:act', function(req, res, next) {
@@ -116,7 +147,9 @@ module.exports = function(Router) {
         }
         if (req.params.act == 'save') {
             save(req, res);
-            return;
+        }
+        if (req.params.act == 'saveWork') {
+            saveWork(req, res);
         }
     })
     return Router;

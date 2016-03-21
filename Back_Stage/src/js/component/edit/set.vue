@@ -151,18 +151,41 @@ var SetPage = Vue.extend({
     		    processData: false,
     		    contentType: false,
     			success: function(data){
-    				console.log(data);
+    				if(!data.iserro){
+    					actions.alert(store,{
+    						show: true,
+    						msg: '上传成功',
+    						type: 'success'
+    					})
+    				}
     			}
     		})
     	},
     	save: function(){
     		var params = {};
     		$('[data-type]').each(function(index,ele){
-    			console.log($(this).attr('data-type'));
-    			console.log($(this).val());
+    			params[$(this).attr('data-type')] = $(this).val();
+    		})
+    		params.id = this.$route.params.id;
+    		$.ajax({
+    			url: '/api/work/saveWork',
+    			type: 'get',
+    			data: params,
+    			success: function(data){
+    				if(!data.iserro){
+						actions.alert(store,{
+							show: true,
+							msg: data.msg,
+							type: 'success'
+						})
+					}
+    			}
     		})
     	},
     	release: function(){
+
+    	},
+    	checkBaseInfo: function(){
 
     	}
     }

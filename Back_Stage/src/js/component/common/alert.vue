@@ -5,7 +5,7 @@
 </template>
 
 <style>
-.alert {padding: 15px 40px;border: 1px solid transparent;border-radius: 4px;position: fixed;left: 50%;top: 100px;transform: translate(-50%,-50%);-webkit-transform: translate(-50%,-50%);z-index: 9999;box-shadow: 0 5px 15px rgba(0,0,0,0.7)}
+.alert {padding: 15px 40px;border: 1px solid transparent;border-radius: 4px;position: fixed;left: 50%;top: 100px;transform: translate(-50%,-50%);-webkit-transform: translate(-50%,-50%);z-index: 999999;box-shadow: 0 5px 15px rgba(0,0,0,0.7)}
 .alert h4 {margin-top: 0;color: inherit;font-size: 18px;}
 .alert .alert-link {font-weight: bold;}
 .alert.dismissable .close, .alert.dismissible .close {position: relative;top: -2px;right: -21px;color: inherit;}
