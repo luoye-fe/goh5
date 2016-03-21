@@ -9,7 +9,7 @@
 						<img :src="about.thumbnail">
 						<span>
 							点击上传
-							<input type="file" accept="image/gif, image/jpeg, image/png, image/jpg" @change="uploadImg($event)"></input>
+							<input type="file" accept="image/gif, image/jpeg, image/png, image/jpg" @change="uploadThumbnail($event)"></input>
 						</span>
 					</div>
 					<em class="tips">（请上传300*300以上正方形图片）</em>
@@ -21,8 +21,8 @@
 					<em class="tips">（发布后的作品可在全部作品中展示）</em>
 				</div>
 				<div class="item set_btn">
-					<a href="javascript:void(0)">保存</a>
-					<a href="javascript:void(0)">发布</a>
+					<a href="javascript:void(0)" @click="save()">保存</a>
+					<a href="javascript:void(0)" @click="release()">发布</a>
 				</div>
 			</div>
 			<div class="right">
@@ -31,15 +31,15 @@
 					<div class="main">
 						<div class="kind">
 							<label><span>*</span>作品标题</label>
-							<input type="text" placeholder="请输入作品标题" :value="workData.title"></input>
+							<input type="text" placeholder="请输入作品标题" data-type="title" :value="workData.title"></input>
 						</div>
 						<div class="kind">
 							<label><span>*</span>关键字</label>
-							<input type="text" placeholder="请输入作品标题"></input>
+							<input type="text" placeholder="请输入作品关键字" data-type="keywords" :value="about.keyWords"></input>
 						</div>
 						<div class="kind">
 							<label><span>*</span>作品描述</label>
-							<textarea placeholder="请输入作品描述"></textarea>
+							<textarea placeholder="请输入作品描述" data-type="desc" :value="about.desc"></textarea>
 						</div>
 					</div>
 				</div>
@@ -90,6 +90,9 @@
 var Vue = require('Vue');
 var $ = require('jQuery');
 
+var Router = require('vue-route');
+Vue.use(Router);
+var router = new Router();
 
 var store = require('../../store/store.js');
 var actions = require('../../store/action/index.js');
@@ -125,6 +128,43 @@ var SetPage = Vue.extend({
     		text: 'http://'+ this.host + '/show/' + _this.$route.params.id,
     		render: 'canvas'
     	});
+    },
+    methods: {
+    	uploadThumbnail: function(ev){
+    		var id = this.$route.params.id;
+    		var file = ev.target.files;
+    		var formData = new FormData();
+    		var reader = new FileReader();
+    		var imgDiv = $('.thumbnail img');
+    		reader.onload = (function(aImg) { 
+      			return function(e) { 
+        			aImg.src = e.target.result; 
+      			}; 
+    		})(imgDiv[0]);
+    		reader.readAsDataURL(file[0]);
+    		formData.append('file', file[0]);
+    		$.ajax({
+    			url: '/api/img/uploadThumbnail?id=' + id,
+    			type: 'post',
+    			cache: false,
+    		    data: formData,
+    		    processData: false,
+    		    contentType: false,
+    			success: function(data){
+    				console.log(data);
+    			}
+    		})
+    	},
+    	save: function(){
+    		var params = {};
+    		$('[data-type]').each(function(index,ele){
+    			console.log($(this).attr('data-type'));
+    			console.log($(this).val());
+    		})
+    	},
+    	release: function(){
+
+    	}
     }
 })
 

@@ -42,11 +42,11 @@ var getImgList = function(req, res) {
     var UploadImg = global.dbHandel.getModel('uploadImg');
     var limit = Number(query.limit) || 6;
     var page = Number(query.page) || 1;
-    UploadImg.find({'user_name': req.session.user_name}).sort({ 'upload_time': -1 }).limit(limit).skip((page - 1) * limit).exec(function(err,docs){
-        if(err){
+    UploadImg.find({ 'user_name': req.session.user_name }).sort({ 'upload_time': -1 }).limit(limit).skip((page - 1) * limit).exec(function(err, docs) {
+        if (err) {
             res.send(err);
-        }else{
-            UploadImg.find({'user_name': req.session.user_name }).exec(function(err, allDoc) {
+        } else {
+            UploadImg.find({ 'user_name': req.session.user_name }).exec(function(err, allDoc) {
                 var resData = {
                     iserro: 0,
                     msg: '读取成功！',
@@ -61,10 +61,41 @@ var getImgList = function(req, res) {
     })
 }
 
+var uploadThumbnail = function(req, res) {
+    var file = req.files.file;
+    var id = req.query.id;
+    var readFrom = fs.createReadStream(file.path);
+    var fileName = path.basename(file.path);
+    var saveTo = fs.createWriteStream(global.userPath + '/UploadImg/' + fileName);
+    readFrom.pipe(saveTo);
+    var Work = global.dbHandel.getModel('work');
+    Work.update({
+        'user_name': req.session.user_name,
+        '_id': id
+    }, {
+        '$set': {
+            'about.thumbnail': '/img/' + fileName
+        }
+    }).exec(function(err, docs) {
+        var resData = {
+            iserro: 0,
+            msg: '上传成功',
+            data: docs
+        };
+        res.send(resData);
+    })
+    saveTo.on('finish', function() {
+        fs.unlinkSync(file.path);
+    });
+}
+
 module.exports = function(Router) {
     Router.post('/img/:act', multipartMiddleware, function(req, res, next) {
         if (req.params.act === 'upload') {
             upload(req, res);
+        }
+        if (req.params.act == 'uploadThumbnail') {
+            uploadThumbnail(req, res);
         }
     })
     Router.get('/img/:act', function(req, res, next) {

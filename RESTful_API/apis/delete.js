@@ -42,5 +42,5 @@ module.exports = function(Router) {
             res.send(resData);
         }
     })
-    return Router
+    return Router;
 };

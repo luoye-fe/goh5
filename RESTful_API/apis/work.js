@@ -1,7 +1,8 @@
 'use strict';
 
 var setConfigDefault = {
-    loop: true
+    loop: true,
+    test: '1'
 }
 
 var mainCodeDefault = {
@@ -28,7 +29,9 @@ var create = function(req, res) {
         'createTime': Date.now(),
         'lastSaveTime': Date.now(),
         'about': {
-            thumbnail: '/dist/img/eg.jpg'
+            thumbnail: '/dist/img/eg.jpg',
+            keyWords: '',
+            desc:'',
         },
         'mainCode': mainCodeDefault,
         'setConfig': setConfigDefault,
