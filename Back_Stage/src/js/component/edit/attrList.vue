@@ -279,7 +279,7 @@ input[type=range]::-webkit-slider-thumb{margin-top: -3.6px;}
 input[type=range]::-webkit-slider-runnable-track{width: 100%;height: 8.4px;cursor: pointer;box-shadow: 0 0 3px rgba(0,0,0,0.7);background: #01d7b2;border-radius: 1px;border: none;outline: none;}
 input[type=range]:focus{outline: none;}
 .attrList .main .attr_main .ani_btn{font-size: 0;padding: 20px 0;text-align: center;}
-.attrList .main .attr_main .ani_btn li{display: inline-block;vertical-align: middle;font-size: 12px;color: #fff;padding: 10px 25px;margin: 0 8px;cursor: pointer;border-radius: 6px;}
+.attrList .main .attr_main .ani_btn li{display: inline-block;vertical-align: middle;font-size: 12px;color: #fff;padding: 10px 25px;margin: 0 8px;cursor: pointer;border-radius: 6px;transition: all ease 0.2s;-webkit-transition: all ease 0.2s;}
 .attrList .main .attr_main .ani_btn li:first-child{background: rgba(1,215,178,1);}
 .attrList .main .attr_main .ani_btn li:first-child:hover{background: rgba(1,215,178,0.7);}
 .attrList .main .attr_main .ani_btn li:last-child{background: rgba(8,161,239,1);}
