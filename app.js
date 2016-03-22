@@ -31,7 +31,7 @@ app.use(session({
 // 后台页面
 app.get('/', function(req, res, next) {
     app.use(lactate.static(pwd + '/Back_Stage/'));
-    res.sendFile(pwd + '/Back_Stage/index.html');
+    res.render(pwd + '/Back_Stage/index.html');
     if (req.session.isLogin) {
         next();
     } else {
@@ -41,8 +41,8 @@ app.get('/', function(req, res, next) {
 })
 
 // 前台页面
-app.engine('.html', require('ejs').__express);
 app.get('/show/:id', function(req, res, next) {
+    app.engine('.html', require('ejs').__express);
     app.set('view engine', 'html');
     app.use(lactate.static(pwd + '/Front_Stage/'));
     var id = req.params.id;
