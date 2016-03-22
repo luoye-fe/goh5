@@ -1,17 +1,17 @@
 <template>
 	<div class="tool_bar">
 		<ul>
-			<li><div class="tool_btn tool_btn1">撤销</div></li>
-			<li><div class="tool_btn tool_btn2">重做</div></li>
-			<li>
+			<li v-tips="['right','撤销']"><div class="tool_btn tool_btn1">撤销</div></li>
+			<li v-tips="['right','重做']"><div class="tool_btn tool_btn2">重做</div></li>
+			<li v-tips="['right','背景']">
 				<div class="tool_btn tool_btn3" @click="setBg()">背景</div>
 				<ul class="bg_btn" v-show="dropDown" @click="dropDown = !dropDown">
 					<li @click="materialLib({show:true,msg:'更改背景',type:'bg'})">更换</li>
 					<li @click="delBg()">删除</li>
 				</ul>
 			</li>
-			<li><div class="tool_btn tool_btn4">预览</div></li>
-			<li @click="bgGridStatus = !bgGridStatus"><div class="tool_btn tool_btn5">网格</div></li>
+			<li v-tips="['right','预览']"><div class="tool_btn tool_btn4">预览</div></li>
+			<li @click="bgGridStatus = !bgGridStatus" v-tips="['right','网格']"><div class="tool_btn tool_btn5">网格</div></li>
 			<!-- <li><div class="tool_btn tool_btn6">音乐</div></li> -->
 		</ul>
 	</div>
@@ -45,6 +45,8 @@ var store = require('../../store/store.js');
 var actions = require('../../store/action/index.js');
 
 var utils = require('utils');
+
+var tips = require('../../directive/tips.js');
 
 var ToolBar = Vue.extend({
 	name: 'ToolBar',

@@ -97,6 +97,50 @@ button::-moz-focus-inner, input::-moz-focus-inner {padding: 0;border: 0}
 .horizontal_center {position: absolute;left: 50%;-webkit-transform: translateX(-50%);}
 .all_center {position: absolute;top: 50%;left: 50%;-webkit-transform: translate(-50%, -50%);}
 
+/* tips提示 */
+.awesomeTips {position: absolute;box-sizing: border-box;-webkit-box-sizing: border-box;padding: 8px 15px;color: #fff;font-size: 12px;background: rgba(0, 0, 0, 0.7);border-radius: 8px;z-index: 999;}
+.awesomeTips.tipsInLeft {-webkit-animation: tipsInLeft 0.4s ease 0.2s both;animation: tipsInLeft 0.4s ease 0.2s both;}
+.awesomeTips.tipsInRight {-webkit-animation: tipsInRight 0.4s ease 0.2s both;animation: tipsInRight 0.4s ease 0.2s both;}
+.awesomeTips.tipsInTop {-webkit-animation: tipsInTop 0.4s ease 0.2s both;animation: tipsInTop 0.4s ease 0.2s both;}
+.awesomeTips.tipsInBottom {-webkit-animation: tipsInBottom 0.4s ease 0.2s both;animation: tipsInBottom 0.4s ease 0.2s both;}
+@-webkit-keyframes tipsInLeft {
+    0% {opacity: 0;-webkit-transform: translateX(-10px);}
+    100% {opacity: 1;-webkit-transform: translateX(0);}
+}
+@-webkit-keyframes tipsInRight {
+    0% {opacity: 0;-webkit-transform: translateX(10px);}
+    100% {opacity: 1;-webkit-transform: translateX(0);}
+}
+@-webkit-keyframes tipsInTop {
+    0% {opacity: 0;-webkit-transform: translateY(-10px);}
+    100% {opacity: 1;-webkit-transform: translateY(0);}
+}
+@-webkit-keyframes tipsInBottom {
+    0% {opacity: 0;-webkit-transform: translateY(10px);}
+    100% {opacity: 1;-webkit-transform: translateY(0);}
+}
+.awesomeTips.tipsOutLeft {-webkit-animation: tipsOutLeft 0.4s ease 0.1s both;animation: tipsOutLeft 0.4s ease 0.1s both;}
+.awesomeTips.tipsOutRight {-webkit-animation: tipsOutRight 0.4s ease 0.1s both;animation: tipsOutRight 0.4s ease 0.1s both;}
+.awesomeTips.tipsOutTop {-webkit-animation: tipsOutTop 0.4s ease 0.1s both;animation: tipsOutTop 0.4s ease 0.1s both;}
+.awesomeTips.tipsOutBottom {-webkit-animation: tipsOutBottom 0.4s ease 0.1s both;animation: tipsOutBottom 0.4s ease 0.1s both;}
+@-webkit-keyframes tipsOutLeft {
+	0% {opacity: 1; -webkit-transform: translateX(0);}
+	100% {opacity: 0;-webkit-transform: translateX(-10px);}
+}
+@-webkit-keyframes tipsOutRight {
+	0% {opacity: 1;-webkit-transform: translateX(0);}
+	100% {opacity: 0;-webkit-transform: translateX(10px);}
+}
+@-webkit-keyframes tipsOutTop {
+	0% {opacity: 1;-webkit-transform: translateY(0);}
+	100% {opacity: 0;-webkit-transform: translateY(-10px);}
+}
+@-webkit-keyframes tipsOutBottom {
+	0% {opacity: 1;-webkit-transform: translateY(0);}
+	100% {opacity: 0;-webkit-transform: translateY(10px);}
+}
+
+
 /* 过度勾子 */
 .fade-transition{transition: all ease 0.3s;-webkit-transition: all ease 0.3s;}
 .fade-enter, .fade-leave{opacity: 0;}
