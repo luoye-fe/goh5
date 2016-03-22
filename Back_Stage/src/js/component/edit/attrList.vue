@@ -389,6 +389,7 @@ var AttrList = Vue.extend({
 			return result;
 		},
 		addAni: function(){
+			actions.addClass(store,this.checkedItems[0],'ani');
 			var model = 'none 0s ease 0s 1 none';
 			var _aniStr = utils.getStyle(this.checkedItems[0],'-webkit-animation',true) || utils.getStyle(this.checkedItems[0],'animation',true);
 			if(_aniStr !== null){
@@ -411,6 +412,9 @@ var AttrList = Vue.extend({
 			var resultStr = [];
 			for(var i = 0;i < this.aniStyleAttr.length;i++){
 				resultStr.push(this.aniStyleAttr[i]['ani-name'] + ' ' + this.aniStyleAttr[i]['ani-duration'] + ' ' + this.aniStyleAttr[i]['ani-tween'] + ' ' + this.aniStyleAttr[i]['ani-delay'] + ' ' + this.aniStyleAttr[i]['ani-count'] + ' none');
+			}
+			if(resultStr.length === 0){
+				actions.removeClass(store,this.checkedItems[0],'ani');
 			}
 			actions.setStyle(store,this.checkedItems[0],{
 				'animation': resultStr.join(','),

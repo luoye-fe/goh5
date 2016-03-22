@@ -8,9 +8,7 @@ var utils = require('utils');
 mutations.ADDTEXT = function(state) {
     var index = state.currentPageData.items.length + 1;
     var num = utils.getAllItemsLen() + 1;
-    var model = tpl.txt(index, num, {
-        className: 'ani'
-    });
+    var model = tpl.txt(index, num, {});
     state.currentPageData.items.push(model);
     mutations.SELECTITEM(state, index - 1);
 };
@@ -25,7 +23,7 @@ mutations.ADDPICORBG = function(state, src, type) {
         var index = state.currentPageData.items.length + 1;
         var num = utils.getAllItemsLen() + 1;
         var model = tpl.pic(index, num, {
-            className: 'ani'
+            src: src
         });
         state.currentPageData.items.push(model);
         mutations.SELECTITEM(state, index - 1);
