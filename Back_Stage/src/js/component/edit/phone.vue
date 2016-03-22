@@ -99,10 +99,8 @@ var Phone = Vue.extend({
         // 点击其它地方隐藏元素属性
         $(document).bind('click',function(ev){
             var obj = $(ev.target);
-            if (obj.parents('.j_screen').length === 0 && obj.parents('.pages_con').length === 0 && obj.parents('.side_con').length === 0 && obj.parents('.tool_bar').length === 0 && obj.parents('.popline').length === 0 && obj.parents('.head_con').length === 0 && obj.parents('.context_menu').length === 0) {
-                if(!obj.hasClass('deleteAni')){
-                    actions.clearCheckedItems(store);
-                }
+            if (obj.parents('.j_screen').length === 0 && obj.parents('.pages_con').length === 0 && obj.parents('.side_con').length === 0 && obj.parents('.tool_bar').length === 0 && obj.parents('.popline').length === 0 && obj.parents('.head_con').length === 0 && obj.parents('.context_menu').length === 0 && obj.parents('li').find('.group_head').length === 0) {
+                actions.clearCheckedItems(store);
             }
         })
     },

@@ -391,10 +391,17 @@ var AttrList = Vue.extend({
 		addAni: function(){
 			var model = 'none 0s ease 0s 1 none';
 			var _aniStr = utils.getStyle(this.checkedItems[0],'-webkit-animation',true) || utils.getStyle(this.checkedItems[0],'animation',true);
-			actions.setStyle(store,this.checkedItems[0],{
-				'animation': _aniStr + ',' + model,
-				'-webkit-animation': _aniStr + ',' + model
-			},true);
+			if(_aniStr !== null){
+				actions.setStyle(store,this.checkedItems[0],{
+					'animation': _aniStr + ',' + model,
+					'-webkit-animation': _aniStr + ',' + model
+				},true);
+			}else{
+				actions.setStyle(store,this.checkedItems[0],{
+					'animation': model,
+					'-webkit-animation': model
+				},true);
+			}
 			var aniStr = utils.getStyle(this.checkedItems[0],'-webkit-animation',true) || utils.getStyle(this.checkedItems[0],'animation',true);
 			this.aniStyleAttr = this.formatAni(aniStr);
 		},
@@ -409,7 +416,7 @@ var AttrList = Vue.extend({
 				'animation': resultStr.join(','),
 				'-webkit-animation': resultStr.join(',')
 			},true);
-			this.group_index = 0;
+			this.group_index = this.group_index == 0 ? 0 : this.group_index - 1;
 		},
 		setAni: function(index,ev,type,px){
 			var styleAttr = $(ev.target).parents('li[style-attr]').attr('style-attr');
@@ -476,7 +483,7 @@ var AttrList = Vue.extend({
 					this.style = utils.getStyle(this.checkedItems[0],'all',true);
 					this.boxShadowStyle = this.formatBoxShadow(utils.getStyle(this.checkedItems[0],'box-shadow',true));
 					var aniStr = utils.getStyle(this.checkedItems[0],'-webkit-animation',true) || utils.getStyle(this.checkedItems[0],'animation',true);
-					this.aniStyleAttr = this.formatAni(aniStr);
+					this.aniStyleAttr = aniStr === null ? [] : this.formatAni(aniStr);
 				}
 			},
 			deep: true,

@@ -14,7 +14,11 @@ mutations.SETSTYLE = function(state, index, params, isIn) {
         }
     }
     for (var item in params) {
-        result[item] = params[item];
+        if(params[item] === '' && result[item]){
+            delete result[item];
+        }else{
+            result[item] = params[item];
+        }
     }
     var resultStr = '';
     for (var item in result) {
