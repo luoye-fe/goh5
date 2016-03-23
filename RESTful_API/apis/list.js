@@ -26,7 +26,7 @@ module.exports = function(Router) {
                 }
             })
         } else {
-            Work.find({}).sort({ 'createTime': -1 }).limit(limit).skip((page - 1) * limit).exec(function(err, docs) {
+            Work.find({'status': 1}).sort({ 'createTime': -1 }).limit(limit).skip((page - 1) * limit).exec(function(err, docs) {
                 if (err) {
                     res.send(err);
                 } else {

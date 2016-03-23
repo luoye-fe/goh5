@@ -159,7 +159,7 @@ var SetPage = Vue.extend({
     		})
     		params.id = this.$route.params.id;
     		$.ajax({
-    			url: '/api/work/saveWork',
+    			url: '/api/work/saveSet',
     			type: 'get',
     			data: params,
     			success: function(data){
@@ -174,7 +174,23 @@ var SetPage = Vue.extend({
     		})
     	},
     	release: function(){
-
+    		var _this = this;
+    		$.ajax({
+    			url: '/api/work/release',
+    			type: 'get',
+    			data: {
+    				id: _this.$route.params.id
+    			},
+    			success: function(data){
+    				if(!data.iserro){
+						actions.alert(store,{
+							show: true,
+							msg: data.msg,
+							type: 'success'
+						})
+					}
+    			}
+    		})
     	},
     	checkBaseInfo: function(){
 

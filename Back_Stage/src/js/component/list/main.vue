@@ -20,6 +20,7 @@
 					<div class="top" v-mouse-qrcode="host + '/show/' + item._id">
 						<a :href="'http://'+ host + '/show/' + item._id" target="_blank" class="qrcode"></a>
 						<img :src="item.about.thumbnail">
+						<span class="status" :class="item.status === 0 ? 'status_0' : 'status_1'">{{item.status === 0 ? '草稿' : '发布'}}</span>
 					</div>
 					<div class="middle">
 						<p>{{item.title}}</p>
@@ -54,7 +55,7 @@
 .list_con .list_head .search{display: inline-block;position: absolute;right: 20px;}
 .list_con .list_body{width: 100%;margin-top: 20px;}
 .list_con .list_body ul{font-size: 0;}
-.list_con .list_body ul li{width: 220px;background: #fff;margin: 10px;position: relative;font-size: 16px;display: inline-block;vertical-align: top;height: 314px;}
+.list_con .list_body ul li{width: 220px;background: #fff;margin: 10px;position: relative;font-size: 16px;display: inline-block;vertical-align: top;height: 314px;overflow: hidden;}
 .list_con .list_body ul li.create{cursor: pointer;}
 .list_con .list_body ul li.create .shu{width: 6px;height: 100px;background: #01d7b2;margin: 0 auto 10px;}
 .list_con .list_body ul li.create .heng{width: 100px;height: 6px;background: #01d7b2;margin: 0 auto 10px;position: absolute;top: 47px;left: 50%;transform: translateX(-50%);-webkit-transform: translateX(-50%);}
@@ -63,6 +64,9 @@
 .list_con .list_body ul li .top .qrcode{position: absolute;width: 220px;height: 220px;left: 0;top: 0;cursor: pointer;display: none;background: rgba(0,0,0,0.4);}
 .list_con .list_body ul li .top .qrcode canvas{display: block;position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);-webkit-transform: translate(-50%,-50%);padding: 8px;border-radius: 6px;background: #fff;}
 .list_con .list_body ul li .top img{display: block;width: 220px;height: 220px;}
+.list_con .list_body ul li .top .status{display: block;position: absolute;width: 120px;height: 24px;color: #fff;font-size: 12px;line-height: 24px;transform: rotate(-45deg);-webkit-transform: rotate(45deg);background: #aaa;text-align: center;right: -36px;top: 8px;}
+.list_con .list_body ul li .top .status.status_0{}
+.list_con .list_body ul li .top .status.status_1{background: #01d7b2;}
 .list_con .list_body ul li .middle{padding: 8px;box-sizing: border-box;border-bottom: 1px solid #ddd;border-top: 1px solid #ddd;}
 .list_con .list_body ul li .middle p{font-size: 16px;color: #3f4a58;line-height: 24px;text-align: left;overflow: hidden;text-overflow: ellipsis;width: 100%;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;}
 .list_con .list_body ul li .middle .desc{font-size: 0;}
