@@ -17,7 +17,7 @@
 					</div>
 				</li>
 				<li v-for="item in listData" track-by="$index">
-					<div class="top" v-qrcode="host + '/show/' + item._id">
+					<div class="top" v-mouse-qrcode="host + '/show/' + item._id">
 						<a :href="'http://'+ host + '/show/' + item._id" target="_blank" class="qrcode"></a>
 						<img :src="item.about.thumbnail">
 					</div>
@@ -79,7 +79,6 @@
 var Vue = require('Vue');
 var $ = require('jQuery');
 
-var qrcode = require('qrcode');
 
 var Router = require('vue-route');
 Vue.use(Router);

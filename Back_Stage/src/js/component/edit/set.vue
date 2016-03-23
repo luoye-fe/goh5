@@ -16,7 +16,7 @@
 				</div>
 				<div class="item">
 					<h4>预览</h4>
-					<a class="qrcode" :href="'http://'+ host + '/show/' + this.$route.params.id" target="_blank"></a>
+					<a class="qrcode" v-qrcode="'http://'+ host + '/show/' + this.$route.params.id" :href="'http://'+ host + '/show/' + this.$route.params.id" target="_blank"></a>
 					<em class="tips">（点击或扫描预览作品）</em>
 					<em class="tips">（发布后的作品可在全部作品中展示）</em>
 				</div>
@@ -119,15 +119,6 @@ var SetPage = Vue.extend({
         	}
         },
         actions: actions
-    },
-    ready: function(){
-    	var _this = this;
-    	$('.qrcode').qrcode({
-    		width: 198,
-    		height: 198,
-    		text: 'http://'+ this.host + '/show/' + _this.$route.params.id,
-    		render: 'canvas'
-    	});
     },
     methods: {
     	uploadThumbnail: function(ev){

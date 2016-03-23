@@ -2,7 +2,7 @@
 var Vue = require('Vue');
 var $ = require('jQuery');
 
-Vue.directive('qrcode',function(value){
+Vue.directive('mouseQrcode',function(value){
 	var _this = this;
 	var target = $(this.el);
 	target.mouseenter(function(){
@@ -19,3 +19,16 @@ Vue.directive('qrcode',function(value){
 		$(target).find('.qrcode').html('');
 	})
 })
+
+Vue.directive('qrcode',function(value){
+	var _this = this;
+	var target = $(this.el);
+	target.qrcode({
+		width: 198,
+		height: 198,
+		text: value,
+		render: 'canvas'
+	});
+})
+
+
