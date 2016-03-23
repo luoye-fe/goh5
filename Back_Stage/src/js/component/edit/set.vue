@@ -76,7 +76,7 @@
 .set_con .left .item.set_btn a:last-child:hover{background: rgba(8,161,239,0.7);}
 .set_con .right{flex: 1;padding-top: 38px;padding-bottom: 170px;overflow-y: auto;}
 .set_con .right .item{margin-top: 20px;width: 100%;}
-.set_con .right .item .head{width: 100%;background: url('/dist/img/basic_info_title.png') no-repeat;color: #fff;font-size: 12px;line-height: 20px;text-indent: 15px;}
+.set_con .right .item .head{width: 100%;background: url('/back/dist/img/basic_info_title.png') no-repeat;color: #fff;font-size: 12px;line-height: 20px;text-indent: 15px;}
 .set_con .right .item .main{}
 .set_con .right .item .main .kind{margin-top: 15px;}
 .set_con .right .item .main .kind label{font-size: 14px;color: #76838f;display: inline-block;width: 100px;position: relative;text-indent: 14px;margin-top: 7px;}

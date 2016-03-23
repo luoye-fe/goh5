@@ -29,7 +29,7 @@ var create = function(req, res) {
         'createTime': Date.now(),
         'lastSaveTime': Date.now(),
         'about': {
-            thumbnail: '/dist/img/eg.jpg',
+            thumbnail: '/back/dist/img/eg.jpg',
             keyWords: '',
             desc: '',
         },

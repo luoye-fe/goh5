@@ -33,7 +33,7 @@
 .head_con .item.center .create_group li{font-size: 12px;cursor: pointer;transition: all ease 0.2s;-webkit-transition: all ease 0.2s;width: 50px;padding: 0 5px;display: inline-block;vertical-align: middle;}
 .head_con .item.center .create_group li:hover{background: #484d64;}
 .head_con .item.center .create_group li span{display: block;text-align: center;line-height: 22px;}
-.head_con .item.center .create_group li .icon{background-image: url('/dist/img/icon.png');width: 30px;height: 30px;margin: 0 auto;}
+.head_con .item.center .create_group li .icon{background-image: url('/back/dist/img/icon.png');width: 30px;height: 30px;margin: 0 auto;}
 .head_con .item.center .create_group li .icon1{background-position: 0 0;}
 .head_con .item.center .create_group li .icon2{background-position: 0 -30px;}
 .head_con .item.center .create_group li .icon3{background-position: 0 -150px;}

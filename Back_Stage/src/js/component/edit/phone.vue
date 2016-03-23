@@ -26,12 +26,12 @@
 
 <style>
 
-.phone_con{position: relative;margin: 90px auto 0;background-size: 100%;background-image: url(/dist/img/phone.svg);background-repeat: no-repeat;width: 326px;height: 620px;}
+.phone_con{position: relative;margin: 90px auto 0;background-size: 100%;background-image: url(/back/dist/img/phone.svg);background-repeat: no-repeat;width: 326px;height: 620px;}
 .phone_con .phone_title{position: absolute;top: 65px;width: 80%;left: 10%;text-align: center;color: #fff;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;height: 20px;font-size: 18px;}
 .phone_con .phone_screen{width: 320px;height: 486px;position: absolute;top: 97px;left: 3px;background-size: cover;background-repeat: no-repeat;}
 .phone_con .phone_screen>div{cursor: pointer;}
 .phone_con .phone_screen>div .content{position: relative;width: 100%;height: 100%;}
-.phone_screen.grid_bg:after {display: block;width: 100%;height: 100%;content: " ";background-image: url(/dist/img/grid_bg.png);background-size: 320px 486px;opacity: 0.5;}
+.phone_screen.grid_bg:after {display: block;width: 100%;height: 100%;content: " ";background-image: url(/back/dist/img/grid_bg.png);background-size: 320px 486px;opacity: 0.5;}
 .content p, .content h1, .content h2, .content h3, .content h4, .content h5, .content h6 {display: inline;font-weight: normal;}
 .content h1 {font-size: 2em;}
 .content h2 {font-size: 1.5em;}

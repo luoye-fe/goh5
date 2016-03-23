@@ -23,7 +23,7 @@
 .tool_bar>ul{}
 .tool_bar>ul>li{color: #fff;width: 30px;height: 30px;cursor: pointer;text-align: center;line-height: 40px;display: block;background-color: rgba(0,0,0,0.5);transition: all ease 0.2s;-webkit-transition: all ease 0.2s;padding: 5px;position: relative;}
 .tool_bar>ul>li:hover{background-color: rgba(0,0,0,0.8);}
-.tool_btn{background-image: url('/dist/img/icon.png');text-indent: -9999px;background-repeat: no-repeat;width: 30px;height: 30px;}
+.tool_btn{background-image: url('/back/dist/img/icon.png');text-indent: -9999px;background-repeat: no-repeat;width: 30px;height: 30px;}
 .tool_btn1{background-position: -90px 0;}
 .tool_btn2{background-position: -90px -30px;}
 .tool_btn3{background-position: 0 -150px;}

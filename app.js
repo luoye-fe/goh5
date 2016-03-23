@@ -28,23 +28,28 @@ app.use(session({
 }));
 
 
+// 用户上传的图片
+app.use('/img', express.static(pwd + '/User/UploadImg/'));
+// 后台静态资源
+app.use('/back', express.static(pwd + '/Back_Stage/'));
+// 前台静态资源
+app.use('/front', express.static(pwd + '/Front_Stage/'));
+
+
 // 后台页面
 app.get('/', function(req, res, next) {
-    app.use(lactate.static(pwd + '/Back_Stage/'));
-    res.render(pwd + '/Back_Stage/index.html');
-    if (req.session.isLogin) {
-        next();
-    } else {
+    if (!req.session.isLogin) {
         res.clearCookie('isLogin');
         res.clearCookie('user_name');
     }
+    res.sendFile(pwd + '/Back_Stage/index.html',{});
 })
+
+app.engine('.html', require('ejs').__express);
+app.set('view engine', 'html');
 
 // 前台页面
 app.get('/show/:id', function(req, res, next) {
-    app.engine('.html', require('ejs').__express);
-    app.set('view engine', 'html');
-    app.use(lactate.static(pwd + '/Front_Stage/'));
     var id = req.params.id;
     var Work = global.dbHandel.getModel('work');
     Work.find({ '_id': id }).exec(function(err, docs) {
@@ -54,8 +59,6 @@ app.get('/show/:id', function(req, res, next) {
     })
 })
 
-// 用户上传的图片
-app.use('/img', express.static(pwd + '/User/UploadImg/'));
 
 routers.forEach(function(Router) {
     app.use('/api', Router);

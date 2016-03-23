@@ -40,7 +40,6 @@ Vue.directive('tips', function(params) {
         var oDiv = $(createTips(direction, msg));
         $('body').append(oDiv);
         var offsetInfo = _this.offset();
-        console.log($(this));
         var W = _this.outerWidth();
         var H = _this.outerHeight();
         var _W = oDiv.outerWidth();

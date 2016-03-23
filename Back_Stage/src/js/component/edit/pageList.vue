@@ -10,7 +10,7 @@
 			</ul>
 		</div>
 		<div class="item nav_bottom">
-		    <a href="javascript:void(0)" title="添加新页" @click="addPage()"><img src="/dist/img/add_page.png"/><span>添加新页</span></a>
+		    <a href="javascript:void(0)" title="添加新页" @click="addPage()"><img src="/back/dist/img/add_page.png"/><span>添加新页</span></a>
 		</div>
 	</div>
 </template>
