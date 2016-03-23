@@ -22,8 +22,6 @@ button::-moz-focus-inner, input::-moz-focus-inner {padding: 0;border: 0}
 .clearfix:after, .main_card:after, .eidt_content_list:after {content: '\0020';display: block;height: 0;clear: both}
 .clearfix {*zoom: 1}
 .hide, .v-hide {display: none !important;}
-
-
 /* 主弹出层 */
 .dialog_con{position: fixed;top: 0;left: 0;width: 100%;height: 100%;background: rgba(0,0,0,0.4);z-index: 9998;}
 .dialog_con .dialog_bg{width: 100%;height: 100%;position: absolute;}

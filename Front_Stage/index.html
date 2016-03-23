@@ -2,36 +2,32 @@
 <html>
 
 <head>
-	<meta charset="utf-8">
-	<meta name="description" content="<%= workData.about.desc %>">
-	<meta name="keywords" content="<%= workData.about.keyWords %>">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="renderer" content="webkit">
-	<title><%= workData.title %></title>
-	<link rel="stylesheet" type="text/css" href="/front/dist/css/goh5.min.css">
+    <meta charset="utf-8">
+    <meta name="description" content="<%= workData.about.desc %>">
+    <meta name="keywords" content="<%= workData.about.keyWords %>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <title>
+        <%= workData.title %>
+    </title>
+    <link rel="stylesheet" type="text/css" href="/front/dist/css/goh5.min.css">
 </head>
 
 <body>
-
-<!--  缩略图 -->
-<div class="shareImgWrap">
-	<img src="<%= workData.about.thumbnail %>"/>
-</div>
-<!--  缩略图 -->
-
-<!-- 主页面 -->
-<div class="swiper-container" id="wrapAll">
-	<div class="swiper-wrapper">
-
-	</div>
-</div>
-<!-- 主页面 -->
-
-<!-- 箭头 -->
-<div id="arrow"><img src="http://mjs.sinaimg.cn/wap/module/h5_builder/main/images/arrow.png"></div>
-<!-- 箭头 -->
-
-
+    <!--  缩略图 -->
+    <div class="shareImgWrap">
+        <img src="<%= workData.about.thumbnail %>" />
+    </div>
+    <!--  缩略图 -->
+    <!-- 主页面 -->
+    <div class="swiper-container" id="wrapAll">
+        <div class="swiper-wrapper">
+        </div>
+    </div>
+    <!-- 主页面 -->
+    <!-- 箭头 -->
+    <div id="arrow"><img src="http://mjs.sinaimg.cn/wap/module/h5_builder/main/images/arrow.png"></div>
+    <!-- 箭头 -->
 </body>
 
 </html>
