@@ -7,15 +7,15 @@
 				<li @click="materialLib({show:true,msg:'插入图片',type:'pic'})"><div class="icon icon2"></div><span>图片</span></li>
 				<li @click="materialLib({show:true,msg:'更改背景',type:'bg'})"><div class="icon icon3"></div><span>背景</span></li>
 				<!-- <li><div class="icon icon4"></div><span>图集</span></li> -->
-				<li><div class="icon icon5"></div><span>视频</span></li>
-				<li><div class="icon icon6"></div><span>音乐</span></li>
+				<!-- <li><div class="icon icon5"></div><span>视频</span></li> -->
+				<!-- <li><div class="icon icon6"></div><span>音乐</span></li> -->
 			</ul>
 		</div>
 		<div class="item right">
 			<ul class="btn_group">
 				<li v-show="page == 'edit'" @click="save()">保存</li>
 				<!-- <li v-show="page == 'edit'">记录</li> -->
-				<li v-show="page == 'edit'">预览</li>
+				<li v-show="page == 'edit'" @click="">预览</li>
 				<li v-show="page == 'edit'" @click="showSet = !showSet">设置</li>
 				<li @click="logout()" style="background: #ff5151;">退出</li>
 			</ul>

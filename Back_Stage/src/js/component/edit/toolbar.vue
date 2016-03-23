@@ -1,22 +1,25 @@
 <template>
-	<div class="tool_bar">
-		<ul>
-			<li v-tips="['right','撤销']"><div class="tool_btn tool_btn1">撤销</div></li>
-			<li v-tips="['right','重做']"><div class="tool_btn tool_btn2">重做</div></li>
-			<li v-tips="['right','背景']">
-				<div class="tool_btn tool_btn3" @click="setBg()">背景</div>
-				<ul class="bg_btn" v-show="dropDown" @click="dropDown = !dropDown">
-					<li @click="materialLib({show:true,msg:'更改背景',type:'bg'})">更换</li>
-					<li @click="delBg()">删除</li>
-				</ul>
-			</li>
-			<li v-tips="['right','预览']"><div class="tool_btn tool_btn4">预览</div></li>
-			<li @click="bgGridStatus = !bgGridStatus" v-tips="['right','网格']"><div class="tool_btn tool_btn5">网格</div></li>
-			<!-- <li><div class="tool_btn tool_btn6">音乐</div></li> -->
-		</ul>
-	</div>
+    <div class="tool_bar">
+        <ul>
+            <!-- <li v-tips="['right','撤销']"><div class="tool_btn tool_btn1">撤销</div></li> -->
+            <!-- <li v-tips="['right','重做']"><div class="tool_btn tool_btn2">重做</div></li> -->
+            <li v-tips="['right','背景']">
+                <div class="tool_btn tool_btn3" @click="setBg()">背景</div>
+                <ul class="bg_btn" v-show="dropDown" @click="dropDown = !dropDown">
+                    <li @click="materialLib({show:true,msg:'更改背景',type:'bg'})">更换</li>
+                    <li @click="delBg()">删除</li>
+                </ul>
+            </li>
+            <li v-tips="['right','预览']" @click="reload()">
+                <div class="tool_btn tool_btn4">预览</div>
+            </li>
+            <li @click="bgGridStatus = !bgGridStatus" v-tips="['right','网格']">
+                <div class="tool_btn tool_btn5">网格</div>
+            </li>
+            <!-- <li><div class="tool_btn tool_btn6">音乐</div></li> -->
+        </ul>
+    </div>
 </template>
-
 <style>
 
 .tool_bar{position: fixed;top: 100px;left: 50%;transform: translateX(-50%);-webkit-transform: translateX(-50%);margin-left: 190px;z-index: 9998;}
@@ -35,9 +38,7 @@
 
 
 </style>
-
 <script>
-
 var Vue = require('Vue');
 var $ = require('jQuery');
 
@@ -49,38 +50,41 @@ var utils = require('utils');
 var tips = require('../../directive/tips.js');
 
 var ToolBar = Vue.extend({
-	name: 'ToolBar',
-	data: function(){
-		return {
-			dropDown: false
-		}
-	},
-	props: ['bgGridStatus'],
+    name: 'ToolBar',
+    data: function() {
+        return {
+            dropDown: false
+        }
+    },
+    props: ['bgGridStatus'],
     vuex: {
         getters: {
-            currentPageMain: function(){
+            currentPageMain: function() {
                 return store.state.currentPageMain;
             }
         },
         actions: actions
     },
-	methods: {
-		materialLib: actions.materialLib,
-		delBg: actions.delPage,
-		setBg: function(){
-			if(!utils.checkIsColor(this.currentPageMain.background)){
-				this.dropDown = !this.dropDown;
-			}else{
-				actions.materialLib(store,{
-					show:true,
-					msg:'更改背景',
-					type:'bg'
-				})
-			}
-		},
-	}
+    methods: {
+        materialLib: actions.materialLib,
+        delBg: actions.delPage,
+        setBg: function() {
+            if (!utils.checkIsColor(this.currentPageMain.background)) {
+                this.dropDown = !this.dropDown;
+            } else {
+                actions.materialLib(store, {
+                    show: true,
+                    msg: '更改背景',
+                    type: 'bg'
+                })
+            }
+        },
+        reload: function() {
+            $('.j_screen').fadeOut('fast');
+            $('.j_screen').fadeIn('fast');
+        },
+    }
 })
 
 module.exports = ToolBar;
-
 </script>
