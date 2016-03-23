@@ -24,7 +24,7 @@
     <div class="swiper-container" id="wrapAll">
         <div class="swiper-wrapper">
             <% workData.mainCode.pages.forEach(function(page){ %>
-            <div class="swiper-slide">
+            <div class="swiper-slide" style="<%- page.main.background.match(/img/) === null ? 'background: ' + page.main.background : 'background: url(' + page.main.background + ')'%>">
             	<% page.items.forEach(function(item){ %>
 				<div id="<%- item.id %>" class="<%- item.class %>" type="<%- item.type %>" style="<%- item.style %>" attr="<%= JSON.stringify(item.attr) %>">
 					<%- item.content %>
