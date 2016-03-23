@@ -4,6 +4,10 @@
 
 
 var GoH5 = new Swiper('.swiper-container', {
-	direction: 'vertical',
-	loop: true
+    lazyLoading: true,
+    lazyLoadingInPrevNext: true,
+    direction: 'vertical',
+    loop: true
 });
+
+window.GoH5 = GoH5;
