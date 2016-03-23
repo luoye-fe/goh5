@@ -26,7 +26,7 @@
             <% workData.mainCode.pages.forEach(function(page){ %>
             <div class="swiper-slide">
             	<% page.items.forEach(function(item){ %>
-				<div id="<%- item.id %>" class="<%- item.class %>" type="<%- item.type %>" style="<%= item.style %>">
+				<div id="<%- item.id %>" class="<%- item.class %>" type="<%- item.type %>" style="<%- item.style %>" attr="<%= JSON.stringify(item.attr) %>">
 					<%- item.content %>
 				</div>
             	<% }) %>
