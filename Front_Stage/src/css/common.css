@@ -23,6 +23,32 @@ button::-moz-focus-inner, input::-moz-focus-inner {padding: 0;border: 0}
 .clearfix {*zoom: 1}
 .hide, .v-hide {display: none !important;}
 
+/* swiper初始样式 */
+html, body{width: 100%;height: 100%;position: relative;}
+.swiper-container{width: 100%;height: 100%;}
+.swiper-container .swiper-wrapper{width: 100%;height: 100%;}
+.swiper-container .swiper-wrapper .swiper-slide{position: relative;overflow: hidden;width: 100%;height: 100%;}
+
+
 
 /* 分享图隐藏 */
 .shareImgWrap{display: none;}
+
+/* 箭头 */
+#arrow{z-index: 1000;position: fixed;}
+#arrow img{display: block;width: 100%;height: 100%;}
+.vertical_arrow{-webkit-animation: upArrow 1.5s ease both infinite;width: 20px;height: 17px;margin-left: -10px;bottom: 0;left: 50%;}
+.vertical_arrow img{}
+.horizontal_arrow{-webkit-animation: rightArrow 2s ease both infinite;width: 17px;height: 20px;margin-left: -10px;bottom: 20px;right: 20px;}
+.horizontal_arrow img{}
+@-webkit-keyframes upArrow{
+	0%{opacity: 0;}
+	50%{-webkit-transform: translate3d(0, -15px, 0);opacity: 1;}
+	100%{-webkit-transform: translate3d(0, -25px, 0);opacity: 0;}
+}
+@-webkit-keyframes rightArrow{
+	0%{opacity: 1;-webkit-transform: translate3d(0, 0, 0) rotateZ(90deg);}
+	50%{-webkit-transform: translate3d(-15px, 0, 0) rotateZ(90deg);opacity: 0;}
+	100%{-webkit-transform: translate3d(0, 0, 0) rotateZ(90deg);opacity: 1;}
+
+}

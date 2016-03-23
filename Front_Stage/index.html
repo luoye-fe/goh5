@@ -3,13 +3,14 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="description" content="<%= workData.about.desc %>">
-    <meta name="keywords" content="<%= workData.about.keyWords %>">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta name="format-detection" content="telephone=no">
     <meta name="renderer" content="webkit">
     <title>
         <%= workData.title %>
     </title>
+    <meta name="keywords" content="<%= workData.about.keyWords %>">
+    <meta name="description" content="<%= workData.about.desc %>">
     <link rel="stylesheet" type="text/css" href="/front/dist/css/goh5.min.css">
 </head>
 
@@ -22,12 +23,23 @@
     <!-- 主页面 -->
     <div class="swiper-container" id="wrapAll">
         <div class="swiper-wrapper">
+            <% workData.mainCode.pages.forEach(function(page){ %>
+            <div class="swiper-slide">
+            	<% page.items.forEach(function(item){ %>
+				<div id="<%- item.id %>" class="<%- item.class %>" type="<%- item.type %>" style="<%= item.style %>">
+					<%- item.content %>
+				</div>
+            	<% }) %>
+            </div>
+            <% }) %>
         </div>
     </div>
     <!-- 主页面 -->
     <!-- 箭头 -->
-    <div id="arrow"><img src="http://mjs.sinaimg.cn/wap/module/h5_builder/main/images/arrow.png"></div>
+    <div id="arrow" class="vertical_arrow"><img src="http://mjs.sinaimg.cn/wap/module/h5_builder/main/images/arrow.png"></div>
     <!-- 箭头 -->
+    <script type="text/javascript" src="/front/dist/js/vendor.min.js"></script>
+    <script type="text/javascript" src="/front/dist/js/goh5.min.js"></script>
 </body>
 
 </html>
