@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta id="GoH5ViewPort" name="viewport" content="width=320, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
     <meta name="renderer" content="webkit">
     <title>
@@ -25,11 +25,13 @@
         <div class="swiper-wrapper">
             <% workData.mainCode.pages.forEach(function(page){ %>
             <div class="swiper-slide" style="<%- page.main.background.match(/img/) === null ? 'background: ' + page.main.background : 'background: url(' + page.main.background + ')'%>">
-            	<% page.items.forEach(function(item){ %>
-				<div id="<%- item.id %>" class="<%- item.class %>" type="<%- item.type %>" style="<%- item.style %>" attr="<%= JSON.stringify(item.attr) %>">
-					<%- item.content.replace(/src/ig,'data-src').replace(/style/g,'class="swiper-lazy" style') %>
-				</div>
-            	<% }) %>
+                <div class="items_con all_center" style="width: 320px;height: 486px;">    
+                	<% page.items.forEach(function(item){ %>
+    				<div id="<%- item.id %>" class="<%- item.class %>" type="<%- item.type %>" style="<%- item.style %>" attr="<%= JSON.stringify(item.attr) %>">
+    					<%- item.content.replace(/src/ig,'data-src') %>
+    				</div>
+                	<% }) %>
+                </div>
             </div>
             <% }) %>
         </div>
@@ -38,6 +40,17 @@
     <!-- 箭头 -->
     <div id="arrow" class="vertical_arrow"><img src="http://mjs.sinaimg.cn/wap/module/h5_builder/main/images/arrow.png"></div>
     <!-- 箭头 -->
+    <!-- 加载 -->
+    <div class="loading_con">
+        <div class="all_center loading_center">
+            <div class="all_center">
+                <img src="/back/dist/img/loading.png">
+                <span>加载中</span>
+                <em>0%</em>
+            </div>
+        </div>
+    </div>
+    <!-- 加载 -->
     <script type="text/javascript" src="/front/dist/js/vendor.min.js"></script>
     <script type="text/javascript" src="/front/dist/js/goh5.min.js"></script>
 </body>

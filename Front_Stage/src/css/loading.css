@@ -1,0 +1,58 @@
+.loading_con {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(72, 66, 79);
+    z-index: 9999999;
+    transition: all ease 0.2s;
+    -webkit-transition: all ease 0.2s;
+}
+.loading_con .loading_center {
+    width: 110px;
+    height: 110px;
+    border-radius: 12px;
+    background-color: #fff;
+}
+.loading_con .loading_center>div img {
+    display: block;
+    margin: 0 auto;
+    width: 28px;
+    height: 28px;
+    -webkit-animation: loading linear both 1s infinite;
+}
+.loading_con .loading_center>div span {
+    display: block;
+    margin: 10px auto 0;
+    text-align: center;
+    font-size: 12px;
+}
+.loading_con .loading_center>div em {
+    display: block;
+    font-style: normal;
+    font-weight: normal;
+    text-align: center;
+    font-size: 12px;
+    line-height: 18px;
+}
+@-webkit-keyframes loading {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+.fedeOut{
+   -webkit-animation: fadeOut ease both 0.4s; 
+}
+@-webkit-keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+

@@ -1,4 +1,6 @@
 'use strict';
+var dpi = require('./dpi.js');
+
 
 var Swiper = require('Swiper');
 
