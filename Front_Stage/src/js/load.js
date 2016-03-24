@@ -1,5 +1,4 @@
 'use strict';
-var GoH5 = require('./goh5.js');
 var utils = require('utils');
 var Event = require('Event');
 
@@ -16,14 +15,21 @@ var loadImg = function(src, callback) {
     };
 }
 
-var loadedImgLen = 0;
+var imgArr = [];
 utils.$('[data-src]').each(function(index, item) {
-    loadImg(utils.$(item).attr('data-src'), function() {
+    imgArr.push(utils.$(item).attr('data-src'));
+})
+imgArr = utils.unduplicate(imgArr);
+var loadedImgLen = 0;
+imgArr.forEach(function(item) {
+    loadImg(item, function() {
         loadedImgLen++;
-        Event.trigger('loading', (loadedImgLen / utils.$('[data-src]').length * 100).toFixed(0) + '%');
-        utils.$('.loading_con em').html((loadedImgLen / utils.$('[data-src]').length * 100).toFixed(0) + '%');
-        utils.$(item).attr('src', utils.$(item).attr('data-src'));
-        if (loadedImgLen === utils.$('[data-src]').length) {
+        Event.trigger('loading', (loadedImgLen / imgArr.length * 100).toFixed(0) + '%');
+        utils.$('.loading_con em').html((loadedImgLen / imgArr.length * 100).toFixed(0) + '%');
+        if (loadedImgLen === imgArr.length) {
+            utils.$('[data-src]').each(function(index, item) {
+                utils.$(item).attr('src', utils.$(item).attr('data-src'));
+            })
             Event.trigger('loaded');
             utils.$('.loading_con').addClass('fedeOut');
             setTimeout(function() {
