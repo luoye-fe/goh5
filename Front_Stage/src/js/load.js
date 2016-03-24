@@ -32,12 +32,3 @@ utils.$('[data-src]').each(function(index, item) {
         }
     });
 })
-
-
-Event.on('loading', function(val) {
-    console.log(val);
-})
-
-Event.on('loaded', function() {
-    console.log('loaded');
-})

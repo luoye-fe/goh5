@@ -859,7 +859,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {padding: 0;border: 0}
 html, body{width: 100%;height: 100%;position: relative;}
 .swiper-container{width: 100%;height: 100%;}
 .swiper-container .swiper-wrapper{width: 100%;height: 100%;}
-.swiper-container .swiper-wrapper .swiper-slide{position: relative;overflow: hidden;width: 100%;height: 100%;}
+.swiper-container .swiper-wrapper .swiper-slide{position: relative;width: 100%;height: 100%;background-repeat: no-repeat;background-size: cover;}
 .swiper-container .swiper-wrapper .swiper-slide .items_con{}
 
 
