@@ -1,6 +1,9 @@
 'use strict';
 
 var utils = {};
+
+utils.$ = new Swiper().$;
+
 utils.setCookie = function(name, value, minute) {
     var date = new Date();
     if (minute === undefined) {

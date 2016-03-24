@@ -37,7 +37,7 @@ var webpackConfig = {
         goh5: './src/js/app.js',
         vendor: [
             pwd + '/src/js/fastclick.min.js',
-            pwd + '/src/js/swiper.js',
+            pwd + '/src/js/swiper.js'
         ]
     },
     output: {

@@ -1,6 +1,5 @@
 'use strict';
 
-var $ = require('./jquery.js');
 var Swiper = require('Swiper');
 var utils = require('utils');
 var ani = require('./animate.js');
@@ -37,7 +36,7 @@ GoH5.on('slideChangeEnd', function(swiper) {
 
 // for debug
 window.GoH5 = GoH5;
-window.$ = $;
+window.$ = utils.$;
 
 
 module.exports = GoH5;
