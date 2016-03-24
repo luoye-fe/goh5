@@ -1,8 +1,6 @@
 'use strict';
 
-var Swiper = require('Swiper');
-// 实例化另一个 Swiper 当作工具函数来用(dom操作：utils.$(..)..)
-var utils = new Swiper();
+var utils = {};
 utils.setCookie = function(name, value, minute) {
     var date = new Date();
     if (minute === undefined) {

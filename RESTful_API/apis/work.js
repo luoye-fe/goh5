@@ -2,7 +2,8 @@
 
 var setConfigDefault = {
     loop: true,
-    test: '1'
+    direction: 'vertical',
+    autoBackPrePage: true
 }
 
 var mainCodeDefault = {
