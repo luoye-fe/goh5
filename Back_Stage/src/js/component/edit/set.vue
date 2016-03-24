@@ -46,7 +46,31 @@
 				<div class="item">
 					<div class="head">高级设置</div>
 					<div class="main">
-						
+                        <div class="kind">
+                            <label><span>*</span>循环播放</label>
+                            <input type="checkbox" data-type="loop" :checked="setConfig.loop" :value="checked"></input>
+                        </div>
+						<div class="kind">
+                            <label><span>*</span>翻页方向</label>
+                            <select data-type="direction" :value="setConfig.direction">
+                                <option value="vertical">垂直翻页</option>
+                                <option value="horizontal">水平翻页</option>
+                            </select>
+                        </div>
+                        <div class="kind">
+                            <label><span>*</span>翻页特效</label>
+                            <select data-type="effect" :value="setConfig.effect">
+                                <option value="slide">滑动切换</option>
+                                <option value="fade">淡入淡出</option>
+                                <option value="cube">立体翻转</option>
+                                <option value="coverflow">封面翻转</option>
+                                <option value="flip">3D翻转</option>
+                            </select>
+                        </div>
+                        <div class="kind">
+                            <label><span>*</span>记录浏览历史</label>
+                            <input type="checkbox" data-type="autoBackPrePage" :checked="setConfig.autoBackPrePage"></input>
+                        </div>
 					</div>
 				</div>
 			</div>
@@ -80,7 +104,7 @@
 .set_con .right .item .main{}
 .set_con .right .item .main .kind{margin-top: 15px;}
 .set_con .right .item .main .kind label{font-size: 14px;color: #76838f;display: inline-block;width: 100px;position: relative;text-indent: 14px;margin-top: 7px;}
-.set_con .right .item .main .kind label span{color: #01d7b2;position: absolute;font-size: 20px;left: -14px;top: 68%;transform: translateY(-50%);-webkit-transform: translateY(-50%);}
+.set_con .right .item .main .kind label span{color: #01d7b2;position: absolute;font-size: 20px;left: -14px;top: 1px;}
 .set_con .right .item .main input{width: 270px;display: inline-block;vertical-align: middle;line-height: 30px;padding: 0 10px;box-sizing: border-box;border: 1px solid #c6cbd4;font-size: 14px;color: #76838f;}
 .set_con .right .item .main textarea{width: 270px;display: inline-block;vertical-align: top;padding: 0 10px;font-size: 14px;border: 1px solid #c6cbd4;color: #76838f;box-sizing: border-box;line-height: 26px;resize: none;height: 120px;outline: none;}
 </style>
@@ -155,7 +179,11 @@ var SetPage = Vue.extend({
     	save: function(){
     		var params = {};
     		$('[data-type]').each(function(index,ele){
-    			params[$(this).attr('data-type')] = $(this).val();
+                if($(this).attr('type') === 'checkbox'){
+                    params[$(this).attr('data-type')] = $(this)[0].checked;
+                }else{
+                    params[$(this).attr('data-type')] = $(this).val();
+                }
     		})
     		params.id = this.$route.params.id;
     		$.ajax({

@@ -3,7 +3,8 @@
 var setConfigDefault = {
     loop: true,
     direction: 'vertical',
-    autoBackPrePage: true
+    autoBackPrePage: true,
+    effect: 'slide'
 }
 
 var mainCodeDefault = {

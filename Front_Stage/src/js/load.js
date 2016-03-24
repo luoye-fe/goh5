@@ -2,7 +2,6 @@
 var utils = require('utils');
 var Event = require('Event');
 
-
 var loadImg = function(src, callback) {
     var Tag = document.createElement('img');
     Tag.style.display = 'none';
@@ -21,6 +20,7 @@ utils.$('[data-src]').each(function(index, item) {
     imgArr.push(utils.$(item).attr('data-src'));
 })
 imgArr = utils.unduplicate(imgArr);
+
 var loadedImgLen = 0;
 imgArr.forEach(function(item) {
     loadImg(item, function() {

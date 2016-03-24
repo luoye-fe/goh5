@@ -10,6 +10,9 @@ var isInited = false; // swiper的bug，不是初始页的时候会出发slidech
 var setConfig = {
     direction: defaultConfig.direction,
     loop: defaultConfig.loop,
+    effect: defaultConfig.effect,
+    noSwiping: true,
+    noSwipingClass: 'swipe-no-swiping'
     onInit: function(swiper){
     	ani.swiperAnimateCache(function(){
 	    	ani.swiperAnimate(swiper);
