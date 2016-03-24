@@ -56,7 +56,9 @@ var webpackConfig = {
     resolve: {
         extensions: ['', '.js', '.json', '.scss'],
         alias: {
-
+            Swiper: pwd + '/src/js/swiper.js',
+            Event: pwd + '/src/js/event.js',
+            utils: pwd + '/src/js/utils.js',
         }
     },
 };

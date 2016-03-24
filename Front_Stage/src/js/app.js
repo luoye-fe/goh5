@@ -1,13 +1,7 @@
 'use strict';
 
+var Swiper = require('Swiper');
 
+var load = require('./load.js');
 
-
-var GoH5 = new Swiper('.swiper-container', {
-    lazyLoading: true,
-    lazyLoadingInPrevNext: true,
-    direction: 'vertical',
-    loop: true
-});
-
-window.GoH5 = GoH5;
+var GoH5 = require('./goh5.js');

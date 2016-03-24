@@ -221,7 +221,7 @@
 									<li style-attr="ani-count">
 										<span>动画次数</span>
 										<input type="number" min="0" max="10" step="1" :value="item['ani-count'] | Number '0'" @input="setAni($index,$event,'number')" :disabled="item['ani-count'] === 'infinite'"></input>
-										<input type="checkbox" id="infinite" :value="item['ani-count'] === 'infinite'" @change="setAni($index,$event,'checked')" style="margin-left: 15px;"></input>
+										<input type="checkbox" id="infinite" :checked="item['ani-count'] === 'infinite'" @change="setAni($index,$event,'checked')" style="margin-left: 15px;"></input>
 										<label for="infinite" style="margin-left: 8px;">循环</label>
 									</li>
 								</ul>
