@@ -5,7 +5,14 @@ var utils = require('utils');
 var ani = require('./animate.js');
 
 var defaultConfig = window.defaultConfig;
-console.log(defaultConfig);
+
+if (defaultConfig.direction == 'horizontal') {
+    utils.$('#arrow').addClass('horizontal_arrow');
+} else if (defaultConfig.direction == 'horizontal') {
+    utils.$('#arrow').addClass('vertical_arrow');
+}
+
+
 var isInited = false; // swiper的bug，不是初始页的时候会出发slidechangeend事件
 var setConfig = {
     direction: defaultConfig.direction,
