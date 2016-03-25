@@ -14,7 +14,7 @@ document.getElementById('GoH5ViewPort').setAttribute('content','width=320, initi
 // arrow位置
 if (defaultConfig.direction == 'horizontal') {
     utils.$('#arrow').addClass('horizontal_arrow');
-} else if (defaultConfig.direction == 'horizontal') {
+} else if (defaultConfig.direction == 'vertical') {
     utils.$('#arrow').addClass('vertical_arrow');
 }
 
