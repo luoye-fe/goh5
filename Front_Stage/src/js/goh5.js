@@ -5,14 +5,14 @@ var utils = require('utils');
 var ani = require('./animate.js');
 
 var defaultConfig = window.defaultConfig;
-
+console.log(defaultConfig);
 var isInited = false; // swiper的bug，不是初始页的时候会出发slidechangeend事件
 var setConfig = {
     direction: defaultConfig.direction,
     loop: defaultConfig.loop,
     effect: defaultConfig.effect,
     noSwiping: true,
-    noSwipingClass: 'swipe-no-swiping'
+    noSwipingClass: 'swipe-no-swiping',
     onInit: function(swiper){
     	ani.swiperAnimateCache(function(){
 	    	ani.swiperAnimate(swiper);

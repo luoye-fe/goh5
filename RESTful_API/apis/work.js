@@ -117,7 +117,11 @@ var saveSet = function(req, res) {
         '$set': {
             'title': obj.title,
             'about.keyWords': obj.keywords,
-            'about.desc': obj.desc
+            'about.desc': obj.desc,
+            'setConfig.loop': obj.loop,
+            'setConfig.direction': obj.direction,
+            'setConfig.effect': obj.effect,
+            'setConfig.autoBackPrePage': obj.autoBackPrePage
         }
     }).exec(function(err, docs) {
         if (docs == '') {
