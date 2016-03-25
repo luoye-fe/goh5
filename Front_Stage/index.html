@@ -11,7 +11,7 @@
     </title>
     <meta name="keywords" content="<%= workData.about.keyWords %>">
     <meta name="description" content="<%= workData.about.desc %>">
-    <link rel="stylesheet" type="text/css" href="/front/dist/css/goh5.min.css">
+    <link rel="stylesheet" type="text/css" href="/front/dist/css/goh5.min.css?ver=1.0.0">
 </head>
 
 <body>
@@ -38,7 +38,7 @@
     </div>
     <!-- 主页面 -->
     <!-- 箭头 -->
-    <div id="arrow"><img data-src="http://mjs.sinaimg.cn/wap/module/h5_builder/main/images/arrow.png"></div>
+    <div id="arrow"><img data-src="/front/dist/img/arrow.png"></div>
     <!-- 箭头 -->
     <!-- 加载 -->
     <div class="loading_con">
@@ -54,8 +54,8 @@
     <script type="text/javascript">
         var defaultConfig = <%- JSON.stringify(workData.setConfig) %>
     </script>
-    <script type="text/javascript" src="/front/dist/js/vendor.min.js"></script>
-    <script type="text/javascript" src="/front/dist/js/goh5.min.js"></script>
+    <script type="text/javascript" src="/front/dist/js/vendor.min.js?ver=1.0.0"></script>
+    <script type="text/javascript" src="/front/dist/js/goh5.min.js?ver=1.0.0"></script>
 </body>
 
 </html>

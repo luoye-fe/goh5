@@ -11,6 +11,7 @@ var gulpIf = require('gulp-if');
 var concat = require('gulp-concat');
 var rename = require('gulp-rename');
 var minimist = require('minimist');
+var replace = require('gulp-replace');
 
 var pwd = __dirname;
 
