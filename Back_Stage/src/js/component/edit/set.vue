@@ -79,7 +79,7 @@
 </template>
 
 <style>
-.set_page{position: fixed;left: 0;top: 60px;width: 100%;height: 100%;background-color: rgba(0,0,0,0.6);padding-bottom: 60px;z-index: 99999;}
+.set_page{position: fixed;left: 0;top: 0;width: 100%;height: 100%;background-color: rgba(0,0,0,0.6);z-index: 99999;}
 .set_bg{position: absolute;width: 100%;height: 100%;top: 0;left: 0;}
 .set_con{position: absolute;right: 0;background-color: #fff;width: 700px;height: 100%;top: 0;display: flex;flex-direction: row;padding: 10px 0;}
 .set_con .left{width: 300px;overflow-y: auto;padding-bottom: 170px;}
