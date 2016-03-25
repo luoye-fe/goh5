@@ -1,5 +1,4 @@
 'use strict';
-var dpi = require('./dpi.js');
 
 var load = require('./load.js');
 
