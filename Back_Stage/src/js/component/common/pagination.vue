@@ -60,19 +60,6 @@ var Pagination = Vue.extend({
 		if (!this.paginationConf.perPageOptions) {
 		    this.paginationConf.perPageOptions = [10, 15, 20, 30, 50];
 		}
-
-		this.$watch(function(){
-			if (!this.paginationConf.totalItems) {
-			    this.paginationConf.totalItems = 0;
-			}
-			return this.paginationConf.totalItems + ' ' + this.paginationConf.currentPage + ' ' + this.paginationConf.itemsPerPage;
-		},function(newVal, oldVal){
-			this.getPagination(newVal, oldVal);
-		},{
-			immediate: true,
-			deep: true
-		})
-
 	},
 	props:['paginationConf'],
 	methods: {
@@ -127,11 +114,19 @@ var Pagination = Vue.extend({
 		            }
 		        }
 		    }
-		    if (_this.paginationConf.onChange) {
-		    	if(newValue != oldValue){
-					_this.paginationConf.onChange();
-		    	}
-		    }
+		}
+	},
+	watch: {
+		'paginationConf': {
+			handler: function(val){
+				this.getPagination();
+			},
+			deep: true
+		},
+		'paginationConf.currentPage': {
+			handler: function(val){
+				this.paginationConf.onChange();
+			}
 		}
 	}
 })

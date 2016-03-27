@@ -26,11 +26,11 @@ module.exports = function(Router) {
                 }
             })
         } else {
-            Work.find({'status': 1}).sort({ 'createTime': -1 }).limit(limit).skip((page - 1) * limit).exec(function(err, docs) {
+            Work.find({ 'status': 1 }).sort({ 'createTime': -1 }).limit(limit).skip((page - 1) * limit).exec(function(err, docs) {
                 if (err) {
                     res.send(err);
                 } else {
-                    Work.find({}).exec(function(err, allDoc) {
+                    Work.find({ 'status': 1 }).exec(function(err, allDoc) {
                         var resData = {
                             iserro: 0,
                             msg: '读取成功！',

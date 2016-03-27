@@ -140,6 +140,21 @@ var List = Vue.extend({
 	init: function(){
 		listVm = this;
 	},
+	created: function(){
+		var _this = this;
+		this.loadListData({me: this.listType,page: this.currentPage},function(data){
+			if(!data.iserro){
+				_this.loading = false;
+				_this.paginationConf.totalItems = data.data.totalItems;
+				_this.listData = data.data.listData;
+			}else{
+				_this.alertObj = {
+					show: true,
+					msg: data.msg
+				}
+			}
+		});
+	},
 	vuex: {
 	  	getters: {
 	  		confirmObj: function(){
