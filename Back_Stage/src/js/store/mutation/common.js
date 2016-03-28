@@ -21,14 +21,14 @@ mutations.HIDECONFIRM = function(state) {
     state.confirmObj.show = false;
 }
 
-mutations.MATERIALLIB = function(state, params) {
-    state.materialLibObj.show = params.show;
-    state.materialLibObj.msg = params.msg || '素材库';
-    state.materialLibObj.type = params.type || 'pic';
+mutations.MATERIALLIBPIC = function(state, params) {
+    state.materialLibPicObj.show = params.show;
+    state.materialLibPicObj.msg = params.msg || '素材库';
+    state.materialLibPicObj.type = params.type || 'pic';
 }
 
-mutations.HIDEMATERIALLIB = function(state) {
-    state.materialLibObj.show = false;
+mutations.HIDEMATERIALLIBPIC = function(state) {
+    state.materialLibPicObj.show = false;
 }
 
 mutations.AUTOSAVE = function(state){

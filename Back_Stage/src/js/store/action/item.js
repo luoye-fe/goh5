@@ -12,7 +12,7 @@ actions.changeText = function(store, html) {
 
 actions.addPicOrBg = function(store, src, type) {
     store.dispatch('ADDPICORBG', src, type);
-    store.dispatch('HIDEMATERIALLIB');
+    store.dispatch('HIDEMATERIALLIBPIC');
 }
 
 actions.delBg = function(store) {

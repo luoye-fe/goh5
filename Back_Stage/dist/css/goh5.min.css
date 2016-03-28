@@ -833,7 +833,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {padding: 0;border: 0}
 .all_center {position: absolute;top: 50%;left: 50%;-webkit-transform: translate(-50%, -50%);}
 
 /* tips提示 */
-.awesomeTips {position: absolute;box-sizing: border-box;-webkit-box-sizing: border-box;padding: 8px 15px;color: #fff;font-size: 12px;background: rgba(0, 0, 0, 0.7);border-radius: 8px;z-index: 999;}
+.awesomeTips {position: absolute;box-sizing: border-box;-webkit-box-sizing: border-box;padding: 8px 15px;color: #fff;font-size: 12px;background: rgba(0, 0, 0, 0.7);border-radius: 8px;z-index: 9999;}
 .awesomeTips.tipsInLeft {-webkit-animation: tipsInLeft 0.4s ease 0.2s both;animation: tipsInLeft 0.4s ease 0.2s both;}
 .awesomeTips.tipsInRight {-webkit-animation: tipsInRight 0.4s ease 0.2s both;animation: tipsInRight 0.4s ease 0.2s both;}
 .awesomeTips.tipsInTop {-webkit-animation: tipsInTop 0.4s ease 0.2s both;animation: tipsInTop 0.4s ease 0.2s both;}

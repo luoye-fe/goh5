@@ -1,18 +1,18 @@
 <template>
-	<div class="dialog_con" v-show="materialLibObj.show" transition="fade">
-		<div class="dialog_bg" @click="hideMaterialLib()"></div>
+	<div class="dialog_con" v-show="materialLibPicObj.show" transition="fade">
+		<div class="dialog_bg" @click="hideMaterialLibPic()"></div>
 		<div class="dialog_main_con all_center">
 			<div class="dialog_head">
 				<h2>素材库</h2>
-				<p>{{materialLibObj.msg}}</p>
-				<a href="javascript:void(0)" class="dialog_link close" @click="hideMaterialLib()">&times;</a>
+				<p>{{materialLibPicObj.msg}}</p>
+				<a href="javascript:void(0)" class="dialog_link close" @click="hideMaterialLibPic()">&times;</a>
 			</div>
 			<div class="dialog_main lib_con">
 				<div class="lib_list">
 					<ul class="group">
 						<li>我的图库</li>
 					</ul>
-					<div class="upload_btn">
+					<div class="upload_btn" v-tips="['top','一次上传最多6张']">
 						<span>上传图片</span>
 						<input type="file" multiple accept="image/gif, image/jpeg, image/png, image/jpg" @change="uploadImg($event)" style="display: block;width: 100%;height: 100%;position: absolute;opacity: 0;left: 0;top: 0;cursor: pointer;"></input>
 					</div>
@@ -30,7 +30,7 @@
 					<div class="lib_main_body">
 						<ul class="pics_con">
 							<li v-for="item in imgList">
-								<img :src="'/img/'+item.file_name" @click="addPicOrBg('/img/'+item.file_name,materialLibObj.type)">
+								<img :src="'/img/'+item.file_name" @click="addPicOrBg('/img/'+item.file_name,materialLibPicObj.type)">
 							</li>
 						</ul>
 						<m-pagination :pagination-conf="paginationConf"></m-pagination>
@@ -39,7 +39,7 @@
 			</div>
 			<div class="dialog_bottom">
 				<ul class="dialog_btn">
-					<li @click="hideMaterialLib()">取消</li>
+					<li @click="hideMaterialLibPic()">取消</li>
 					<li @click="ok()">确认</li>
 				</ul>
 			</div>
@@ -79,11 +79,13 @@ var router = new Router();
 var store = require('../../store/store.js');
 var actions = require('../../store/action/index.js');
 
+var tips = require('../../directive/tips.js');
+
 var Pagination = require('../common/pagination.vue');
 
-var MaterialLibVm = null;
-var MaterialLib = Vue.extend({
-	name:'MaterianlLib',
+var MaterialLibPicVm = null;
+var MaterialLibPic = Vue.extend({
+	name:'MaterialLibPic',
 	data: function(){
 		return {
 			imgList: [],
@@ -93,13 +95,13 @@ var MaterialLib = Vue.extend({
 				itemsPerPage: 7,
 				pagesLength: 5,
 				onChange: function(){
-					MaterialLibVm.loadImg(MaterialLibVm.paginationConf.currentPage);
+					MaterialLibPicVm.loadImg(MaterialLibPicVm.paginationConf.currentPage);
 				}
 			}
 		}
 	},
 	init: function(){
-		MaterialLibVm = this;
+		MaterialLibPicVm = this;
 	},
 	created: function(){
 		this.loadImg(this.paginationConf.currentPage);
@@ -110,14 +112,14 @@ var MaterialLib = Vue.extend({
 	props: ['loading'],
 	vuex: {
 	  	getters: {
-	  		materialLibObj: function(){
-	  			return store.state.materialLibObj
+	  		materialLibPicObj: function(){
+	  			return store.state.materialLibPicObj
 	  		}
 	  	},
 	  	actions: actions
 	},
 	methods:{
-		hideMaterialLib: actions.hideMaterialLib,
+		hideMaterialLibPic: actions.hideMaterialLibPic,
 		addPicOrBg: actions.addPicOrBg,
 		uploadImg: function(ev){
 			var files = {};
@@ -175,6 +177,6 @@ var MaterialLib = Vue.extend({
 	}
 })
 
-module.exports = MaterialLib;
+module.exports = MaterialLibPic;
 
 </script>

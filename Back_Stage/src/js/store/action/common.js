@@ -16,12 +16,12 @@ actions.hideConfirm = function(store) {
 	store.dispatch('HIDECONFIRM');
 }
 
-actions.materialLib = function(store,params){
-	store.dispatch('MATERIALLIB', params);
+actions.materialLibPic = function(store,params){
+	store.dispatch('MATERIALLIBPIC', params);
 }
 
-actions.hideMaterialLib = function(store){
-	store.dispatch('HIDEMATERIALLIB');
+actions.hideMaterialLibPic = function(store){
+	store.dispatch('HIDEMATERIALLIBPIC');
 }
 
 actions.autoSave = function(store){

@@ -7,7 +7,7 @@
 	<m-attr-list></m-attr-list>
 	<m-loading :loading.sync="loading"></m-loading>
 	<m-alert></m-alert>
-	<m-material-lib :loading.sync="loading"></m-material-lib>
+	<m-material-lib-pic :loading.sync="loading"></m-material-lib-pic>
 	<m-set-page :show-set.sync="showSet"></m-set-page>
 </template>
 
@@ -33,7 +33,7 @@ var Loading = require('../common/loading.vue');
 var PageList = require('./pageList.vue');
 var Phone = require('./phone.vue');
 var AttrList = require('./attrList.vue');
-var MaterialLib = require('./materialLib.vue')
+var MaterialLibPic = require('./materialLibPic.vue')
 var ToolBar = require('./toolbar.vue');
 var SetPage = require('./set.vue');
 
@@ -44,7 +44,8 @@ var Edit = Vue.extend({
 		return {
 			loading: true,
 			bgGridStatus: true,
-			showSet: false
+			showSet: false,
+			showAddMusic: false
 		}
 	},
 	vuex: {
@@ -81,9 +82,9 @@ var Edit = Vue.extend({
 		'm-page-list': PageList,
 		'm-phone': Phone,
 		'm-attr-list': AttrList,
-		'm-material-lib': MaterialLib,
+		'm-material-lib-pic': MaterialLibPic,
 		'm-tool-bar': ToolBar,
-		'm-set-page': SetPage
+		'm-set-page': SetPage,
 	},
 	methods: {
 		initData: actions.initData
