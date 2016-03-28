@@ -101,6 +101,9 @@ var MaterialLib = Vue.extend({
 	init: function(){
 		MaterialLibVm = this;
 	},
+	created: function(){
+		this.loadImg(this.paginationConf.currentPage);
+	},
 	components:{
 		'm-pagination': Pagination
 	},

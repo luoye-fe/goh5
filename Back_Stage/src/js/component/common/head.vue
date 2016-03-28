@@ -8,7 +8,7 @@
 				<li @click="materialLib({show:true,msg:'更改背景',type:'bg'})"><div class="icon icon3"></div><span>背景</span></li>
 				<!-- <li><div class="icon icon4"></div><span>图集</span></li> -->
 				<!-- <li><div class="icon icon5"></div><span>视频</span></li> -->
-				<!-- <li><div class="icon icon6"></div><span>音乐</span></li> -->
+				<li><div class="icon icon6"></div><span>音乐</span></li>
 			</ul>
 		</div>
 		<div class="item right">
