@@ -1,11 +1,11 @@
 <template>
-	<div class="dialog_con" v-show="materialLibObj.show" transition="fade">
-		<div class="dialog_bg" @click="hideMaterialLib()"></div>
+	<div class="dialog_con" v-show="materialLibMusicObj.show" transition="fade">
+		<div class="dialog_bg" @click="hideMaterialLibMusic()"></div>
 		<div class="dialog_main_con all_center">
 			<div class="dialog_head">
 				<h2>素材库</h2>
-				<p>{{materialLibObj.msg}}</p>
-				<a href="javascript:void(0)" class="dialog_link close" @click="hideMaterialLib()">&times;</a>
+				<p>{{materialLibMusicObj.msg}}</p>
+				<a href="javascript:void(0)" class="dialog_link close" @click="hideMaterialLibMusic()">&times;</a>
 			</div>
 			<div class="dialog_main lib_con">
 				<div class="lib_list">
@@ -28,9 +28,16 @@
 						</ul>
 					</div>
 					<div class="lib_main_body">
-						<ul class="pics_con">
-							<li v-for="item in imgList">
-								<img :src="'/img/'+item.file_name" @click="addPicOrBg('/img/'+item.file_name,materialLibObj.type)">
+						<ul class="music_list">
+							<li>
+								<p>测试.mp3</p>
+								<a href="javascript:void(0)">播放</a>
+								<span>888KB</span>
+							</li>
+							<li>
+								<p>测试.mp3</p>
+								<a href="javascript:void(0)">播放</a>
+								<span>888KB</span>
 							</li>
 						</ul>
 						<m-pagination :pagination-conf="paginationConf"></m-pagination>
@@ -39,7 +46,7 @@
 			</div>
 			<div class="dialog_bottom">
 				<ul class="dialog_btn">
-					<li @click="hideMaterialLib()">取消</li>
+					<li @click="hideMaterialLibMusic()">取消</li>
 					<li @click="ok()">确认</li>
 				</ul>
 			</div>
@@ -60,9 +67,19 @@
 .lib_con .lib_main .lib_main_head .lib_main_head_group li span{cursor: pointer;transition: all ease 0.2s;-webkit-transition: all ease 0.2s;color: #76838f;}
 .lib_con .lib_main .lib_main_head .lib_main_head_group li span:hover{color: #01d7b2;}
 .lib_con .lib_main .lib_main_body{}
-.lib_con .lib_main .lib_main_body .pics_con{font-size: 0;}
-.lib_con .lib_main .lib_main_body .pics_con li{display: inline-table;vertical-align: top;width: 31%;margin: 10px 1% 0;position: relative;overflow: hidden;padding-bottom: 31%;background: #ddd;cursor: pointer;}
-.lib_con .lib_main .lib_main_body .pics_con li img{display: block;position: absolute;top: 50%;left: 50%;width: 100%;transform: translate(-50%,-50%);-webkit-transform: translate(-50%,-50%);}
+.lib_con .lib_main .lib_main_body .music_list{width: 100%;font-size: 0;padding: 10px 0;}
+.lib_con .lib_main .lib_main_body .music_list li{line-height: 32px;background: #fff;}
+.lib_con .lib_main .lib_main_body .music_list li:hover{background: rgba(8,161,239,1)!important;color: #fff!important;cursor: pointer;}
+.lib_con .lib_main .lib_main_body .music_list li:hover p{color: #fff!important;}
+.lib_con .lib_main .lib_main_body .music_list li:hover span{color: #fff!important;}
+.lib_con .lib_main .lib_main_body .music_list li:hover a{color: #fff!important;}
+.lib_con .lib_main .lib_main_body .music_list li:nth-child(even){background: #fff;}
+.lib_con .lib_main .lib_main_body .music_list li:nth-child(odd){background: #eee;}
+.lib_con .lib_main .lib_main_body .music_list li>p{display: inline-block;vertical-align: middle;font-size: 12px;color: #76838f;margin-left: 10px;}
+.lib_con .lib_main .lib_main_body .music_list li>span{display: inline-block;vertical-align: middle;font-size: 12px;color: #ccc;float: right;margin-right: 10px;}
+.lib_con .lib_main .lib_main_body .music_list li>a{display: inline-block;vertical-align: middle;font-size: 12px;color: rgba(8,161,239,1);float: right;margin-right: 10px;}
+.lib_con .lib_main .lib_main_body .music_list li>a:hover{text-decoration: underline;}
+
 
 </style>
 
@@ -83,9 +100,9 @@ var tips = require('../../directive/tips.js');
 
 var Pagination = require('../common/pagination.vue');
 
-var MaterialLibVm = null;
-var MaterialLib = Vue.extend({
-	name:'MaterianlLib',
+var MaterialLibMusicVm = null;
+var MaterialLibMusic = Vue.extend({
+	name:'MaterialLibMusic',
 	data: function(){
 		return {
 			imgList: [],
@@ -95,13 +112,13 @@ var MaterialLib = Vue.extend({
 				itemsPerPage: 7,
 				pagesLength: 5,
 				onChange: function(){
-					MaterialLibVm.loadImg(MaterialLibVm.paginationConf.currentPage);
+					MaterialLibMusicVm.loadImg(MaterialLibMusicVm.paginationConf.currentPage);
 				}
 			}
 		}
 	},
 	init: function(){
-		MaterialLibVm = this;
+		MaterialLibMusicVm = this;
 	},
 	created: function(){
 		this.loadImg(this.paginationConf.currentPage);
@@ -112,29 +129,16 @@ var MaterialLib = Vue.extend({
 	props: ['loading'],
 	vuex: {
 	  	getters: {
-	  		materialLibObj: function(){
-	  			return store.state.materialLibObj
+	  		materialLibMusicObj: function(){
+	  			return store.state.materialLibMusicObj
 	  		}
 	  	},
 	  	actions: actions
 	},
 	methods:{
-		hideMaterialLib: actions.hideMaterialLib,
-		addPicOrBg: actions.addPicOrBg,
-		uploadImg: function(ev){
-			var files = {};
-			if(ev.target.files.length > 6){
-				actions.alert(store,{
-					show: true,
-					msg: '一次最多上传6张！超出图片本次不会上传',
-					type: 'warning'
-				})
-				for(var i = 0;i < 6;i++){
-					files[i] = ev.target.files[i];
-				}
-			}else{
-				files = ev.target.files;
-			}
+		hideMaterialLibMusic: actions.hideMaterialLibMusic,
+		uploadMusic: function(ev){
+			var files = ev.target.files;
 			var formData = new FormData();
 			for(var item in files){
 				formData.append('files', files[item]);
@@ -177,6 +181,6 @@ var MaterialLib = Vue.extend({
 	}
 })
 
-module.exports = MaterialLib;
+module.exports = MaterialLibMusic;
 
 </script>

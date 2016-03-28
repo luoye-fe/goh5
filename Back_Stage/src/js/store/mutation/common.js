@@ -31,6 +31,16 @@ mutations.HIDEMATERIALLIBPIC = function(state) {
     state.materialLibPicObj.show = false;
 }
 
+mutations.MATERIALLIBMUSIC = function(state, params) {
+    state.materialLibMusicObj.show = params.show;
+    state.materialLibMusicObj.msg = params.msg || '素材库';
+    state.materialLibMusicObj.type = params.type || 'pic';
+}
+
+mutations.HIDEMATERIALLIBMUSIC = function(state) {
+    state.materialLibMusicObj.show = false;
+}
+
 mutations.AUTOSAVE = function(state){
     setInterval(function(){
         localStorage.mainCode = JSON.stringify(state.mainCode);

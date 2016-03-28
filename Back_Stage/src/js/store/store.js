@@ -31,6 +31,11 @@ var state = {
         show: false,
         msg: '素材库',
         type: 'pic' // pic:图片 bg:背景 pics:图集 and so on
+    },
+    materialLibMusicObj: {
+        show: false,
+        msg: '音乐库',
+        type: 'bgMusic'
     }
 }
 

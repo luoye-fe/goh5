@@ -24,6 +24,14 @@ actions.hideMaterialLibPic = function(store){
 	store.dispatch('HIDEMATERIALLIBPIC');
 }
 
+actions.materialLibMusic = function(store,params){
+	store.dispatch('MATERIALLIBMUSIC', params);
+}
+
+actions.hideMaterialLibMusic = function(store){
+	store.dispatch('HIDEMATERIALLIBMUSIC');
+}
+
 actions.autoSave = function(store){
 	store.dispatch('AUTOSAVE');
 }
