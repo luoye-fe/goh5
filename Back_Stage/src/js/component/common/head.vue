@@ -8,7 +8,7 @@
 				<li @click="materialLib({show:true,msg:'更改背景',type:'bg'})"><div class="icon icon3"></div><span>背景</span></li>
 				<!-- <li><div class="icon icon4"></div><span>图集</span></li> -->
 				<!-- <li><div class="icon icon5"></div><span>视频</span></li> -->
-				<li><div class="icon icon6"></div><span>音乐</span></li>
+				<li @click="addMusic()"><div class="icon icon6"></div><span>音乐</span></li>
 			</ul>
 		</div>
 		<div class="item right">
@@ -93,6 +93,8 @@ var Head = Vue.extend({
         actions: actions
     },
 	methods:{
+		addText: actions.addText,
+		materialLib: actions.materialLib,
 		logout: function(){
 			$.ajax({
 				url: '/api/user/logout',
@@ -112,6 +114,7 @@ var Head = Vue.extend({
 					mainCode: JSON.stringify(_this.mainCode)
 				},
 				success: function(data){
+					localStorage.mainCode = null;
 					actions.alert(store, {
 						show: true,
 						msg: '保存成功',
@@ -129,8 +132,9 @@ var Head = Vue.extend({
 				$(ev.target).find('.qrcode').addClass('hide');
 			}
 		},
-		addText: actions.addText,
-		materialLib: actions.materialLib
+		addMusic: function(){
+
+		}
 	}
 })
 

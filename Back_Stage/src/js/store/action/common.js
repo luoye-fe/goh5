@@ -24,4 +24,8 @@ actions.hideMaterialLib = function(store){
 	store.dispatch('HIDEMATERIALLIB');
 }
 
+actions.autoSave = function(store){
+	store.dispatch('AUTOSAVE');
+}
+
 module.exports = actions;

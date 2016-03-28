@@ -43,6 +43,7 @@ var webpackConfig = {
             pwd + '/src/js/library/' + aliasFile('vuex'),
             pwd + '/src/js/library/' + aliasFile('jquery-qrcode'),
             pwd + '/src/js/library/' + aliasFile('jquery-popline'),
+            pwd + '/src/js/library/' + aliasFile('lodash')
         ]
     },
     output: {
@@ -68,7 +69,8 @@ var webpackConfig = {
             'vue-route': pwd + '/src/js/library/' + aliasFile('vue-router'),
             'utils': pwd + '/src/js/util/index.js',
             'qrcode': pwd + '/src/js/library/' + aliasFile('jquery-qrcode'),
-            'popline': pwd + '/src/js/library/' + aliasFile('jquery-popline')
+            'popline': pwd + '/src/js/library/' + aliasFile('jquery-popline'),
+            'lodash': pwd + '/src/js/library/' + aliasFile('lodash')
         }
     },
 };

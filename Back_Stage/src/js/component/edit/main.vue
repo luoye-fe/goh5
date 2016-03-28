@@ -74,6 +74,9 @@ var Edit = Vue.extend({
 			}
 		})
 	},
+	ready: function(){
+		actions.autoSave(store);
+	},
 	components: {
 		'm-page-list': PageList,
 		'm-phone': Phone,

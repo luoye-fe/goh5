@@ -5,7 +5,7 @@
 var $ = require('jQuery');
 
 var utils = require('utils');
-
+var _ = require('lodash');
 
 var mutationModule = ['./item.js', './page.js', './dom.js', './common.js'];
 
@@ -13,10 +13,18 @@ var mutations = {};
 
 mutations.INITDATA = function(state, data) {
     state.workData = data;
-    state.mainCode = state.workData.mainCode;
-    state.pagesData = state.mainCode.pages;
-    state.currentPageData = state.pagesData[state.currentPage - 1];
-    state.currentPageMain = state.currentPageData.main;
+    if (localStorage.mainCode !== 'null' && !_.isEqual(JSON.parse(localStorage.mainCode), data.mainCode) && confirm('检测到本地存在未保存数据，是否应用？')) {
+        state.workData.mainCode = JSON.parse(localStorage.mainCode);
+        state.mainCode = state.workData.mainCode;
+        state.pagesData = state.mainCode.pages;
+        state.currentPageData = state.pagesData[state.currentPage - 1];
+        state.currentPageMain = state.currentPageData.main;
+    } else {
+        state.mainCode = state.workData.mainCode;
+        state.pagesData = state.mainCode.pages;
+        state.currentPageData = state.pagesData[state.currentPage - 1];
+        state.currentPageMain = state.currentPageData.main;
+    }
     state.about = state.workData.about;
     state.setConfig = state.workData.setConfig;
 };
