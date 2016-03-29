@@ -13,7 +13,6 @@ if (defaultConfig.direction == 'horizontal') {
     utils.$('#arrow').addClass('vertical_arrow');
 }
 
-
 var isInited = false; // swiper的bug，不是初始页的时候会出发slidechangeend事件
 var setConfig = {
     direction: defaultConfig.direction,
@@ -47,7 +46,9 @@ GoH5.on('slideChangeEnd', function(swiper) {
 
 // for debug
 window.GoH5 = GoH5;
+window.utils = utils;
 window.$ = utils.$;
+
 
 
 module.exports = GoH5;

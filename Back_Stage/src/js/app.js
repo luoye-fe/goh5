@@ -8,7 +8,7 @@ var Router = require('vue-route');
 Vue.use(Router);
 var router = new Router();
 
-Vue.config.debug = true;
+var APP = Vue.extend({});
 
 // vue component
 var Home = require('./component/home/main.vue');
@@ -28,17 +28,18 @@ router.map({
 })
 
 router.beforeEach(function() {
-    if (utils.getCookie('isLogin') != '1') {
+    if (utils.getCookie('isLogin') !== '1') {
         router.go('/');
+        return;
+    }
+    if(router.app.$route.path === '/' && utils.getCookie('isLogin') === '1'){
+        router.go('/list');
+        return;
     }
 })
 
 router.redirect({
     '*': '/'
 })
-
-var APP = Vue.extend({
-    
-});
 
 router.start(APP, '#app');

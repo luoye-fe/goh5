@@ -19,6 +19,14 @@ actions.delBg = function(store) {
     store.dispatch('DELBG');
 }
 
+actions.addBgMusic = function(store, src, name) {
+    store.dispatch('ADDBGMUSIC', src, name);
+}
+
+actions.delBgMusic = function(store) {
+    store.dispatch('DElBGMUSIC');
+}
+
 actions.selectItem = function(store, index, multi) {
     store.dispatch('SELECTITEM', index, multi);
 }

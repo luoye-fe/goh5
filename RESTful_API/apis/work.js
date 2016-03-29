@@ -10,7 +10,8 @@ var setConfigDefault = {
 var mainCodeDefault = {
     wholeAttr: {
         background: '#fff',
-        bgmusic: ''
+        bgmusic: '',
+        bgmusicName: ''
     },
     pages: [{
         main: {

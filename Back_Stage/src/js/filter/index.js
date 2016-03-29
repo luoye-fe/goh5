@@ -41,7 +41,11 @@ Vue.filter('Number', function(value, defaultNum) {
 Vue.filter('FormatBg', function(value) {
     if (value && utils.checkIsColor(value)) {
         return 'background-color:' + value;
-    } else if(value){
+    } else if (value) {
         return 'background-image:url(' + value + ')';
     }
+})
+
+Vue.filter('FileSize', function(value) {
+    return utils.attachmentSizeFormat(value,0);
 })

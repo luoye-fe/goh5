@@ -53,6 +53,14 @@ html, body{width: 100%;height: 100%;position: relative;}
 	100%{-webkit-transform: translate3d(0, 0, 0) rotateZ(90deg);opacity: 1;}
 }
 
+/* 音乐按钮 */
+.audio_btn{display: block;position: fixed;width: 30px;height: 30px;right: 20px;top: 20px;z-index: 99999;}
+.audio_btn.play{animation: play 1.5s linear both infinite;-webkit-animation: play 1.5s linear both infinite;}
+.audio_btn.pause{}
+@-webkit-keyframes play{
+	0%{transform: rotate(0deg);-webkit-transform: rotate(0deg);}
+	100%{transform: rotate(360deg);-webkit-transform: rotate(360deg);}
+}
 
 /* 定位 */
 .vertical_center {position: absolute;top: 50%;-webkit-transform: translateY(-50%);}

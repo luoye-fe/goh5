@@ -6,7 +6,7 @@
             <li v-tips="['right','背景']">
                 <div class="tool_btn tool_btn3" @click="setBg()">背景</div>
                 <ul class="bg_btn" v-show="dropDown" @click="dropDown = !dropDown">
-                    <li @click="materialLib({show:true,msg:'更改背景',type:'bg'})">更换</li>
+                    <li @click="materialLibPic({show:true,msg:'更改背景',type:'bg'})">更换</li>
                     <li @click="delBg()">删除</li>
                 </ul>
             </li>
@@ -66,13 +66,13 @@ var ToolBar = Vue.extend({
         actions: actions
     },
     methods: {
-        materialLib: actions.materialLib,
+        materialLibPic: actions.materialLibPic,
         delBg: actions.delPage,
         setBg: function() {
             if (!utils.checkIsColor(this.currentPageMain.background)) {
                 this.dropDown = !this.dropDown;
             } else {
-                actions.materialLib(store, {
+                actions.materialLibPic(store, {
                     show: true,
                     msg: '更改背景',
                     type: 'bg'

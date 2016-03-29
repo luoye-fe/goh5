@@ -36,6 +36,16 @@ mutations.DELBG = function(state) {
     state.currentPageMain.background = '#fff';
 }
 
+mutations.ADDBGMUSIC = function(state,src,name){
+    state.mainCode.wholeAttr.bgmusic = src;
+    state.mainCode.wholeAttr.bgmusicName = name;
+}
+
+mutations.DElBGMUSIC = function(state){
+    state.mainCode.wholeAttr.bgmusic = '';
+    state.mainCode.wholeAttr.bgmusicName = '';
+}
+
 mutations.SELECTITEM = function(state, index, multi) {
     if (multi) {
         state.checkedItems.push(index);

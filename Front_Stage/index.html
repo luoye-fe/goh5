@@ -11,7 +11,7 @@
     </title>
     <meta name="keywords" content="<%= workData.about.keyWords %>">
     <meta name="description" content="<%= workData.about.desc %>">
-    <link rel="stylesheet" type="text/css" href="/front/dist/css/goh5.min.css?ver=1.0.0">
+    <link rel="stylesheet" type="text/css" href="/front/dist/css/goh5.min.css?ver=1.0.1">
 </head>
 
 <body>
@@ -51,11 +51,15 @@
         </div>
     </div>
     <!-- 加载 -->
+    <!-- 音乐 -->
+    <audio id="audio_ele" autoplay="autoplay" src="<%= workData.mainCode.wholeAttr.bgmusic %>"></audio>
+    <img class="audio_btn play" style="display: none;" src="/front/dist/img/music.png">
+    <!-- 音乐 -->
     <script type="text/javascript">
         var defaultConfig = <%- JSON.stringify(workData.setConfig) %>
     </script>
-    <script type="text/javascript" src="/front/dist/js/vendor.min.js?ver=1.0.0"></script>
-    <script type="text/javascript" src="/front/dist/js/goh5.min.js?ver=1.0.0"></script>
+    <script type="text/javascript" src="/front/dist/js/vendor.min.js?ver=1.0.1"></script>
+    <script type="text/javascript" src="/front/dist/js/goh5.min.js?ver=1.0.1"></script>
 </body>
 
 </html>

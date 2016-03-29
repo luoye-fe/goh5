@@ -10,6 +10,7 @@ var state = {
     workData: '',
     mainCode: '',
     pagesData: '',
+    wholeAttr: '',
     currentPage: 1,
     currentPageData: '',
     currentPageMain: '',

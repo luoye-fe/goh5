@@ -79,3 +79,12 @@ utils.checkIsColor = function(strColor) {
     }
     oSpan = null;
 }
+
+utils.attachmentSizeFormat = function(fileSize, level){
+    var unit = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+    if (fileSize < 1024) {
+        return fileSize.toFixed(2) + unit[level];
+    } else {
+        return utils.attachmentSizeFormat(fileSize / 1024, ++level);
+    }
+}

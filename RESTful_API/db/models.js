@@ -19,6 +19,14 @@ module.exports = {
     uploadImg: {
         'user_name': { type: String, required: true },
         'file_name': { type: String, required: true },
-        'upload_time': {type: Number, require: true}
+        'upload_time': { type: Number, require: true }
+    },
+    uploadMusic: {
+        'user_name': { type: String, required: true },
+        'file_path': { type: String, required: true },
+        'file_name': { type: String, required: true },
+        'file_size': { type: String, required: true },
+        'upload_time': { type: Number, require: true },
+        'file_duration': { type: Number },
     }
 }

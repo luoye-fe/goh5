@@ -30,6 +30,8 @@ app.use(session({
 
 // 用户上传的图片
 app.use('/img', express.static(pwd + '/User/UploadImg/'));
+// 用户上传的音乐
+app.use('/audio', express.static(pwd + '/User/UploadMusic/'));
 // 后台静态资源
 app.use('/back', express.static(pwd + '/Back_Stage/'));
 // 前台静态资源
@@ -65,9 +67,7 @@ routers.forEach(function(Router) {
 })
 
 
+
 app.listen(port);
 
 module.exports = app;
-
-
-// for ceshi

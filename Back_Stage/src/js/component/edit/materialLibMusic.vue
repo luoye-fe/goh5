@@ -14,12 +14,13 @@
 					</ul>
 					<div class="upload_btn" v-tips="['top','大小不得超过4M（为了更好的体验，请控制音乐大小）']">
 						<span>上传音乐</span>
-						<input type="file" multiple accept="image/gif, image/jpeg, image/png, image/jpg" @change="uploadImg($event)" style="display: block;width: 100%;height: 100%;position: absolute;opacity: 0;left: 0;top: 0;cursor: pointer;"></input>
+						<input type="file" accept="audio/*" @change="uploadMusic($event)" style="display: block;width: 100%;height: 100%;position: absolute;opacity: 0;left: 0;top: 0;cursor: pointer;"></input>
 					</div>
 				</div>
 				<div class="lib_main">
 					<div class="lib_main_head">
 						<ul class="lib_main_head_group">
+							<li v-show="wholeAttr.bgmusic !== ''"><strong>当前背景音乐：{{wholeAttr.bgmusicName}}</strong><a href="javascript:void(0)" class="close" @click="delBgMusic()">&times;</a></li>
 							<li><span>管理</span></li>
 						</ul>
 						<ul class="lib_main_head_group" style="display: none;">
@@ -29,15 +30,10 @@
 					</div>
 					<div class="lib_main_body">
 						<ul class="music_list">
-							<li>
-								<p>测试.mp3</p>
-								<a href="javascript:void(0)">播放</a>
-								<span>888KB</span>
-							</li>
-							<li>
-								<p>测试.mp3</p>
-								<a href="javascript:void(0)">播放</a>
-								<span>888KB</span>
+							<li v-for="item in musicList" @click="addBgMusic_e(item.file_path,item.file_name)">
+								<p>{{item.file_name}}</p>
+								<a href="javascript:void(0)" :music-src="item.file_path" @click="preMuisc($event)">播放</a>
+								<span>{{item.file_size | FileSize}}</span>
 							</li>
 						</ul>
 						<m-pagination :pagination-conf="paginationConf"></m-pagination>
@@ -47,7 +43,7 @@
 			<div class="dialog_bottom">
 				<ul class="dialog_btn">
 					<li @click="hideMaterialLibMusic()">取消</li>
-					<li @click="ok()">确认</li>
+					<li @click="hideMaterialLibMusic()">确认</li>
 				</ul>
 			</div>
 		</div>
@@ -64,6 +60,8 @@
 .lib_con .lib_main .lib_main_head{width: 100%;height: 44px;border-bottom: 1px solid #ccd5db;display: flex;justify-content: flex-end;}
 .lib_con .lib_main .lib_main_head .lib_main_head_group{font-size: 0;height: 44px;}
 .lib_con .lib_main .lib_main_head .lib_main_head_group li{display: inline-block;vertical-align: middle;font-size: 12px;line-height: 44px;margin: 0 5px;padding: 0 10px;}
+.lib_con .lib_main .lib_main_head .lib_main_head_group li a{display: inline-block;vertical-align: middle;margin-left: 10px;}
+.lib_con .lib_main .lib_main_head .lib_main_head_group li a:hover{color: #01d7b2;}
 .lib_con .lib_main .lib_main_head .lib_main_head_group li span{cursor: pointer;transition: all ease 0.2s;-webkit-transition: all ease 0.2s;color: #76838f;}
 .lib_con .lib_main .lib_main_head .lib_main_head_group li span:hover{color: #01d7b2;}
 .lib_con .lib_main .lib_main_body{}
@@ -74,7 +72,7 @@
 .lib_con .lib_main .lib_main_body .music_list li:hover span{color: #fff!important;}
 .lib_con .lib_main .lib_main_body .music_list li:hover a{color: #fff!important;}
 .lib_con .lib_main .lib_main_body .music_list li:nth-child(even){background: #fff;}
-.lib_con .lib_main .lib_main_body .music_list li:nth-child(odd){background: #eee;}
+.lib_con .lib_main .lib_main_body .music_list li:nth-child(odd){background: rgba(245,245,245,1);}
 .lib_con .lib_main .lib_main_body .music_list li>p{display: inline-block;vertical-align: middle;font-size: 12px;color: #76838f;margin-left: 10px;}
 .lib_con .lib_main .lib_main_body .music_list li>span{display: inline-block;vertical-align: middle;font-size: 12px;color: #ccc;float: right;margin-right: 10px;}
 .lib_con .lib_main .lib_main_body .music_list li>a{display: inline-block;vertical-align: middle;font-size: 12px;color: rgba(8,161,239,1);float: right;margin-right: 10px;}
@@ -105,14 +103,14 @@ var MaterialLibMusic = Vue.extend({
 	name:'MaterialLibMusic',
 	data: function(){
 		return {
-			imgList: [],
+			musicList: [],
 			paginationConf: {
 				currentPage: 1,
 				totalItems: 0,
 				itemsPerPage: 7,
 				pagesLength: 5,
 				onChange: function(){
-					MaterialLibMusicVm.loadImg(MaterialLibMusicVm.paginationConf.currentPage);
+					MaterialLibMusicVm.loadMuisc(MaterialLibMusicVm.paginationConf.currentPage);
 				}
 			}
 		}
@@ -121,7 +119,7 @@ var MaterialLibMusic = Vue.extend({
 		MaterialLibMusicVm = this;
 	},
 	created: function(){
-		this.loadImg(this.paginationConf.currentPage);
+		this.loadMuisc(this.paginationConf.currentPage);
 	},
 	components:{
 		'm-pagination': Pagination
@@ -130,23 +128,29 @@ var MaterialLibMusic = Vue.extend({
 	vuex: {
 	  	getters: {
 	  		materialLibMusicObj: function(){
-	  			return store.state.materialLibMusicObj
+	  			return store.state.materialLibMusicObj;
+	  		},
+	  		wholeAttr: function(){
+	  			return store.state.wholeAttr;
 	  		}
 	  	},
 	  	actions: actions
 	},
 	methods:{
 		hideMaterialLibMusic: actions.hideMaterialLibMusic,
+		delBgMusic: actions.delBgMusic,
 		uploadMusic: function(ev){
 			var files = ev.target.files;
 			var formData = new FormData();
-			for(var item in files){
-				formData.append('files', files[item]);
-			}
+			formData.append('files', files[0]);
 			var _this = this;
+			if(files[0].size > 4194304){
+				alert('请上传小于4M的文件');
+				return false;
+			}
 			_this.loading = true;
 			$.ajax({
-				url: '/api/img/upload',
+				url: '/api/audio/upload?file_name=' + files[0].name + '&file_size='+files[0].size,
 				type: 'post',
 				cache: false,
 			    data: formData,
@@ -164,19 +168,49 @@ var MaterialLibMusic = Vue.extend({
 				}
 			})
 		},
-		loadImg: function(page){
+		loadMuisc: function(page){
 			var _this = this;
 			$.ajax({
-				url: '/api/img/list',
+				url: '/api/audio/list',
 				type: 'get',
 				data: {
 					page: page
 				},
 				success: function(data){
-					_this.imgList = data.data.imgList
+					_this.musicList = data.data.musicList
 					_this.paginationConf.totalItems = data.data.totalItems;
 				}
 			})
+		},
+		preMuisc: function(ev){
+			var src = $(ev.target).attr('music-src');
+			if($('#pre_music').length === 0){
+				var audio = document.createElement('audio');
+				$(audio).attr('id','pre_music');
+				$(audio).appendTo($('body'));
+				$(audio).attr('src',src);
+				$(audio).attr('autoplay','autoplay');
+				$(ev.target).html('暂停');
+			}else{
+				if($(ev.target).html() === '暂停'){
+					$(ev.target).html('播放');
+					$('#pre_music')[0].pause();
+					return;
+				}
+				$('.music_list a').html('播放');
+				if($(ev.target).html() === '播放'){
+					$(ev.target).html('暂停');
+					if($('#pre_music').attr('src') !== src){
+						$('#pre_music').attr('src',src);
+					}else{
+						$('#pre_music')[0].play();	
+					}
+					return;
+				}
+			}
+		},
+		addBgMusic_e: function(src,name){
+			actions.addBgMusic(store,src,name);
 		}
 	}
 })
