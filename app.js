@@ -14,7 +14,7 @@ var port = 3030;
 var routers = require('./Restful_API/apis/index.js');
 
 global.userPath = './User';
-global.dbHandel = require('./Restful_API/db/dbHandel.js');
+global.dbHandel = require('./RESTful_API/db/dbHandel.js');
 global.db = mongoose.connect("mongodb://localhost:27017/goh5");
 
 app.use(bodyParser.urlencoded({ extended: false }));
