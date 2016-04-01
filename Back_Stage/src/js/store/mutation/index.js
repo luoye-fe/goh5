@@ -20,6 +20,7 @@ mutations.INITDATA = function(state, data) {
         state.wholeAttr = state.mainCode.wholeAttr;
         state.currentPageData = state.pagesData[state.currentPage - 1];
         state.currentPageMain = state.currentPageData.main;
+        localStorage.mainCode = null;
     } else {
         state.mainCode = state.workData.mainCode;
         state.pagesData = state.mainCode.pages;
