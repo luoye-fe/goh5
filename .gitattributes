@@ -1,0 +1,4 @@
+Back_Stage/config.json merge=ours
+Front_Stage/config.json merge=ours
+Back_Stage/dist/ merge=ours
+Front_Stage/dist/ merge=ours
