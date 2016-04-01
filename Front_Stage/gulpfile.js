@@ -17,7 +17,7 @@ var pwd = __dirname;
 
 // gulp --env=pro 压缩代码，直接执行gulp，不压缩代码
 var argv = require('minimist')(process.argv.slice(2));
-var config = require('./config.json');
+var config = require('../config.json');
 
 // 根据不同环境使用不同的第三方库
 var aliasFile = function(name) {
