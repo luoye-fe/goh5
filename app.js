@@ -11,7 +11,7 @@ var app = express();
 var router = express.Router();
 var port = 3030;
 
-var routers = require('./Restful_API/apis/index.js');
+var routers = require('./RESTful_API/apis/index.js');
 
 global.userPath = './User';
 global.dbHandel = require('./RESTful_API/db/dbHandel.js');
