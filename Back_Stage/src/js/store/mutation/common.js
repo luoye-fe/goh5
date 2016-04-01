@@ -41,10 +41,5 @@ mutations.HIDEMATERIALLIBMUSIC = function(state) {
     state.materialLibMusicObj.show = false;
 }
 
-mutations.AUTOSAVE = function(state){
-    setInterval(function(){
-        localStorage.mainCode = JSON.stringify(state.mainCode);
-    }, 10000);
-}
 
 module.exports = mutations;

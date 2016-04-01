@@ -12,22 +12,16 @@ var mutationModule = ['./item.js', './page.js', './dom.js', './common.js'];
 var mutations = {};
 
 mutations.INITDATA = function(state, data) {
-    state.workData = data;
-    if (localStorage.mainCode !== 'null' && !_.isEqual(JSON.parse(localStorage.mainCode), data.mainCode) && confirm('检测到本地存在未保存数据，是否应用？')) {
-        state.workData.mainCode = JSON.parse(localStorage.mainCode);
-        state.mainCode = state.workData.mainCode;
-        state.pagesData = state.mainCode.pages;
-        state.wholeAttr = state.mainCode.wholeAttr;
-        state.currentPageData = state.pagesData[state.currentPage - 1];
-        state.currentPageMain = state.currentPageData.main;
-        localStorage.mainCode = null;
+    if (localStorage[data._id] && localStorage[data._id] !== 'null' && !_.isEqual(JSON.parse(localStorage[data._id]), data) && confirm('检测到本地存在未保存数据，是否应用？')) {
+        state.workData = JSON.parse(localStorage[data._id]);
     } else {
-        state.mainCode = state.workData.mainCode;
-        state.pagesData = state.mainCode.pages;
-        state.wholeAttr = state.mainCode.wholeAttr;
-        state.currentPageData = state.pagesData[state.currentPage - 1];
-        state.currentPageMain = state.currentPageData.main;
+        state.workData = data;
     }
+    state.mainCode = state.workData.mainCode;
+    state.pagesData = state.mainCode.pages;
+    state.wholeAttr = state.mainCode.wholeAttr;
+    state.currentPageData = state.pagesData[state.currentPage - 1];
+    state.currentPageMain = state.currentPageData.main;
     state.about = state.workData.about;
     state.setConfig = state.workData.setConfig;
 };

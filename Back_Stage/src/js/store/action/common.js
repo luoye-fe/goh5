@@ -32,8 +32,4 @@ actions.hideMaterialLibMusic = function(store){
 	store.dispatch('HIDEMATERIALLIBMUSIC');
 }
 
-actions.autoSave = function(store){
-	store.dispatch('AUTOSAVE');
-}
-
 module.exports = actions;

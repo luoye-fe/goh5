@@ -115,7 +115,7 @@ var Head = Vue.extend({
 					mainCode: JSON.stringify(_this.mainCode)
 				},
 				success: function(data){
-					localStorage.mainCode = null;
+					localStorage[_this.$route.params.id] = null;
 					actions.alert(store, {
 						show: true,
 						msg: '保存成功',

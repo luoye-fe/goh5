@@ -47,7 +47,8 @@ var Edit = Vue.extend({
 			loading: true,
 			bgGridStatus: true,
 			showSet: false,
-			showAddMusic: false
+			showAddMusic: false,
+			autoSave: null
 		}
 	},
 	vuex: {
@@ -78,7 +79,13 @@ var Edit = Vue.extend({
 		})
 	},
 	ready: function(){
-		actions.autoSave(store);
+		var _this = this;
+		this.autoSave = setInterval(function(){
+			localStorage[_this.$route.params.id] = _this.workData === '' ? null : JSON.stringify(_this.workData);
+		}, 10000);
+	},
+	beforeDestroy: function(){
+		clearInterval(this.autoSave);
 	},
 	components: {
 		'm-page-list': PageList,
