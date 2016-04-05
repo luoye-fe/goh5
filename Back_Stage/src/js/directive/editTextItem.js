@@ -19,7 +19,7 @@ Vue.directive('editTextItem', function() {
         }
         $(target).find('.content>div').attr('contenteditable', true);
         $(target).css('cursor', 'auto');
-        $(target).find('.content>div').popline({ position: 'fixed' });
+        $(target).find('.content>div').popline({ position: 'fixed'});
         var obj = $(target).find('.content>div')[0];
         window.getSelection().selectAllChildren(obj);
 
