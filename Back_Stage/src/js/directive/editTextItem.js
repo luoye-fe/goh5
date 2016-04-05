@@ -13,6 +13,7 @@ Vue.directive('editTextItem', function() {
     var target = this.el;
 
     $(target).bind('dblclick', function() {
+        var itemIndex = store.state.checkedItems[0];
         if ($(target).attr('type') !== 'txt') {
             return;
         }
@@ -25,7 +26,7 @@ Vue.directive('editTextItem', function() {
         $(target).find('.content>div').bind('blur', function() {
             var html = $(target).find('.content>div').html();
             // 修改数据|还原状态
-            actions.changeText(store, html);
+            actions.changeText(store, html, itemIndex);
             $(target).find('.content>div').popline("destroy");
             $(target).css('cursor', 'pointer');
             $(target).find('.content>div').attr('contenteditable', false);

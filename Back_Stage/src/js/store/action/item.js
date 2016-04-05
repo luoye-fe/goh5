@@ -6,8 +6,8 @@ actions.addText = function(store) {
     store.dispatch('ADDTEXT');
 }
 
-actions.changeText = function(store, html) {
-    store.dispatch('CHANGETEXT', html);
+actions.changeText = function(store, html, itemIndex) {
+    store.dispatch('CHANGETEXT', html, itemIndex);
 }
 
 actions.addPicOrBg = function(store, src, type) {

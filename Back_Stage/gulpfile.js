@@ -34,6 +34,7 @@ var vendorPlugin = new webpack.optimize.CommonsChunkPlugin({
     minChunks: Infinity,
 });
 var webpackConfig = {
+    watch: true,
     entry: {
         goh5: './src/js/app.js',
         vendor: [

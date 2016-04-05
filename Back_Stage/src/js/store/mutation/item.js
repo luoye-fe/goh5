@@ -13,8 +13,8 @@ mutations.ADDTEXT = function(state) {
     mutations.SELECTITEM(state, index - 1);
 };
 
-mutations.CHANGETEXT = function(state, html) {
-    state.currentPageData.items[state.checkedItems[0]].content = state.currentPageData.items[state.checkedItems[0]].content.replace(/\>[\s\S]+\</, '>' + html + '<');
+mutations.CHANGETEXT = function(state, html, itemIndex) {
+    state.currentPageData.items[itemIndex].content = state.currentPageData.items[itemIndex].content.replace(/\>[\s\S]+\</, '>' + html + '<');
 }
 
 mutations.ADDPICORBG = function(state, src, type) {
@@ -36,12 +36,12 @@ mutations.DELBG = function(state) {
     state.currentPageMain.background = '#fff';
 }
 
-mutations.ADDBGMUSIC = function(state,src,name){
+mutations.ADDBGMUSIC = function(state, src, name) {
     state.mainCode.wholeAttr.bgmusic = src;
     state.mainCode.wholeAttr.bgmusicName = name;
 }
 
-mutations.DElBGMUSIC = function(state){
+mutations.DElBGMUSIC = function(state) {
     state.mainCode.wholeAttr.bgmusic = '';
     state.mainCode.wholeAttr.bgmusicName = '';
 }
