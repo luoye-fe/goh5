@@ -7,7 +7,10 @@ var $ = require('jQuery');
 var utils = require('utils');
 var _ = require('lodash');
 
-var mutationModule = ['./item.js', './page.js', './dom.js', './common.js'];
+var item = require('./item.js');
+var page = require('./page.js');
+var dom = require('./dom.js');
+var common = require('./common.js');
 
 var mutations = {};
 
