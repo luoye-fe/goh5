@@ -29,9 +29,9 @@ mutations.INITDATA = function(state, data) {
     state.setConfig = state.workData.setConfig;
 };
 
-mutationModule.forEach(function(item) {
-    utils.mixin(mutations, require(item));
-})
-
+utils.mixin(mutations, item);
+utils.mixin(mutations, page);
+utils.mixin(mutations, dom);
+utils.mixin(mutations, common);
 
 module.exports = mutations;

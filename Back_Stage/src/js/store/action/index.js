@@ -3,7 +3,10 @@ var $ = require('jQuery');
 
 var utils = require('utils');
 
-var actionModule = ['./item.js', './page.js', './dom.js', './common.js'];
+var item = require('./item.js');
+var page = require('./page.js');
+var dom = require('./dom.js');
+var common = require('./common.js');
 
 var actions = {};
 
@@ -23,8 +26,9 @@ actions.initData = function(store, id, cb) {
     })
 }
 
-actionModule.forEach(function(item) {
-    utils.mixin(actions, require(item));
-})
+utils.mixin(actions, item);
+utils.mixin(actions, page);
+utils.mixin(actions, dom);
+utils.mixin(actions, common);
 
 module.exports = actions;

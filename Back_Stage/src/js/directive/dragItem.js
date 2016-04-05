@@ -7,7 +7,7 @@ var actions = require('../store/action/index.js');
 
 var utils = require('utils');
 
-Vue.directive('operateItem', function() {
+Vue.directive('dragItem', function() {
     var _this = this;
     var target = this.el;
     // 拖动元素
