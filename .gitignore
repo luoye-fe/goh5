@@ -2,5 +2,3 @@ node_modules/
 /User/UploadImg/*
 !/User/UploadImg/.empty
 !/User/UploadImg/
-Back_Stage/dist
-Front_Stage/dist
