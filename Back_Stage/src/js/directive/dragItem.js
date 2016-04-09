@@ -54,8 +54,8 @@ Vue.directive('dragItem', function() {
                     }
                 }
                 actions.setStyle(store, store.state.checkedItems[i], {
-                    left: (x / conWidth * 100).toFixed(1) + '%',
-                    top: (y / conHeight * 100).toFixed(1) + '%'
+                    left: x + 'px',
+                    top: y + 'px'
                 })
             }
             return false;
