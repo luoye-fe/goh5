@@ -61,12 +61,9 @@ app.get('/show/:id', function(req, res, next) {
     })
 })
 
-
 routers.forEach(function(Router) {
     app.use('/api', Router);
 })
-
-
 
 app.listen(port);
 

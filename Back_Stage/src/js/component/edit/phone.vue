@@ -1,8 +1,8 @@
 <template>
     <div class="phone_con">
         <div class="phone_title">{{workData.title}}</div>
-        <div class="phone_screen j_screen" :style="currentPageMain.background | FormatBg" :class="{'grid_bg': bgGridStatus}">
-            <div v-for="item in currentPageData.items" track-by="$index" :id="item.id" :class="item.class" :style="item.style" :title="'ID : '+item.id" :attr="item.attr | json" :type="item.type" :index="$index" @mousedown="selectItem($index);" v-drag-item v-change-size v-edit-text-item v-context-menu="'#item_context_menu'">
+        <div class="phone_screen j_screen" :style="currentPageMain.background | FormatBg" :class="{'grid_bg': bgGridStatus}"  v-drag-item>
+            <div v-for="item in currentPageData.items" track-by="$index" :id="item.id" :class="item.class" :style="item.style" :title="'ID : '+item.id" :attr="item.attr | json" :type="item.type" :index="$index" @mousedown="selectItemOp($index, $event);" v-change-size v-edit-text-item v-context-menu="'#item_context_menu'">
                 <div class="content">{{{item.content}}}</div>
                 <div class="edit_mode_cont" v-show="checkedItems.indexOf($index) != -1">
                     <div class="edit_mode_layer">
@@ -105,7 +105,17 @@ var Phone = Vue.extend({
         })
     },
     methods: {
-        selectItem: actions.selectItem,
+        selectItemOp: function(index, ev){
+            // 防止多选移动的时候触发选中元素
+            if(this.checkedItems.length > 1 && !ev.shiftKey && !ev.ctrlKey){
+                return;
+            }
+            if(ev.shiftKey || ev.ctrlKey){
+               actions.selectItem(store, index, true); 
+            }else{
+                actions.selectItem(store, index);
+            }
+        },
         delItem: actions.delItem
     }
 })

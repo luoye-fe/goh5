@@ -39,17 +39,17 @@ Vue.directive('changeSize', function() {
                         if ((itemWidth - difX) > 3 && (itemHeight - difY) > 3) {
                             if (ev.shiftKey) {
                                 styleParams = {
-                                    width: (((itemWidth - difX) / conWidth) * 100).toFixed(1) + '%',
-                                    height: ((itemHeight / itemWidth * (itemWidth - difX) / conHeight) * 100).toFixed(1) + '%',
-                                    left: (((itemLeft + difX) / conWidth) * 100).toFixed(1) + '%',
-                                    top: (((itemTop + itemHeight / itemWidth * difX) / conHeight) * 100).toFixed(1) + '%'
+                                    width: (itemWidth - difX) + 'px',
+                                    height: (itemHeight / itemWidth * (itemWidth - difX))  + 'px',
+                                    left: (itemLeft + difX) + 'px',
+                                    top: (itemTop + itemHeight / itemWidth * difX) + 'px'
                                 }
                             } else {
                                 styleParams = {
-                                    width: (((itemWidth - difX) / conWidth) * 100).toFixed(1) + '%',
-                                    height: (((itemHeight - difY) / conHeight) * 100).toFixed(1) + '%',
-                                    left: (((itemLeft + difX) / conWidth) * 100).toFixed(1) + '%',
-                                    top: (((itemTop + difY) / conHeight) * 100).toFixed(1) + '%'
+                                    width: (itemWidth - difX) + 'px',
+                                    height: (itemHeight - difY) + 'px',
+                                    left: (itemLeft + difX) + 'px',
+                                    top: (itemTop + difY) + 'px'
                                 }
                             }
                         }
@@ -57,8 +57,8 @@ Vue.directive('changeSize', function() {
                     case 1:
                         if ((itemHeight - difY) > 3) {
                             styleParams = {
-                                height: (((itemHeight - difY) / conHeight) * 100).toFixed(1) + '%',
-                                top: (((itemTop + difY) / conHeight) * 100).toFixed(1) + '%'
+                                height: (itemHeight - difY) + 'px',
+                                top: (itemTop + difY) + 'px'
                             }
                         }
                         break;
@@ -66,15 +66,15 @@ Vue.directive('changeSize', function() {
                         if ((itemWidth - difX) > 3 && (itemHeight - difY) > 3) {
                             if (ev.shiftKey) {
                                 styleParams = {
-                                    width: (((itemWidth + difX) / conWidth) * 100).toFixed(1) + '%',
-                                    height: ((itemHeight / itemWidth * (itemWidth + difX) / conHeight) * 100).toFixed(1) + '%',
-                                    top: (((itemTop - itemHeight / itemWidth * difX) / conHeight) * 100).toFixed(1) + '%'
+                                    width: (itemWidth + difX) + 'px',
+                                    height: (itemHeight / itemWidth * (itemWidth + difX)) + 'px',
+                                    top: (itemTop - (itemHeight / itemWidth * difX)) + 'px'
                                 }
                             } else {
                                 styleParams = {
-                                    width: (((itemWidth + difX) / conWidth) * 100).toFixed(1) + '%',
-                                    height: (((itemHeight - difY) / conHeight) * 100).toFixed(1) + '%',
-                                    top: (((itemTop + difY) / conHeight) * 100).toFixed(1) + '%'
+                                    width: (itemWidth + difX) + 'px',
+                                    height: (itemHeight - difY) + 'px',
+                                    top: (itemTop + difY) + 'px'
                                 }
                             }
                         }
@@ -82,7 +82,7 @@ Vue.directive('changeSize', function() {
                     case 3:
                         if ((itemWidth - difX) > 3) {
                             styleParams = {
-                                width: (((itemWidth + difX) / conWidth) * 100).toFixed(1) + '%'
+                                width: (itemWidth + difX) + 'px'
                             }
                         }
                         break;
@@ -90,13 +90,13 @@ Vue.directive('changeSize', function() {
                         if ((itemWidth - difX) > 3 && (itemHeight - difY) > 3) {
                             if (ev.shiftKey) {
                                 styleParams = {
-                                    width: (((itemWidth + difX) / conWidth) * 100).toFixed(1) + '%',
-                                    height: (((itemHeight / itemWidth * (itemWidth + difX)) / conHeight) * 100).toFixed(1) + '%'
+                                    width: (itemWidth + difX) + 'px',
+                                    height: (itemHeight / itemWidth * (itemWidth + difX)) + 'px'
                                 }
                             } else {
                                 styleParams = {
-                                    width: (((itemWidth + difX) / conWidth) * 100).toFixed(1) + '%',
-                                    height: (((itemHeight + difY) / conHeight) * 100).toFixed(1) + '%'
+                                    width: (itemWidth + difX) + 'px',
+                                    height: (itemHeight + difY) + 'px'
                                 }
                             }
                         }
@@ -104,7 +104,7 @@ Vue.directive('changeSize', function() {
                     case 5:
                         if ((itemHeight - difY) > 3) {
                             styleParams = {
-                                height: (((itemHeight + difY) / conHeight) * 100).toFixed(1) + '%'
+                                height: (itemHeight + difY) + 'px'
                             }
                         }
                         break;
@@ -112,15 +112,15 @@ Vue.directive('changeSize', function() {
                         if ((itemWidth - difX) > 3 && (itemHeight - difY) > 3) {
                             if (ev.shiftKey) {
                                 styleParams = {
-                                    width: (((itemWidth - difX) / conWidth) * 100).toFixed(1) + '%',
-                                    height: (((itemHeight / itemWidth * (itemWidth + difY)) / conHeight) * 100).toFixed(1) + '%',
-                                    left: (((itemLeft + difX) / conWidth) * 100).toFixed(1) + '%'
+                                    width: (itemWidth - difX) + 'px',
+                                    height: (itemHeight / itemWidth * (itemWidth - difX)) + 'px',
+                                    left: (itemLeft + difX) + 'px'
                                 }
                             } else {
                                 styleParams = {
-                                    width: (((itemWidth - difX) / conWidth) * 100).toFixed(1) + '%',
-                                    height: (((itemHeight + difY) / conHeight) * 100).toFixed(1) + '%',
-                                    left: (((itemLeft + difX) / conWidth) * 100).toFixed(1) + '%'
+                                    width: (itemWidth - difX) + 'px',
+                                    height: (itemHeight + difY) + 'px',
+                                    left: (itemLeft + difX) + 'px'
                                 }
                             }
                         }
@@ -128,8 +128,8 @@ Vue.directive('changeSize', function() {
                     case 7:
                         if ((itemWidth - difX) > 3) {
                             styleParams = {
-                                width: (((itemWidth - difX) / conWidth) * 100).toFixed(1) + '%',
-                                left: (((itemLeft + difX) / conWidth) * 100).toFixed(1) + '%'
+                                width: (itemWidth - difX) + 'px',
+                                left: (itemLeft + difX) + 'px'
                             }
                         }
                         break;

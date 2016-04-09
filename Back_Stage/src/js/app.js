@@ -36,9 +36,6 @@ router.beforeEach(function() {
         router.go('/list');
         return;
     }
-    // if(router.app.$route.path !== '/edit'){
-    //     localStorage.mainCode = null;
-    // }
 })
 
 router.redirect({
