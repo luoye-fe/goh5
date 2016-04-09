@@ -106,7 +106,8 @@ var Phone = Vue.extend({
     },
     methods: {
         selectItemOp: function(index, ev){
-            if(this.checkedItems.length && !ev.shiftKey && !ev.ctrlKey){
+            // 防止多选移动的时候触发选中元素
+            if(this.checkedItems.length > 1 && !ev.shiftKey && !ev.ctrlKey){
                 return;
             }
             if(ev.shiftKey || ev.ctrlKey){
