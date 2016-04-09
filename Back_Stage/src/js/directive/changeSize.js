@@ -113,8 +113,8 @@ Vue.directive('changeSize', function() {
                             if (ev.shiftKey) {
                                 styleParams = {
                                     width: (itemWidth - difX) + 'px',
-                                    height: (itemHeight / itemWidth * (itemWidth + difY)) + 'px',
-                                    left: (itemLeft + (itemHeight / itemWidth * difX)) + 'px'
+                                    height: (itemHeight / itemWidth * (itemWidth - difX)) + 'px',
+                                    left: (itemLeft + difX) + 'px'
                                 }
                             } else {
                                 styleParams = {
