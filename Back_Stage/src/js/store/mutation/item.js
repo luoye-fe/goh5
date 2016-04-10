@@ -74,4 +74,5 @@ mutations.DELITEM = function(state) {
     state.currentPageData.items = result;
 }
 
+
 module.exports = mutations;

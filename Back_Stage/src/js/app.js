@@ -25,7 +25,7 @@ router.map({
     '/edit/:id': {
         component: Edit
     }
-})
+});
 
 router.beforeEach(function() {
     if (utils.getCookie('isLogin') !== '1') {
@@ -36,10 +36,10 @@ router.beforeEach(function() {
         router.go('/list');
         return;
     }
-})
+});
 
 router.redirect({
     '*': '/'
-})
+});
 
 router.start(APP, '#app');

@@ -1,7 +1,7 @@
 <template>
     <div class="phone_con">
         <div class="phone_title">{{workData.title}}</div>
-        <div class="phone_screen j_screen" :style="currentPageMain.background | FormatBg" :class="{'grid_bg': bgGridStatus}"  v-drag-item>
+        <div class="phone_screen j_screen" :style="currentPageMain.background | FormatBg" :class="{'grid_bg': bgGridStatus}"  v-drag-item v-keyboard>
             <div v-for="item in currentPageData.items" track-by="$index" :id="item.id" :class="item.class" :style="item.style" :title="'ID : '+item.id" :attr="item.attr | json" :type="item.type" :index="$index" @mousedown="selectItemOp($index, $event);" v-change-size v-edit-text-item v-context-menu="'#item_context_menu'">
                 <div class="content">{{{item.content}}}</div>
                 <div class="edit_mode_cont" v-show="checkedItems.indexOf($index) != -1">
@@ -65,6 +65,7 @@ var dragItem = require('../../directive/dragItem.js');
 var changeSize = require('../../directive/changeSize.js');
 var contextMenu = require('../../directive/contextMenu.js');
 var editTextItem = require('../../directive/editTextItem.js');
+var keyboard = require('../../directive/keyboard.js');
 
 var PhoneVm = null;
 var Phone = Vue.extend({
