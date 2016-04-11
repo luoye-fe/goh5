@@ -17,7 +17,7 @@
 					</div>
 				</li>
 				<li v-for="item in listData" track-by="$index">
-					<div class="top" v-mouse-qrcode="host + '/show/' + item._id">
+					<div class="top" v-mouse-qrcode="'http://'+ host + '/show/' + item._id">
 						<a :href="'http://'+ host + '/show/' + item._id" target="_blank" class="qrcode"></a>
 						<img :src="item.about.thumbnail">
 						<span class="status" :class="item.status === 0 ? 'status_0' : 'status_1'">{{item.status === 0 ? '草稿' : '发布'}}</span>
