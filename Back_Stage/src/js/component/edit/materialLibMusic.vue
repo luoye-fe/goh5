@@ -32,7 +32,7 @@
 						<ul class="music_list">
 							<li v-for="item in musicList" @click="addBgMusic_e(item.file_path,item.file_name)">
 								<p>{{item.file_name}}</p>
-								<a href="javascript:void(0)" :music-src="item.file_path" @click="preMuisc($event)">播放</a>
+								<a href="javascript:void(0)" :music-src="item.file_path" @click.stop="preMuisc($event)">播放</a>
 								<span>{{item.file_size | FileSize}}</span>
 							</li>
 						</ul>
