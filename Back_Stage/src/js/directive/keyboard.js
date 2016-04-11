@@ -46,7 +46,7 @@ var paste = function(){
 
 Vue.directive('keyboard', function() {
     $(window).keydown(function(ev) {
-        if (!store.state.checkedItems.length) {
+        if (!store.state.checkedItems.length || $('.j_screen>div').eq(store.state.checkedItems[0]).find('.content>div').attr('contenteditable') === 'true') {
             return;
         }
         var keyCode = event.keyCode;
