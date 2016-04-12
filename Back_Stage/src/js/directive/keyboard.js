@@ -32,48 +32,49 @@ var moveItem = function(direction) {
     }
 }
 
-var delItem = function(){
-	actions.delItem(store);
+var delItem = function() {
+    actions.delItem(store);
 }
 
-var copyItem = function(){
-	
+var copyItem = function() {
+
 }
 
-var paste = function(){
+var paste = function() {
 
 }
 
 Vue.directive('keyboard', function() {
     $(window).keydown(function(ev) {
-        // if (!store.state.checkedItems.length || $('.j_screen>div').eq(store.state.checkedItems[0]).find('.content>div').attr('contenteditable') === 'true') {
-        //     return;
-        // }
-        // var keyCode = event.keyCode;
-        // if (keyCode === 38) { // 上
-        //     moveItem('top');
-        //     return false;
-        // } else if (keyCode === 40) { // 下
-        //     moveItem('down');
-        //     return false;
-        // } else if (keyCode === 37) { // 左
-        //     moveItem('left');
-        //     return false;
-        // } else if (keyCode === 39) { // 右
-        //     moveItem('right');
-        //     return false;
-        // } else if (keyCode === 8 || keyCode === 46) { // 删除
-        // 	delItem();
-        //     return false;
-        // } else if ((event.ctrlKey || event.metaKey) && keyCode === 67) { // 复制
-        //     console.log('copy');
-        //     return false;
-        // } else if ((event.ctrlKey || event.metaKey) && keyCode === 86) { // 粘贴
-        //     console.log('paste');
-        //     return false;
-        // } else if ((event.ctrlKey || event.metaKey) && keyCode === 65) { // 全选
-        //     console.log('selectall');
-        //     return false;
-        // }
+        var preventKeyboard = !store.state.checkedItems.length || $('.j_screen>div').eq(store.state.checkedItems[0]).find('.content>div').attr('contenteditable') === 'true' || $('input:focus').length;
+        if(preventKeyboard){
+            return;
+        }
+        var keyCode = event.keyCode;
+        if (keyCode === 38) { // 上
+            moveItem('top');
+            return false;
+        } else if (keyCode === 40) { // 下
+            moveItem('down');
+            return false;
+        } else if (keyCode === 37) { // 左
+            moveItem('left');
+            return false;
+        } else if (keyCode === 39) { // 右
+            moveItem('right');
+            return false;
+        } else if ((keyCode === 8 || keyCode === 46)) { // 删除
+            delItem();
+            return false;
+        } else if ((event.ctrlKey || event.metaKey) && keyCode === 67) { // 复制
+            console.log('copy');
+            return false;
+        } else if ((event.ctrlKey || event.metaKey) && keyCode === 86) { // 粘贴
+            console.log('paste');
+            return false;
+        } else if ((event.ctrlKey || event.metaKey) && keyCode === 65) { // 全选
+            console.log('selectall');
+            return false;
+        }
     })
 })
