@@ -1,4 +1,5 @@
 node_modules/
 /User/UploadImg/*
+/User/UploadMusic/*
 !/User/UploadImg/.empty
-!/User/UploadImg/
+!/User/UploadMusic/.empty
