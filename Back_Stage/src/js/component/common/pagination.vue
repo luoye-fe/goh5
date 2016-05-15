@@ -60,6 +60,9 @@ var Pagination = Vue.extend({
 		if (!this.paginationConf.perPageOptions) {
 		    this.paginationConf.perPageOptions = [10, 15, 20, 30, 50];
 		}
+		if(this.paginationConf.totalItems){
+			this.getPagination();
+		}
 	},
 	props:['paginationConf'],
 	methods: {
