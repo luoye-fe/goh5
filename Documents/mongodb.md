@@ -31,7 +31,7 @@ MongoDB的安装和使用
 * ##### win平台需要进入mongodb的安装目录的bin文件夹下进行命令行操作，并且需要带上 `.exe` 执行命令，如 
 
 	```
-	mongodb.exe --dbpath d:/data/db
+	mongod.exe --dbpath d:/data/db
 
 	mongo.exe
 	```
