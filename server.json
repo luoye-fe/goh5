@@ -2,7 +2,6 @@
     "apps": [{
         "name": "goh5",
         "script": "app.js",
-        "watch": true,
-        "ignore_watch": ["node_modules", "Back_Stage", "Documents", "Front_Stage", "User", "[\\/\\\\]\\./", ".git","Rev_Control"]
+        "watch": false
     }]
 }

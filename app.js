@@ -12,10 +12,15 @@ var router = express.Router();
 var port = 3030;
 
 var routers = require('./RESTful_API/apis/index.js');
+var dbConfig = require('./RESTful_API/db/config.js');
+var env = require('./RESTful_API/env.config.js');
 
 global.userPath = './User';
 global.dbHandel = require('./RESTful_API/db/dbHandel.js');
-global.db = mongoose.connect("mongodb://localhost:27017/goh5");
+global.db = mongoose.connect('mongodb://' + dbConfig[env].host + ':' + dbConfig[env].port + '/' + dbConfig[env].database, {
+    user: dbConfig[env].username,
+    pass: dbConfig[env].password
+});
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
