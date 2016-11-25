@@ -5,7 +5,6 @@ var safeWord = '骆也最帅！'; // 哈哈哈
 
 var login = function(req, res) {
     var obj = req.query;
-    console.log(obj);
     var User = global.dbHandel.getModel('user');
     User.find({ 'user_name': obj.user_name }).exec(function(err, doc) {
         if (doc == '') {
