@@ -15,26 +15,44 @@ var upload = function(req, res) {
     } else {
         files = _files;
     }
-    files.forEach(function(item) {
-        var readFrom = fs.createReadStream(item.path);
-        var fileName = path.basename(item.path);
-        var saveTo = fs.createWriteStream(global.userPath + '/UploadImg/' + fileName);
-        readFrom.pipe(saveTo);
-        UploadImg.create({
-            'user_name': req.session.user_name,
-            'file_name': fileName,
-            'upload_time': Date.now()
-        })
-        saveTo.on('finish', function() {
-            fs.unlinkSync(item.path);
+
+    function saveFile() {
+        return new Promise((resolve, reject) => {
+            var currentFileList = files;
+            function innerLoop() {
+                var item = currentFileList[0];
+                if (!item) {
+                    resolve();
+                    return;
+                }
+                var readFrom = fs.createReadStream(item.path);
+                var fileName = path.basename(item.path);
+                var saveTo = fs.createWriteStream(global.userPath + '/UploadImg/' + fileName);
+                readFrom.pipe(saveTo);
+                UploadImg.create({
+                    'user_name': req.session.user_name,
+                    'file_name': fileName,
+                    'upload_time': Date.now()
+                })
+                saveTo.on('finish', function() {
+                    fs.unlinkSync(item.path);
+                    currentFileList.splice(0, 1);
+                    innerLoop();
+                });
+            }
+            innerLoop();
         });
-    })
-    var resData = {
-        iserro: 0,
-        msg: '上传成功',
-        data: ''
     }
-    res.send(resData);
+
+    saveFile()
+        .then(() => {
+            var resData = {
+                iserro: 0,
+                msg: '上传成功',
+                data: ''
+            }
+            res.send(resData);
+        })
 }
 
 var getImgList = function(req, res) {
