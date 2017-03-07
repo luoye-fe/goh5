@@ -5,6 +5,7 @@ var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var lactate = require('lactate');
 var mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 var pwd = __dirname;
 
 var app = express();
