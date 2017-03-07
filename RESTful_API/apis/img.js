@@ -21,10 +21,7 @@ var upload = function(req, res) {
             var currentFileList = files;
             function innerLoop() {
                 var item = currentFileList[0];
-                if (!item) {
-                    resolve();
-                    return;
-                }
+                if (!item) return resolve();
                 var readFrom = fs.createReadStream(item.path);
                 var fileName = path.basename(item.path);
                 var saveTo = fs.createWriteStream(global.userPath + '/UploadImg/' + fileName);
@@ -39,6 +36,9 @@ var upload = function(req, res) {
                     currentFileList.splice(0, 1);
                     innerLoop();
                 });
+                saveTo.on('error', function(e) {
+                    reject(e);
+                });
             }
             innerLoop();
         });
@@ -52,6 +52,13 @@ var upload = function(req, res) {
                 data: ''
             }
             res.send(resData);
+        })
+        .catch(e => {
+            res.send({
+                iserro: 1,
+                msg: e,
+                data: ''
+            });
         })
 }
 
