@@ -9,7 +9,7 @@ MongoDB的安装和使用
 
 	如果把数据保存在本地 `~/data/db` 的文件夹并启动服务，执行
 	```
-	mongod --dbpath ~/data/db
+	~/data/db && mongod --dbpath ~/data/db
 	```
 
 	数据库操作，执行

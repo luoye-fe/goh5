@@ -49,11 +49,27 @@ GoH5是一个可视化编辑手机H5页的工具，极大解放生产力也为�
 	mongod --dbpath ~/data/db
 	```
 
-* #### 启动项目
+* #### 拷贝数据库配置
+
+	```bash
+	cp ./RESTful_API/db/config.js.sample ./RESTful_API/db/config.js
+	```
+
+* #### 启动服务
 
 	```
-	pm2 start server.json
+	node app.js --env=dev // 开发模式
 	```
+	or
+	```
+	pm2 start server.json // 生产
+	```
+
+* #### 前端代码实时编译
+
+	进入到 `Back_Stage` 执行 `gulp watch` 实时编译编辑后台的代码。  
+
+	进入到 `Front_Stage` 执行 `gulp watch` 实时编译预览页的代码。  
 
 * #### 查看效果
 
