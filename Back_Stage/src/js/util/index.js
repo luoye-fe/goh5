@@ -81,6 +81,10 @@ utils.checkIsColor = function(strColor) {
 }
 
 utils.attachmentSizeFormat = function(fileSize, level){
+    fileSize = Number(fileSize)
+
+    if (!fileSize) return '';
+
     var unit = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
     if (fileSize < 1024) {
         return fileSize.toFixed(2) + unit[level];
