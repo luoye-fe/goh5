@@ -115,7 +115,3 @@ GoH5是一个可视化编辑手机H5页的工具，极大解放生产力也为�
 
 有任何问题或者想交流的开issue或者联系邮箱luoyefe@gmail.com。
 
-微信：
-
-![](./Documents/static/qrcode.png)
-
